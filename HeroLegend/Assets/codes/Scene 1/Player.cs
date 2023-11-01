@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
-    public float jumpForce = 15.5f; 
+    public float jumpForce = 30f; 
     private bool isJumping = false; 
     // public Scanner scanner;
     // public Hand[] hands;
@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
-    private RectTransform rectTransform; 
+    RectTransform rectTransform; 
+    private CapsuleCollider2D playerCollider; // 플레이어의 CapsuleCollider2D 컴포넌트
+
 
     Animator anim;
     
@@ -32,28 +34,24 @@ public class Player : MonoBehaviour
         // scanner = GetComponent<Scanner>();
         // hands = GetComponentsInChildren<Hand>(true);
     }
+    private void Start()
+    {
+        playerCollider = GetComponent<CapsuleCollider2D>();
+    }
 
-    // void OnEnable()
-    // {
-    //     speed = 3;
-    //     anim.runtimeAnimatorController = animCon[0];
-    //     // speed *= Character.Speed;
-    //     // anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
-    // }
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (!GameManager.instance.isLive)
-    //         return;
-    // }
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftArrow))
+            return;        
         Move();
         Jump();
     }
     void Move()
     {
+        if (Input.GetKey(KeyCode.LeftArrow))
+            return;
+
         float h = Input.GetAxisRaw("Horizontal");
         rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
 
@@ -79,34 +77,71 @@ public class Player : MonoBehaviour
             }
         }
 
+
     }
         // Vector2 nextVec = rigid.velocity * speed * Time.fixedDeltaTime;
         // rigid.MovePosition(rigid.position + rigid.velocity);
     void Jump()
     {
- 
+        
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
+            // rigid.gravityScale = 0.5f;
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumping = true;
         }
 
 
-        if (rigid.velocity.y < 0)
+        if (rigid.velocity.y < 0.5)
         {
             Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
-            RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("PlatForm"));
+            RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Ground"));
             if (hit.collider != null)
             {
                 if (hit.distance < 0.5f)
                 {
                     isJumping = false;
+                    // rigid.gravityScale = 0;
+                    rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -0.7f);
                 }
             }
         }
-
-
     }
+        // if (rigid.velocity.y < 0.5)
+        //     {
+        //         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
+        //         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Ground"));
+        //         if (hit.collider != null)
+        //         {
+        //             if (hit.distance < 0.5f)
+        //             {
+        //                 isJumping = false;
+        //                 rigid.gravityScale = 0;
+        //                 rigid.velocity = Vector2.zero; // 중력을 끄고 현재 속도 초기화
+        //                 rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -0.4f);
+        //             }
+        //         }
+        //     }
+
+    
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("Ground"))
+    //     {
+    //         rigid.gravityScale = 0;
+    //         isJumping = false;
+    //         Vector3 newPosition = transform.position;
+    //         newPosition.y = -0.7f;
+    //         transform.position = newPosition;
+    //     }
+    // }
+
+
+
+
+
+
+
     // void FixedUpdate()
     // {
     //     // rigid.AddForce(inputVec); 힘주기
