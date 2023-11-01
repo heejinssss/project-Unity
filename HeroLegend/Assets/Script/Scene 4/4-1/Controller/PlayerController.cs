@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         theTimingManager = FindObjectOfType<TimingManager>();
+        s_canPresskey = true;
     }
 
     private void Update()
