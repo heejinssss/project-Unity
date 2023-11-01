@@ -10,7 +10,10 @@ public class NoteManager : MonoBehaviour
     // 리듬 게임에서는 오차가 적어야 하므로 float 대신 double
     double currentTime = 0d;
 
-    bool noteActive = true;
+    AudioSource startCountdownAudio;
+
+    // bool noteActive = true;
+    bool noteActive = false;
 
     [SerializeField] Transform tfNoteAppear = null;
 
@@ -23,6 +26,16 @@ public class NoteManager : MonoBehaviour
         theEffectManager = FindObjectOfType<EffectManager>();
         theTimingManager = GetComponent<TimingManager>();
         theScoreManager = FindObjectOfType<ScoreManager>();
+
+        startCountdownAudio = GetComponent<AudioSource>();
+        startCountdownAudio.Play();
+
+        Invoke("activateNote", 4f);
+    }
+
+    void activateNote()
+    {
+        noteActive = true;
     }
 
     // Update is called once per frame

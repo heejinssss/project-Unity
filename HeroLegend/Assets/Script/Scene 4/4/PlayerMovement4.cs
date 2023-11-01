@@ -11,6 +11,7 @@ public class PlayerMovement4 : MonoBehaviour
     // public members
     public float moveSpeed = 4f;
     public Rigidbody2D rb;
+    public GameManager4 gameManager;
 
     // -----------------------------------------------------------------------------------------
     // private members
@@ -29,6 +30,14 @@ public class PlayerMovement4 : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Door")
+        {
+            gameManager.StageMove4();
+        }
     }
 
     // -----------------------------------------------------------------------------------------
@@ -83,7 +92,10 @@ public class PlayerMovement4 : MonoBehaviour
         // 스페이스바 눌러서 스캔
         if (Input.GetButtonDown("Jump") && scanObject != null)
         {
-            Debug.Log("This is : " + scanObject.name);
+            if (scanObject.name == "LegBoss")
+            {
+                gameManager.SceneMove4("Scene 4 - 1");
+            }
         }
 
     }
@@ -108,4 +120,6 @@ public class PlayerMovement4 : MonoBehaviour
             scanObject = null;
         }
     }
+
+
 }
