@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
@@ -65,5 +66,26 @@ public class Result : MonoBehaviour
             resultAudio.clip = resultAudioClips[0];
             resultAudio.Play();
         }
+    }
+
+    public void ReturnToTopDownWorld()
+    {
+        int t_currentScore = theScore.GetCurrentScore();
+
+        // 전달할 데이터 저장
+        PlayerPrefs.SetInt("isReturnToTopDownWorld", 1);
+
+        if (t_currentScore < clearPoint)
+        {
+            // 실패했을 때
+            PlayerPrefs.SetInt("isClear", 0);
+        }
+        else
+        {
+            // 승리했을 때
+            PlayerPrefs.SetInt("isClear", 1);
+        }
+
+        SceneManager.LoadScene("Scene 4");
     }
 }
