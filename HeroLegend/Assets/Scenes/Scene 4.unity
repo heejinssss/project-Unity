@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425dc6061edd8844da5862bd92398f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1001
+  id: 1010
   isNpc: 1
 --- !u!1 &454771240
 GameObject:
@@ -1347,6 +1347,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7881eefc40181b04ea8061e9d1230f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portraitArr:
+  - {fileID: 1733320952, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -231732530, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -929702966, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -118453053, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: 769733208, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -1887503208, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -763141007, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -307524808, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  - {fileID: -315234743, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: -82145150, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: 493082110, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: -1815227891, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: -589991614, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: 2028825524, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: 1626038740, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: 1480234473, guid: 79b0c24f3c79e1643ab2e65fd1ab662b, type: 3}
+  - {fileID: 21300000, guid: 2d5e6a93583bf364590e5e9ccffa8498, type: 3}
 --- !u!1 &696749297
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,8 +3675,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkManager: {fileID: 653581928}
   talkPanel: {fileID: 1885235892}
+  portraitImg: {fileID: 1822699366}
   talkText: {fileID: 506501197}
   scanObject: {fileID: 0}
+  gameManager: {fileID: 608028631}
   isAction: 0
   talkIndex: 0
 --- !u!1 &1215318496
@@ -16304,7 +16324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425dc6061edd8844da5862bd92398f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1002
+  id: 1020
   isNpc: 1
 --- !u!1 &1614210295
 GameObject:
@@ -19034,6 +19054,81 @@ Transform:
   - {fileID: 573768591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1822699364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822699365}
+  - component: {fileID: 1822699367}
+  - component: {fileID: 1822699366}
+  m_Layer: 5
+  m_Name: Portrait
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1822699365
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822699364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1885235893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -20, y: 100}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &1822699366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822699364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1733320952, guid: 8463bbab22544ea4d985d479d47be345, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1822699367
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822699364}
+  m_CullTransparentMesh: 1
 --- !u!1 &1861455910
 GameObject:
   m_ObjectHideFlags: 0
@@ -19268,7 +19363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 100
-  isNpc: 0
+  isNpc: 1
 --- !u!1 &1882953190
 GameObject:
   m_ObjectHideFlags: 0
@@ -20241,12 +20336,12 @@ GameObject:
   - component: {fileID: 1885235895}
   - component: {fileID: 1885235894}
   m_Layer: 5
-  m_Name: UI Panel
+  m_Name: Talk Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1885235893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20259,6 +20354,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1822699365}
   - {fileID: 506501196}
   - {fileID: 1945344477}
   m_Father: {fileID: 454771244}
