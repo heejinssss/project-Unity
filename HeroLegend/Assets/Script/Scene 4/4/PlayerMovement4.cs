@@ -12,6 +12,7 @@ public class PlayerMovement4 : MonoBehaviour
     public float moveSpeed = 4f;
     public Rigidbody2D rb;
     public GameManager4 gameManager;
+    public DialogManager4 dialogManager;
 
     // -----------------------------------------------------------------------------------------
     // private members
@@ -45,14 +46,14 @@ public class PlayerMovement4 : MonoBehaviour
     void Update()
     {
         // update members
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.x = dialogManager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
+        movement.y = dialogManager.isAction ? 0 : Input.GetAxisRaw("Vertical");
 
         // Check Button Down & Up
-        bool hDown = Input.GetButtonDown("Horizontal");
-        bool vDown = Input.GetButtonDown("Vertical");
-        bool hUp = Input.GetButtonUp("Horizontal");
-        bool vUp = Input.GetButtonUp("Vertical");
+        bool hDown = dialogManager.isAction ? false : Input.GetButtonDown("Horizontal");
+        bool vDown = dialogManager.isAction ? false : Input.GetButtonDown("Vertical");
+        bool hUp = dialogManager.isAction ? false : Input.GetButtonUp("Horizontal");
+        bool vUp = dialogManager.isAction ? false : Input.GetButtonUp("Vertical");
 
         // Check Horizontal Move
         if (hDown)
@@ -95,6 +96,10 @@ public class PlayerMovement4 : MonoBehaviour
             if (scanObject.name == "LegBoss")
             {
                 gameManager.SceneMove4("Scene 4 - 1");
+            }
+            else
+            {
+                dialogManager.Action(scanObject);
             }
         }
 
