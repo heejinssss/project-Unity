@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System;
 
 /* MonoBehaviour 상속받지 않았으므로 Hierarchy에 존재할 필요 없음 */
 public class DBManager
@@ -51,23 +52,85 @@ public class DBManager
         }
     }
 
-    /* SelectAll Test 메소드 */
-    public void SelectAllTest()
-    {
-        string query = "select * from playerInfo";
-        DataSet dataSet = SelectRequest(query);
+    /* 닉네임 관리 */
+    public static string nickname;
 
-        if (dataSet != null)
+    /* 닉네임 일반 Getter */
+    public string getNickname()
+    {
+        if (!string.IsNullOrEmpty(nickname))
         {
-            Debug.Log("데이터베이스 전체 조회 테스트");
-            foreach (DataRow row in dataSet.Tables[tableName].Rows)
+            return nickname;
+        }
+        return "";
+    }
+
+    public string getNickname을를()
+    {
+        if (!string.IsNullOrEmpty(nickname))
+        {
+            if (HasJongseong(nickname))
             {
-                foreach (DataColumn col in dataSet.Tables[tableName].Columns)
-                {
-                    Debug.Log(col.ColumnName + ": " + row[col]);
-                }
+                return nickname + "을 ";
+            }
+            else
+            {
+                return nickname + "를 ";
             }
         }
+        return "OO를 ";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
+    }
+
+    public string getNickname이가()
+    {
+        if (!string.IsNullOrEmpty(nickname))
+        {
+            if (HasJongseong(nickname))
+            {
+                return nickname + "이 ";
+            }
+            else
+            {
+                return nickname + "가 ";
+            }
+        }
+        return "OO가";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
+    }
+
+    public string getNickname은는()
+    {
+        if (!string.IsNullOrEmpty(nickname))
+        {
+            if (HasJongseong(nickname))
+            {
+                return nickname + "은 ";
+            }
+            else
+            {
+                return nickname + "는 ";
+            }
+        }
+        return "OO는";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
+    }
+
+    /* 종성 분석 메소드 */
+    bool HasJongseong(string text)
+    {
+        string lastCharacter = text.Substring(text.Length - 1, 1);
+        char c = lastCharacter[0];
+
+        if (!(0xAC00 <= c && c <= 0xD7A3) && !(0x3131 <= c && c <= 0x318E))
+        {
+            //한글 외의 문자는 받침 없음으로 처리
+            Debug.Log("한글 외의 문자");
+            return false;
+        }
+
+        int codePoint = Char.ConvertToUtf32(c.ToString(), 0);
+        int distanceFromGa = codePoint - Char.ConvertToUtf32("가", 0);
+
+        // 한 음절은 초성(19자), 중성(21자), 종성(28자)로 구성되므로 종성이 있는지 여부를 확인하기 위해 거리를 계산
+        return distanceFromGa % 28 != 0;
     }
 
     /* 닉네임 저장 메소드 */
@@ -91,6 +154,8 @@ public class DBManager
             command.ExecuteNonQuery();
 
             SqlConnection.Close();
+
+            nickname = name;
 
             return true;
         }

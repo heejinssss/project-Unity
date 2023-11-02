@@ -23,6 +23,7 @@ public class InputName : MonoBehaviour
             /*
              * TO DO :: 장면 전환 필요
              */
+
         }
 
     }
