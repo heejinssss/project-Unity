@@ -93,14 +93,7 @@ public class PlayerMovement4 : MonoBehaviour
         // 스페이스바 눌러서 스캔
         if (Input.GetButtonDown("Jump") && scanObject != null)
         {
-            if (scanObject.name == "LegBoss")
-            {
-                gameManager.SceneMove4("Scene 4 - 1");
-            }
-            else
-            {
-                dialogManager.Action(scanObject);
-            }
+            dialogManager.Action(scanObject);
         }
 
     }
