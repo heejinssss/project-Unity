@@ -37,7 +37,7 @@ public class GameManager4 : MonoBehaviour
         if (curStage == 0)
         {
             PlayerReposition(new Vector3(7.5f, -3.5f, -1f));
-        }  
+        }
         else if(curStage == 1)
         {
             PlayerReposition(new Vector3(7.5f, -7f, -1f));
