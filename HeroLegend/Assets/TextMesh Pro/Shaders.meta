@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e9f693669af91aa45ad615fc681ed29f
+=======
+guid: 1cf1bb5a4cddaed409f0c0cd77a36020
+>>>>>>> dfe3bc49 (Feat: 다리떨리아 미니게임 import #180)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
