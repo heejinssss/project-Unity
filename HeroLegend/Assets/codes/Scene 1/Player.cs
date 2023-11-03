@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpForce = 30f; 
     private bool isJumping = false; 
-    // public Scanner scanner;
+    public Scanner scanner;
     // public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
 
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         Transform playerTransform = this.transform;
 
         anim = playerTransform.Find("UnitRoot").GetComponent<Animator>();
-        // scanner = GetComponent<Scanner>();
+        scanner = GetComponent<Scanner>();
         // hands = GetComponentsInChildren<Hand>(true);
     }
     private void Start()
@@ -43,13 +43,17 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
-            return;        
+            return;  
+        if (Input.GetKey(KeyCode.A))
+            return;      
         Move();
         Jump();
     }
     void Move()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
+            return;
+        if (Input.GetKey(KeyCode.A))
             return;
 
         float h = Input.GetAxisRaw("Horizontal");
@@ -102,7 +106,7 @@ public class Player : MonoBehaviour
                 {
                     isJumping = false;
                     // rigid.gravityScale = 0;
-                    rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -0.7f);
+                    // rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -0.8f);
                 }
             }
         }

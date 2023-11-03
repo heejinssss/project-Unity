@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,12 +16,16 @@ public class Follow : MonoBehaviour
     private Vector2 movement;
     public int Speed;
     // private GameObject dust;
-    
 
     void Start()
     {
         enemy = this.GetComponent<Rigidbody2D>();
         StartCoroutine(StartMoving());
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Ground"), true);
+
+
+        // StartCoroutine(MakeDust());
         // dust = enemy.GetComponentInChildren<GameObject>();
     }
 
@@ -29,8 +34,17 @@ public class Follow : MonoBehaviour
         yield return new WaitForSeconds(startDelay); // 처음 3초 대기
         isMoving = true;
         
+        
     }
+    // IEnumerator MakeDust()
+    // {
+    //     yield return new WaitForSeconds(startDelay);
+        
+    //     // Dust 태그를 가진 모든 게임 오브젝트를 찾아서 배열로 받아옴
+    //     GameObject.FindGameObjectWithTag("Dust").SetActive(true);
+        
 
+    // }
     void Update()
     {
 
@@ -48,7 +62,6 @@ public class Follow : MonoBehaviour
             moveCharacter(movement);
             Animator enemyAnimator = enemy.GetComponent<Animator>();
             enemyAnimator.SetTrigger("run");
-            // enemy.dust.GameObject.SetActive(true);
         }
     }
 
