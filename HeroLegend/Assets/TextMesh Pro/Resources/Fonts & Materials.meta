@@ -1,9 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 731f1baa9d144a9897cb1d341c2092b8
 folderAsset: yes
 timeCreated: 1442040525
 licenseType: Pro
 DefaultImporter:
+=======
+guid: e32e9dd1e2b6d3b4ea5e28bc8813cbb3
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> dfe3bc49 (Feat: 다리떨리아 미니게임 import #180)
   userData: 
   assetBundleName: 
   assetBundleVariant: 
