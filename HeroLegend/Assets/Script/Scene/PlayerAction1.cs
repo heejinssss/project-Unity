@@ -61,7 +61,10 @@ public class PlayerAction1 : MonoBehaviour
             dirVec = Vector3.right;
 
         // Scan Object
-        if (Input.GetButtonDown("Jump") && scanObject != null)
+        //if (Input.GetButtonDown("Jump") && scanObject != null)
+        //    manager.Action(scanObject);
+
+        if (Input.GetButtonDown("Jump"))
             manager.Action(scanObject);
     }
 
