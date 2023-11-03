@@ -31,6 +31,7 @@ public class PlayerMovement4 : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        dirVec = Vector3.down;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -98,7 +99,7 @@ public class PlayerMovement4 : MonoBehaviour
 
     }
     // -----------------------------------------------------------------------------------------
-    // fixed update methode
+    // fixed update method
     void FixedUpdate()
     {
         // Move
@@ -118,6 +119,4 @@ public class PlayerMovement4 : MonoBehaviour
             scanObject = null;
         }
     }
-
-
 }
