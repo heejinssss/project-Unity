@@ -78,12 +78,12 @@ public class Result : MonoBehaviour
         if (t_currentScore < clearPoint)
         {
             // 실패했을 때
-            PlayerPrefs.SetInt("isClear", 0);
+            PlayerPrefs.SetInt("isClear4", 0);
         }
         else
         {
             // 승리했을 때
-            PlayerPrefs.SetInt("isClear", 1);
+            PlayerPrefs.SetInt("isClear4", 1);
         }
 
         SceneManager.LoadScene("Scene 4");
