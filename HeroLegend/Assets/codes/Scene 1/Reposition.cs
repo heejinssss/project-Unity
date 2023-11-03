@@ -41,6 +41,20 @@ public class Reposition : MonoBehaviour
 
                 }
                 break;
+            case "ItemBox":
+                float boxdiffX = playerPos.x - myPos.x;
+                
+                float boxdirX = boxdiffX < 0 ? -1 : 1;
+                boxdiffX = Math.Abs(boxdiffX);
+                
+                if (boxdirX == 1 && boxdiffX > 20) {
+                    transform.Translate(Vector3.right * boxdirX * 80);
+                }
+                if (boxdirX == -1 && boxdiffX > 20) {
+                    transform.Translate(Vector3.right * boxdirX * 80);
+
+                }
+                break;
 
         }
     }
