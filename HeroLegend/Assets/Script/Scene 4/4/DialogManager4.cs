@@ -11,9 +11,17 @@ public class DialogManager4 : MonoBehaviour
     public Text talkText;
     public GameObject scanObject;
     public GameManager4 gameManager;
+    public Camera4 camera4;
 
     public bool isAction;
     public int talkIndex;
+
+    AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void Action(GameObject scanObj)
     {
@@ -24,9 +32,10 @@ public class DialogManager4 : MonoBehaviour
         talkPanel.SetActive(isAction);
     }
 
-    void Talk(int id, bool isNpc)
+    public void Talk(int id, bool isNpc)
     {
         string talkData = talkManager.GetTalk(id, talkIndex);
+        audioSource.Play();
 
         if (talkData == null)
         {
@@ -36,7 +45,21 @@ public class DialogManager4 : MonoBehaviour
             // 보스와의 대화가 끝났다면 보스전 시작
             if (id == 100)
             {
-                gameManager.SceneMove4("Scene 4 - 1");
+                camera4.ZoomCamera();
+                Invoke("StartLegBoss", 1.75f);
+            }
+            else if (id == 101)
+            {
+                gameManager.DeactivateResultDelieverObject();
+
+                // 다음 지역 선택하는 곳으로 전환하자
+                // 코드 들어갈 부분 /////////////////////
+
+                /////////////////////////////////////////            
+            }
+            else if (id == 102)
+            {
+                gameManager.DeactivateResultDelieverObject();
             }
 
             return;
@@ -61,5 +84,10 @@ public class DialogManager4 : MonoBehaviour
 
         isAction = true;
         talkIndex++;
+    }
+
+    void StartLegBoss()
+    {
+        gameManager.SceneMove4("Scene 4 - 1");
     }
 }

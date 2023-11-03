@@ -8,30 +8,60 @@ public class GameManager4 : MonoBehaviour
     public PlayerMovement4 player;
     public LegBossShape legBoss;
     public GameObject[] Stages;
+    public DialogManager4 dialogManager;
+    public GameObject resultDelieverObject;
+    public GameObject talkPanel;
 
     private int curStage = 0;
 
-    private void Awake()
+    AudioSource audioSource;
+
+    private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         if (PlayerPrefs.GetInt("isReturnToTopDownWorld") == 1)
         {
             // 미니게임에서 돌아왔을 경우
             // 다시 0으로 초기화하자, 다음 번의 오작동을 막기 위해서
             PlayerPrefs.SetInt("isReturnToTopDownWorld", 0);
             WhenReturnToTopDownWorld();
+
+            resultDelieverObject.SetActive(true);
+
+            // 보스를 클리어하고 나왔을 때
+            if (PlayerPrefs.GetInt("isClear4") == 1)
+            {
+                // dialogManager.Talk(101, true);
+                resultDelieverObject.GetComponent<ObjData4>().id = 101;
+            }
+            else // 실패했다면
+            {
+                // dialogManager.Talk(102, true);
+                resultDelieverObject.GetComponent<ObjData4>().id = 102;
+            }
+
+            // force one action (dialog)
+            ObjData4 objData = resultDelieverObject.GetComponent<ObjData4>();
+            dialogManager.Talk(objData.id, objData.isNpc);
+
+            talkPanel.SetActive(true);
         }
 
-        if (PlayerPrefs.GetInt("isClear") == 1)
+        if (PlayerPrefs.GetInt("isClear4") == 1)
         {
-            // 보스를 클리어하고 나왔을 때, (나왔을 때만 반영됨, 이후는 반영X)
+            // 보스를 클리어하고 했을 때, (나왔을 때만 반영됨, 이후는 반영X)
             legBoss.ChangeShapeWhenClear();
 
-            PlayerPrefs.SetInt("isClear", 0);
+            // 나중에 초기화하는 부분을 다른 적절한 곳에 넣자
+            PlayerPrefs.SetInt("isClear4", 0);
         }
     }
 
     public void StageMove4()
     {
+        // 문 여는 소리
+        audioSource.Play();
         Stages[curStage].SetActive(false);
 
         if (curStage == 0)
@@ -59,8 +89,14 @@ public class GameManager4 : MonoBehaviour
 
     void WhenReturnToTopDownWorld()
     {
+        curStage = 1;
         Stages[0].SetActive(false);
         Stages[1].SetActive(true);
         player.transform.position = new Vector3(7.5f, 12.7f, -1f);
+    }
+
+    public void DeactivateResultDelieverObject()
+    {
+        resultDelieverObject.SetActive(false);
     }
 }
