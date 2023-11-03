@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     public float maxSpeed = 3.0f;
     public float moveSpeed = 3.0f; // 플레이어의 좌우 이동 속도
-    public float jumpForce = 17.0f; // 점프할 때의 힘
+    public float jumpForce = 15.5f; // 점프할 때의 힘
     private bool isJumping = false; // 점프 중인지 아닌지 판단하기 위한 변수
     Animator anim; // 애니메이션 전환을 위한 
 

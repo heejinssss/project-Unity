@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - PlayerSkill
+  - PlayerAttack
+  - Boss
+  - BossSkill
+  - Enemy
+  - EnemySkill
   layers:
   - Default
   - TransparentFX
@@ -12,10 +18,10 @@ TagManager:
   - PlatForm
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - PlayerSkill
+  - PlayerAttack
+  - Enemy
   - 
   - 
   - 
