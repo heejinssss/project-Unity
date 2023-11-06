@@ -15,13 +15,14 @@ public class TalkManager2 : MonoBehaviour
         portraitData = new Dictionary<int, Sprite>();
         GenerateData();
     }
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("Intro.02");
-        }
-    }
+
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        SceneManager.LoadScene("Intro.02");
+    //    }
+    //}
 
     void GenerateData()
     {

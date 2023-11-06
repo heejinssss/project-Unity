@@ -26,9 +26,11 @@ public class GameManager2 : MonoBehaviour
         //}
         //talkPanel.SetActive(isAction);
 
-        scanObject = scanObj;
-        ObjData objData = scanObject.GetComponent<ObjData>();
-        Talk(objData.id, objData.isNpc);
+        //scanObject = scanObj;
+        //ObjData objData = scanObject.GetComponent<ObjData>();
+        //Talk(objData.id, objData.isNpc);
+
+        Talk(1000, true);
 
         talkPanel.SetActive(isAction);
     }
