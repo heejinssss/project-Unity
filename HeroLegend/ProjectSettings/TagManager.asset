@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Rock
-  - Ground
-  - Enemy
+  - Note
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -16,6 +15,8 @@ TagManager:
   - UI
   - Object
   - 
+  - Player
+  - PlayerDamaged
   - 
   - 
   - 
@@ -30,9 +31,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Object
   - 
   - 
   - 
