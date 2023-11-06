@@ -11,6 +11,7 @@ public class GameManager4 : MonoBehaviour
     public DialogManager4 dialogManager;
     public GameObject resultDelieverObject;
     public GameObject talkPanel;
+    public BgmManager4 bgmManager;
 
     private int curStage = 0;
 
@@ -39,6 +40,9 @@ public class GameManager4 : MonoBehaviour
             {
                 // dialogManager.Talk(102, true);
                 resultDelieverObject.GetComponent<ObjData4>().id = 102;
+
+                // 클리어 실패 시에도 브금 출력
+                bgmManager.StartBgm();
             }
 
             // force one action (dialog)
@@ -46,6 +50,11 @@ public class GameManager4 : MonoBehaviour
             dialogManager.Talk(objData.id, objData.isNpc);
 
             talkPanel.SetActive(true);
+        }
+        else
+        {
+            // 도전하고 나온 것이 아닌 경우(도전하러 온 것 => 브금 출력)
+            bgmManager.StartBgm();
         }
 
         if (PlayerPrefs.GetInt("isClear4") == 1)
