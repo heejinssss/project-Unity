@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
-    RectTransform rectTransform; 
+    public RectTransform rectTransform; 
     private CapsuleCollider2D playerCollider; // 플레이어의 CapsuleCollider2D 컴포넌트
 
 

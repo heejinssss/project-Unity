@@ -15,7 +15,8 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        player = GameManager.instance.player;
+        player = GetComponentInParent<Player>();
+        // player = GameManager.instance.player;
     }
 
     private bool isButtonPressed = false;
@@ -26,23 +27,28 @@ public class Weapon : MonoBehaviour
         //     return;
         switch (id) {
             case 0:
+                timer +=  Time.deltaTime;
+                if (timer > speed) {
+                    timer = 0f;
+                    if (Input.GetKey(KeyCode.LeftControl))
+                    {
+                        if (!isButtonPressed)
+                        {
+                            Fire();
+                            // player.rectTransform.rotation.y = dir
+                            isButtonPressed = true;
+                        }
+                    }
+                    else
+                    {
+                        isButtonPressed = false;
+                    }
+                }
     
                 // if (Input.GetKey(KeyCode.LeftControl)) {
                 //     Fire();
                 // }
-
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    if (!isButtonPressed)
-                    {
-                        Fire();
-                        isButtonPressed = true;
-                    }
-                }
-                else
-                {
-                    isButtonPressed = false;
-                }
+                
                 break;
             default:
                 break;
@@ -83,7 +89,7 @@ public class Weapon : MonoBehaviour
         switch (id) {
             case 0:
                 // speed = 150 * Character.WeaponSpeed;
-                speed = 1f;
+                speed = 0.3f;
                 // Batch();
                 break;
             default:
@@ -127,20 +133,51 @@ public class Weapon : MonoBehaviour
 
     // }
 
+    // void Fire() 
+    // {
+    //     if (!player.scanner.nearestTarget)
+    //         return;
+
+    //     Vector3 targetPos = player.scanner.nearestTarget.position;
+    //     Vector3 dir = targetPos - transform.position;
+    //     dir = dir.normalized;
+
+    //     // 좌우 방향을 확인
+    //     float angle = Vector3.Angle(Vector3.right, dir);
+
+    //     // 좌우 방향일 때만 발사
+    //     if (angle < 45 || angle > 135)
+    //     {
+    //         Transform noise = GameManager.instance.pool.Get(prefabId).transform;
+    //         noise.position = transform.position;
+
+    //         noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+    //         noise.GetComponent<Noise>().Init(damage, dir);
+    //     }
+    // }
+
+
     void Fire() 
     {
         if (!player.scanner.nearestTarget)
-
             return;
 
         Vector3 targetPos = player.scanner.nearestTarget.position;
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
+        if (dir[0] > 0)
+        {
+            player.rectTransform.localEulerAngles = new Vector3(0, -180, 0);
+        }
+        if (dir[0] < 0)
+        {
+            player.rectTransform.localEulerAngles = new Vector3(0, 0, 0);
+        }
 
         Transform noise = GameManager.instance.pool.Get(prefabId).transform;
         noise.position = transform.position;
         noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-        noise.GetComponent<Noise>().Init(damage, count, dir);
+        noise.GetComponent<Noise>().Init(damage, dir);
 
 
     }

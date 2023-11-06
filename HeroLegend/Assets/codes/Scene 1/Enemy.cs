@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigid;
     Collider2D coll;
     Animator anim;
-    SpriteRenderer spriter;
+    // SpriteRenderer spriter;
     WaitForFixedUpdate wait;
 
 
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
-        spriter = GetComponent<SpriteRenderer>();
+        // spriter = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
     }
 
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
-        spriter.sortingOrder = 2;
+        // spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         health = maxHealth;
     }
@@ -69,8 +69,8 @@ public class Enemy : MonoBehaviour
         if (!collision.CompareTag("Noise") || !isLive)
             return;
         
-        health -= collision.GetComponent<Noise>().damage;
-        StartCoroutine(KnockBack());
+        // health -= collision.GetComponent<Noise>().damage;
+        // StartCoroutine(KnockBack());
 
         if (health > 0) {
 
@@ -81,13 +81,13 @@ public class Enemy : MonoBehaviour
 
     }
 
-    IEnumerator KnockBack()
-    {
-        yield return wait;
-        Vector3 playerPos = GameManager.instance.player.transform.position;        
-        Vector3 dirVec = transform.position - playerPos;
-        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-    }
+    // IEnumerator KnockBack()
+    // {
+    //     yield return wait;
+    //     Vector3 playerPos = GameManager.instance.player.transform.position;        
+    //     Vector3 dirVec = transform.position - playerPos;
+    //     rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+    // }
 
     void Dead()
     {
