@@ -3055,7 +3055,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -5299,7 +5299,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0.90625, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 2.3125, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -5979,13 +5979,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 112305953, guid: 0dd4469dd1abd2d4b8d472eedba8098c, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 768698903, guid: 29c0e5256d1e8674dba7ca30f002c2b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1.2}
+  m_Size: {x: 1, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6043,7 +6043,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1.25}
-    newSize: {x: 1, y: 1.2}
+    newSize: {x: 1, y: 1.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -8065,6 +8065,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 17199225}
   - {fileID: 1332606016}
+  - {fileID: 1145745963}
   - {fileID: 102004111}
   - {fileID: 1001836766}
   - {fileID: 1655516333}
@@ -8078,4 +8079,3 @@ SceneRoots:
   - {fileID: 1861220116}
   - {fileID: 760657652}
   - {fileID: 487338396}
-  - {fileID: 1145745963}

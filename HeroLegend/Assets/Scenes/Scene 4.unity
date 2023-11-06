@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 291584639}
   - component: {fileID: 291584640}
   - component: {fileID: 291584641}
-  m_Layer: 24
+  m_Layer: 6
   m_Name: Princess4_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,9 +941,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 0}
-  m_SizeDelta: {x: -70, y: 50}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 200, y: 0}
+  m_SizeDelta: {x: -400, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &506501197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16048414, g: 0.18908183, b: 0.26415092, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -966,19 +966,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 118
+    m_MaxSize: 100
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC5EC\uAE30\uB294 \uB300\uD654\uCC3D\uC785\uB2C8\uB2E4\n\uC5EC\uAE30\uB294
-    \uB300\uD654\uCC3D\uC785\uB2C8\uB2E4"
+  m_Text: "\uB300\uD654\uCC3D"
 --- !u!222 &506501198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -999,7 +998,7 @@ GameObject:
   - component: {fileID: 555056513}
   - component: {fileID: 555056514}
   - component: {fileID: 555056515}
-  m_Layer: 24
+  m_Layer: 6
   m_Name: ResultDelieverObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4015,7 +4014,7 @@ GameObject:
   - component: {fileID: 1215318501}
   - component: {fileID: 1215318502}
   - component: {fileID: 1215318503}
-  m_Layer: 24
+  m_Layer: 6
   m_Name: Decoration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16520,7 +16519,7 @@ GameObject:
   - component: {fileID: 1524176005}
   - component: {fileID: 1524176004}
   - component: {fileID: 1524176008}
-  m_Layer: 24
+  m_Layer: 6
   m_Name: Princess4_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19440,11 +19439,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1885235893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -20, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 200, y: 0}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1822699366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19545,7 +19544,7 @@ GameObject:
   - component: {fileID: 1875250637}
   - component: {fileID: 1875250634}
   - component: {fileID: 1875250635}
-  m_Layer: 24
+  m_Layer: 6
   m_Name: LegBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20715,8 +20714,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -20, y: 100}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: -40, y: 400}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1885235894
 MonoBehaviour:
