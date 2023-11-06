@@ -29,6 +29,7 @@ public class PlayerMove : MonoBehaviour
     {
         Move();
         Jump();
+        
     }
 
     void Move()
