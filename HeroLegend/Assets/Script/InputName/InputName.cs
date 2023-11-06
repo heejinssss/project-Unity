@@ -16,15 +16,26 @@ public class InputName : MonoBehaviour
         Debug.Log("닉네임 입력 버튼 클릭 이벤트 발생 :: " + name);
 
         /* DB 저장 */
-        if (DBManager.Instance.InsertNameRequest(name))
+        if (DBManager.Instance.InsertNickname(name))
         {
             NameView.SetActive(false);
 
             /*
-             * TO DO :: 장면 전환 필요
+             * TO DO :: SWITCH SCENE
              */
 
         }
+        else
+        {
+            /*
+             * TO DO :: "다시 시도해주세요" ALERT
+             */
+        }
+    }
 
+    /* 취소 버튼 클릭 이벤트 */
+    public void CancelButtonClick()
+    {
+        InputField_Name.text = "";
     }
 }
