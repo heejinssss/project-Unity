@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AutomaticRunner : MonoBehaviour
 {
     public float Speed;
 
-    public float moveSpeed = 5.0f; // ÀÌµ¿ ¼Óµµ¸¦ Á¶ÀıÇÒ º¯¼ö
+    public float moveSpeed = 5.0f;
     private int spacebarCount = 0;
+    public int isChangedController = 0;
+
+    private bool spacebarActivated = false;
+    private float spacebarEffectDuration = 2.0f; // ì—¬ìì¹œêµ¬ ì´ë™ ì‹œê°„
+    private float spacebarEffectTimer = 0.0f;
 
     Rigidbody2D rigid;
     Animator anim;
     float h;
     float v;
-    bool isHorizonMove; // ¼öÆòÀ¸·Î ÀÌµ¿ÇÏ°í ÀÖ´Â°¡?
+    bool isHorizonMove; // ìˆ˜í‰ìœ¼ë¡œ ì´ë™í•˜ê³  ìˆëŠ”ê°€?
     Vector3 dirVec;
-
 
     void Awake()
     {
@@ -25,61 +30,101 @@ public class AutomaticRunner : MonoBehaviour
 
     void Update()
     {
-        // ½ºÆäÀÌ½º¹Ù°¡ ´­·È´ÂÁö È®ÀÎ
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    spacebarCount++;
-        //}
-
-        //// ½ºÆäÀÌ½º¹Ù°¡ 3¹ø ´­·ÈÀ» ¶§ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
-        //if (spacebarCount >= 3)
-        //{
-        //    // ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
-        //    transform.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
-        //}
-
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
-
-        bool hDown = Input.GetButtonDown("Horizontal");
-        bool vDown = Input.GetButtonDown("Vertical");
-        bool hUp = Input.GetButtonUp("Horizontal");
-        bool vUp = Input.GetButtonUp("Vertical");
-
-        if (hDown)
-            isHorizonMove = true;
-        else if (vDown)
-            isHorizonMove = false;
-        else if (hUp || vUp)
-            isHorizonMove = h != 0;
-
-        if (anim.GetInteger("hAxisRaw") != h)
+        if (spacebarActivated) // 3ë²ˆì§¸ ìŠ¤í¬ë¦½íŠ¸ ë¯¸í´ë¦­!
         {
-            anim.SetBool("isChanged", true);
-            anim.SetInteger("hAxisRaw", (int)h);
-        }
-        else if (anim.GetInteger("vAxisRaw") != v)
-        {
-            anim.SetBool("isChanged", true);
-            anim.SetInteger("vAxisRaw", (int)v);
-        }
-        else
-            anim.SetBool("isChanged", false);
+            spacebarEffectTimer += Time.deltaTime;
 
-        // Direction
-        if (vDown && v == 1) // Up Key
-            dirVec = Vector3.up;
-        else if (vDown && v == -1) // Down Key
-            dirVec = Vector3.down;
-        else if (hDown && h == -1) // Left Key
-            dirVec = Vector3.left;
-        else if (hDown && h == 1) // Right Key
-            dirVec = Vector3.right;
+            if (spacebarEffectTimer >= spacebarEffectDuration)
+            {
+                // ìŠ¤í˜ì´ìŠ¤ë°” íš¨ê³¼ ì¢…ë£Œ
+                spacebarActivated = false;
+                spacebarCount = 0;
+                spacebarEffectTimer = 4.0f;
+            }
+            else
+            {
+                // ìŠ¤í˜ì´ìŠ¤ë°” íš¨ê³¼ ì§„í–‰ ì¤‘
+                // true -> falseë¡œ ë³€ê²½í•´ì•¼ ê±·ëŠ” ì• ë‹ˆë©”ì´ì…˜ ê°€ëŠ¥
+                //anim.SetInteger("hAxisRaw", 1);
+                //anim.SetBool("isChanged", true);
+
+                if (anim.GetInteger("hAxisRaw") != 1)
+                {
+                    anim.SetBool("isChanged", true);
+                    anim.SetInteger("hAxisRaw", 1);
+                }
+                else
+                    anim.SetBool("isChanged", false);
+
+
+                //if (anim.GetBool("isChanged") == true)
+                //{
+                //    anim.SetBool("isChanged", false);
+                //    Debug.Log(anim.GetBool("Letsgirigiri"));
+                //}
+
+                Vector2 moveVec = new Vector2(h, 0);
+                rigid.velocity = moveVec * Speed;
+                transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+            }
+        }
+        else  // 3ë²ˆì§¸ ìŠ¤í¬ë¦½íŠ¸ í´ë¦­!
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                spacebarCount++;
+
+                if (spacebarCount >= 4)
+                {
+                    spacebarActivated = true;
+                }
+            }
+
+            h = Input.GetAxisRaw("Horizontal");
+            v = Input.GetAxisRaw("Vertical");
+
+            bool hDown = Input.GetButtonDown("Horizontal");
+            bool vDown = Input.GetButtonDown("Vertical");
+            bool hUp = Input.GetButtonUp("Horizontal");
+            bool vUp = Input.GetButtonUp("Vertical");
+
+            if (hDown) // ì¢Œ ë˜ëŠ” ìš° ë°©í–¥í‚¤ë¥¼ ëˆŒë €ë‹¤ë©´
+                isHorizonMove = true; // ìˆ˜í‰ ì´ë™ True
+            else if (vDown) // ìƒ ë˜ëŠ” í•˜ ë°©í–¥í‚¤ë¥¼ ëˆŒë €ë‹¤ë©´
+                isHorizonMove = false; // ìˆ˜í‰ ì´ë™ True    
+            else if (hUp || vUp)
+                isHorizonMove = h != 0;
+
+
+            if (anim.GetInteger("hAxisRaw") != h)
+            {
+                anim.SetBool("isChanged", true);
+                anim.SetInteger("hAxisRaw", (int)h);
+            }
+            else if (anim.GetInteger("vAxisRaw") != v)
+            {
+                anim.SetBool("isChanged", true);
+                anim.SetInteger("vAxisRaw", (int)v);
+            }
+            else
+                anim.SetBool("isChanged", false);
+
+
+            // Direction
+            if (vDown && v == 1) // Up Key
+                dirVec = Vector3.up;
+            else if (vDown && v == -1) // Down Key
+                dirVec = Vector3.down;
+            else if (hDown && h == -1) // Left Key
+                dirVec = Vector3.left;
+            else if (hDown && h == 1) // Right Key
+                dirVec = Vector3.right;
+        }
     }
 
     void FixedUpdate()
     {
-        // ¼öÆò ÀÌµ¿ÀÌ¶ó¸é vs ¼öÆò ÀÌµ¿ÀÌ ¾Æ´Ï¶ó¸é
+        // ìˆ˜í‰ ì´ë™ì´ë¼ë©´ vs ìˆ˜í‰ ì´ë™ì´ ì•„ë‹ˆë¼ë©´
         Vector2 moveVec = isHorizonMove ? new Vector2(h, 0) : new Vector2(0, v);
         rigid.velocity = moveVec * Speed;
 
