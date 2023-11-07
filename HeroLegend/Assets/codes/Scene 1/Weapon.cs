@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public int count;
     public float speed;
     Player player;
+    private Transform noise;
 
     float timer;
 
@@ -51,6 +52,10 @@ public class Weapon : MonoBehaviour
                 
                 break;
             default:
+                // if (Input.GetKey(KeyCode.LeftControl))
+                // {
+                    
+                // }
                 break;
         }
 
@@ -93,6 +98,7 @@ public class Weapon : MonoBehaviour
                 // Batch();
                 break;
             default:
+
                 // speed = 0.5f * Character.WeaponRate;
                 break;
         }
@@ -104,58 +110,7 @@ public class Weapon : MonoBehaviour
         // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
-    // void Batch() 
-    // {
-    //     for (int index=0; index < count; index++) {
-    //         Transform noise;
-
-    //         if (index < transform.childCount){
-    //             noise = transform.GetChild(index);
-    //         }
-    //         else {
-    //             noise = GameManager.instance.pool.Get(prefabId).transform;
-    //             noise.parent = transform;
-    //         }
-
-    //         noise.localPosition = Vector3.zero;
-    //         noise.localRotation = Quaternion.identity;
-
-    //         Vector3 rotVec = Vector3.forward * 360 * index / count;
-    //         noise.Rotate(rotVec);
-    //         noise.Translate(noise.up * 1.5f, Space.World);
-
-    //         noise.GetComponent<Noise>().Init(damage, Vector3.zero);
-
-    //         // AudioManager.instance.PlaySfx(AudioManager.Sfx.Melee);
-
-    //         // -1 = Infinity Per
-    //     }
-
-    // }
-
-    // void Fire() 
-    // {
-    //     if (!player.scanner.nearestTarget)
-    //         return;
-
-    //     Vector3 targetPos = player.scanner.nearestTarget.position;
-    //     Vector3 dir = targetPos - transform.position;
-    //     dir = dir.normalized;
-
-    //     // 좌우 방향을 확인
-    //     float angle = Vector3.Angle(Vector3.right, dir);
-
-    //     // 좌우 방향일 때만 발사
-    //     if (angle < 45 || angle > 135)
-    //     {
-    //         Transform noise = GameManager.instance.pool.Get(prefabId).transform;
-    //         noise.position = transform.position;
-
-    //         noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-    //         noise.GetComponent<Noise>().Init(damage, dir);
-    //     }
-    // }
-
+    
 
     void Fire() 
     {
@@ -163,22 +118,53 @@ public class Weapon : MonoBehaviour
             return;
 
         Vector3 targetPos = player.scanner.nearestTarget.position;
+        Debug.Log(targetPos);
+        targetPos[1] = 1f;
+
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
         if (dir[0] > 0)
         {
-            player.rectTransform.localEulerAngles = new Vector3(0, -180, 0);
+            player.rectTransform.localEulerAngles = new Vector3(player.rectTransform.localEulerAngles.x, -180, player.rectTransform.localEulerAngles.z);
+            // player.rectTransform.localEulerAngles = new Vector3(0, -180, 0);
         }
         if (dir[0] < 0)
         {
-            player.rectTransform.localEulerAngles = new Vector3(0, 0, 0);
+            player.rectTransform.localEulerAngles = new Vector3(player.rectTransform.localEulerAngles.x, 0, player.rectTransform.localEulerAngles.z);
+            // player.rectTransform.localEulerAngles = new Vector3(0, 0, 0);
+        }
+        // Transform noise = GameManager.instance.pool.Get(prefabId).transform;
+        // noise.position = transform.position;
+        // noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        // noise.GetComponent<Noise>().Init(damage, dir);
+
+
+
+        // if (transform.GetChild(1).gameObject.SetActive == true)
+        // {
+        //     Transform noise = GameManager.instance.pool.Get(0).transform;
+        // }
+        // if (transform.GetChild(1).gameObject.SetActive == false)
+        // {
+        //     Transform noise = GameManager.instance.pool.Get(1).transform;
+        // }
+
+        // noise.position = transform.position;
+        // noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        // noise.GetComponent<Noise>().Init(damage, dir);
+
+        if (!player.transform.GetChild(1).gameObject.activeSelf)
+        {
+            noise = GameManager.instance.pool.Get(0).transform;
+        }
+        else
+        {
+            noise = GameManager.instance.pool.Get(1).transform;
         }
 
-        Transform noise = GameManager.instance.pool.Get(prefabId).transform;
         noise.position = transform.position;
         noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         noise.GetComponent<Noise>().Init(damage, dir);
-
 
     }
 }

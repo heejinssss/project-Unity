@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,14 +14,15 @@ public class Player : MonoBehaviour
     public float jumpForce = 30f; 
     private bool isJumping = false; 
     public Scanner scanner;
-    // public Hand[] hands;
+    // public Barrier barrier;
+    // public GameObject barrier;    // public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     public RectTransform rectTransform; 
-    private CapsuleCollider2D playerCollider; // 플레이어의 CapsuleCollider2D 컴포넌트
-
+    private CapsuleCollider2D playerCollider; 
+    public bool isRespawnTime;
 
     Animator anim;
     
@@ -30,8 +33,10 @@ public class Player : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         Transform playerTransform = this.transform;
 
+
         anim = playerTransform.Find("UnitRoot").GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+
         // hands = GetComponentsInChildren<Hand>(true);
     }
     private void Start()
@@ -49,6 +54,11 @@ public class Player : MonoBehaviour
         Move();
         Jump();
     }
+    void FixedUpdate()
+    {
+        Shield();
+    }
+
     void Move()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -83,8 +93,7 @@ public class Player : MonoBehaviour
 
 
     }
-        // Vector2 nextVec = rigid.velocity * speed * Time.fixedDeltaTime;
-        // rigid.MovePosition(rigid.position + rigid.velocity);
+
     void Jump()
     {
         
@@ -111,6 +120,32 @@ public class Player : MonoBehaviour
             }
         }
     }
+    void Shield()
+    {
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Player"), true);
+
+            // playerCollider.size = new Vector2(0.1f, 0.1f);
+            // playerCollider.enabled = false;
+
+            // Unbeatable();
+            // Invoke("Unbeatable", 3);
+        }
+        else 
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Player"), false);
+
+            // playerCollider.size = new Vector2(0.6f, 0.8f);
+            // playerCollider.enabled = true;
+        }
+    }
+}
+
+
+
         // if (rigid.velocity.y < 0.5)
         //     {
         //         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
@@ -190,4 +225,4 @@ public class Player : MonoBehaviour
             // GameManager.instance.GameOver();
         // }
     // }
-}
+
