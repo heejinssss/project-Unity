@@ -7,18 +7,19 @@ using System.Collections.Generic;
 /* MonoBehaviour 상속받지 않았으므로 Hierarchy에 존재할 필요 없음 */
 public class DBManager
 {
+
+    /************************************ DATABASE 연결 ************************************/
+    /***************************************************************************************/
+
     public static MySqlConnection SqlConnection;
 
-    /*
-     * CONFIRM :: 추후 정보 숨김 가능한가
-     */
-
     /* static이 아니면 커넥션 불가 */
-    static readonly string ipAddress = "127.0.0.1";
+    static readonly string ipAddress = "3.36.49.5";
     static readonly string dbId = "root";
-    static readonly string dbPassword = "root";
-    static readonly string dbName = "bhj";
-    static readonly string tableName = "playerInfo";
+    static readonly string dbPassword = "qogmlwls123!";
+    static readonly string dbName = "bhjDB";
+    static readonly string playerTable = "playerInfo";
+    static readonly string playingTable = "playingInfo";
 
     readonly string strConnection = string.Format(
         "server={0};uid={1};pwd={2};database={3};charset=utf8mb4;",
@@ -47,128 +48,146 @@ public class DBManager
         {
             SqlConnection = new MySqlConnection(strConnection);
             Debug.Log("데이터베이스 연결 : " + SqlConnection);
+
         }
         catch (System.Exception e)
         {
             Debug.Log("데이터베이스 연결 실패 : " + e.ToString());
+            
         }
     }
-
-
-    /************************************ NICKNAME 관리 ************************************/
-    /***************************************************************************************/
-
-    public static string nickname;
-
-    /* 닉네임 일반 Getter */
-    public string getNickname()
-    {
-        if (!string.IsNullOrEmpty(nickname))
-        {
-            return nickname;
-        }
-        return "OO";
-    }
-
-    public string getNickname을를()
-    {
-        if (!string.IsNullOrEmpty(nickname))
-        {
-            if (HasJongseong(nickname))
-            {
-                return nickname + "을 ";
-            }
-            else
-            {
-                return nickname + "를 ";
-            }
-        }
-        return "OO를 ";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
-    }
-
-    public string getNickname이가()
-    {
-        if (!string.IsNullOrEmpty(nickname))
-        {
-            if (HasJongseong(nickname))
-            {
-                return nickname + "이 ";
-            }
-            else
-            {
-                return nickname + "가 ";
-            }
-        }
-        return "OO가 ";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
-    }
-
-    public string getNickname은는()
-    {
-        if (!string.IsNullOrEmpty(nickname))
-        {
-            if (HasJongseong(nickname))
-            {
-                return nickname + "은 ";
-            }
-            else
-            {
-                return nickname + "는 ";
-            }
-        }
-        return "OO는 ";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
-    }
-
-    /* 종성 분석 메소드 */
-    bool HasJongseong(string text)
-    {
-        string lastCharacter = text.Substring(text.Length - 1, 1);
-        char c = lastCharacter[0];
-
-        if (!(0xAC00 <= c && c <= 0xD7A3) && !(0x3131 <= c && c <= 0x318E))
-        {
-            //한글 외의 문자는 받침 없음으로 처리
-            Debug.Log("한글 외의 문자");
-            return false;
-        }
-
-        int codePoint = Char.ConvertToUtf32(c.ToString(), 0);
-        int distanceFromGa = codePoint - Char.ConvertToUtf32("가", 0);
-
-        // 한 음절은 초성(19자), 중성(21자), 종성(28자)로 구성되므로 종성이 있는지 여부를 확인하기 위해 거리를 계산
-        return distanceFromGa % 28 != 0;
-    }
-
 
     /************************************ DATABASE 관리 ************************************/
     /***************************************************************************************/
 
+    /************************************ 시스템 호출할 5개 메소드 ************************************/
+    /**************************************************************************************************/
 
-    /* 닉네임 저장 메소드 */
-    public bool InsertNickname(string name)
+    /*** 닉네임 입력 시 동작할 메소드 ***/
+    public bool InputNickname(string nickname)
     {
-        string query = "insert into " + tableName + "(nickname) value(\"" + name + "\")";
-        Debug.Log("닉네임 저장 쿼리 :: " + query);
-
-        if (InsertOrUpdateRequest(query))
+        //닉네임 존재하는지 확인
+        if (ExistNickname(nickname))
         {
-            nickname = name;
+            //전역변수 닉네임 세팅
+            NicknameManager.Nickname = nickname;
+
             return true;
         }
-        else return false;
+        else
+        {
+            //새로운 닉네임 저장
+            if(InsertNickname(nickname))
+            {
+                //전역변수 닉네임 세팅
+                NicknameManager.Nickname = nickname;
+
+                return true;
+            }
+        }
+        return false;
     }
 
-    /* 게임 오버 시, 점수 및 시간 저장 메소드 */
-    public bool UpdatePlayerInfo(string name, int score, int playTime)
+    /*** 게임 시작 시 동작할 메소드 (첫번째 맵 시작 시에 호출) ***/
+    public bool StartGame(int roundNum, string playerName)
     {
-        string query = "update " + tableName + " set score=" + score + ", playTime=" + playTime + " where nickname=\"" + name + "\"";
-        Debug.Log("점수 및 시간 저장 쿼리 :: " + query);
+        //플레잉 기록 초기화
+        if (InitPlayingInfo(roundNum, playerName)) return true;
+        return false;
+    }
+
+    /*** 장면 전환 시 동작할 메소드 (SAVE 모드 지원 위해 맵 종료 시마다 호출, 마지막 맵도 필요!) ***/
+    public bool ChangeScene(int roundNum, string playerName, int score, int playTime)
+    {
+        //플레잉 기록 업데이트
+        if (UpdatePlayingInfo(roundNum, playerName, score, playTime)) return true;
+        return false;
+    }
+
+    /*** 게임 종료 시 동작할 메소드 (마지막 맵 종료 시에 호출) ***/
+    public bool EndGame(int roundNum, string playerName, int score, int playTime)
+    {
+        //플레이어 기록 업데이트
+        if(UpdatePlayerInfo(playerName, score, playTime))
+        {
+            //플레잉 기록 삭제
+            if (DeletePlayingInfo(roundNum, playerName)) return true;
+        }
+        return false;
+    }
+
+    /*** 랭킹 조회 시 동작할 메소드 ***/
+    public List<PlayerClass> ShowRanking()
+    {
+        return Select5Players();
+    }
+
+    /************************************ 클래스 내부에서 호출할 메소드 ************************************/
+    /*******************************************************************************************************/
+
+    /* 닉네임 조회 메소드 */
+    public bool ExistNickname(string nickname)
+    {
+        string query = "select nickname from "+playerTable+" where nickname = \""+nickname+"\"";
+        Debug.Log("닉네임 조회 쿼리 :: " + query);
+
+        if (SelectRequest(query) != null) return true;
+        return false;
+    }
+
+    /* 닉네임 저장 메소드 */
+    public bool InsertNickname(string nickname)
+    {
+        string query = "insert into " + playerTable + "(nickname) value(\"" + nickname + "\")";
+        Debug.Log("닉네임 저장 쿼리 :: " + query);
 
         if (InsertOrUpdateRequest(query)) return true;
-        else return false;
+        return false;
     }
 
+    /* 플레잉 기록 초기화 메소드 */
+    public bool InitPlayingInfo(int roundNum, string playerName)
+    {
+        string query = "insert into " + playingTable + "(roundNum, playerName) value(" + roundNum + ",\"" + playerName + "\")";
+        Debug.Log("플레잉 기록 초기화 쿼리 :: " + query);
+
+        if (InsertOrUpdateRequest(query)) return true;
+        return false;
+    }
+
+    /* 플레잉 기록 업데이트 메소드 */
+    public bool UpdatePlayingInfo(int roundNum, string playerName, int score, int playTime)
+    {
+        string query = "update " + playingTable + " set score=" + score + ", playTime=" + playTime + " where roundNum="+roundNum+" and playerName=\"" + playerName + "\"";
+        Debug.Log("플레잉 기록 업데이트 쿼리 :: " + query);
+
+        if (InsertOrUpdateRequest(query)) return true;
+        return false;
+    }
+
+    /* 플레이어 기록 업데이트 메소드 */
+    public bool UpdatePlayerInfo(string nickname, int score, int playTime)
+    {
+        string query = "update " + playerTable + " set score=" + score + ", playTime=" + playTime + " where nickname=\"" + nickname + "\"";
+        Debug.Log("플레이어 기록 업데이트 쿼리 :: " + query);
+
+        if (InsertOrUpdateRequest(query)) return true;
+        return false;
+    }
+
+    /* 플레잉 기록 삭제 메소드 */
+    public bool DeletePlayingInfo(int roundNum, string playerName)
+    {
+        string query="delete from "+playingTable+" where roundNum="+roundNum+" and playerName=\""+playerName+"\"";
+        Debug.Log("플레잉 기록 삭제 쿼리 :: " + query);
+
+        if(InsertOrUpdateRequest(query)) return true;
+        return false;
+    }
+
+
     /* 플레이어 상위 5개 랭킹 조회 메소드 */
-    public List<PlayerClass> SelectPlayers()
+    public List<PlayerClass> Select5Players()
     {
         string query = "select rank() over (order by score desc, playTime asc) as 'rank',nickname,score,playTime,saveTime from playerInfo limit 5";
         Debug.Log("플레이어 랭킹 조회 쿼리 :: " + query);
@@ -178,15 +197,16 @@ public class DBManager
         {
             List<PlayerClass> players = new List<PlayerClass>();
 
-            int length = dataSet.Tables[tableName].Rows.Count;
+            int length = dataSet.Tables[playerTable].Rows.Count;
             for (int i = 0; i < length; i++)
             {
-                DataRow row = dataSet.Tables[tableName].Rows[i];
+                DataRow row = dataSet.Tables[playerTable].Rows[i];
                 Debug.Log(row[0] + "" + row[1] + row[2] + row[3] + row[4]);
+
                 long rank = row.Field<long>("rank");
                 string nickname = row.Field<string>("nickname");
-                byte score = row.Field<byte>("score");
-                byte playTime = row.Field<byte>("playTime");
+                uint score = row.Field<uint>("score");
+                uint playTime = row.Field<uint>("playTime");
                 DateTime saveTime = row.Field<DateTime>("saveTime");
 
                 PlayerClass player = new PlayerClass(rank, nickname, score, playTime, saveTime);
@@ -199,6 +219,9 @@ public class DBManager
         }
         else return null;
     }
+
+    /************************************ 공용 메소드 ************************************/
+    /*************************************************************************************/
 
     /* (공용) 저장 전용 메소드 */
     public bool InsertOrUpdateRequest(string pQuery)
@@ -243,7 +266,7 @@ public class DBManager
 
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             DataSet dataSet = new DataSet();
-            adapter.Fill(dataSet, tableName);
+            adapter.Fill(dataSet, playerTable);
 
             SqlConnection.Close();
 
