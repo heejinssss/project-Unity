@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 
 /* MonoBehaviour 상속받지 않았으므로 Hierarchy에 존재할 필요 없음 */
 public class DBManager
@@ -31,7 +32,7 @@ public class DBManager
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new DBManager();
             }
@@ -40,7 +41,8 @@ public class DBManager
     }
 
     /* 클래스 생성자 */
-    public DBManager() {
+    public DBManager()
+    {
         try
         {
             SqlConnection = new MySqlConnection(strConnection);
@@ -52,7 +54,10 @@ public class DBManager
         }
     }
 
-    /* 닉네임 관리 */
+
+    /************************************ NICKNAME 관리 ************************************/
+    /***************************************************************************************/
+
     public static string nickname;
 
     /* 닉네임 일반 Getter */
@@ -62,7 +67,7 @@ public class DBManager
         {
             return nickname;
         }
-        return "";
+        return "OO";
     }
 
     public string getNickname을를()
@@ -94,7 +99,7 @@ public class DBManager
                 return nickname + "가 ";
             }
         }
-        return "OO가";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
+        return "OO가 ";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
     }
 
     public string getNickname은는()
@@ -110,7 +115,7 @@ public class DBManager
                 return nickname + "는 ";
             }
         }
-        return "OO는";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
+        return "OO는 ";//예외적으로 nickname 데이터 날아간 경우, 받침 없음 기준으로 처리
     }
 
     /* 종성 분석 메소드 */
@@ -133,52 +138,108 @@ public class DBManager
         return distanceFromGa % 28 != 0;
     }
 
+
+    /************************************ DATABASE 관리 ************************************/
+    /***************************************************************************************/
+
+
     /* 닉네임 저장 메소드 */
-    public bool InsertNameRequest(string name)
+    public bool InsertNickname(string name)
+    {
+        string query = "insert into " + tableName + "(nickname) value(\"" + name + "\")";
+        Debug.Log("닉네임 저장 쿼리 :: " + query);
+
+        if (InsertOrUpdateRequest(query))
+        {
+            nickname = name;
+            return true;
+        }
+        else return false;
+    }
+
+    /* 게임 오버 시, 점수 및 시간 저장 메소드 */
+    public bool UpdatePlayerInfo(string name, int score, int playTime)
+    {
+        string query = "update " + tableName + " set score=" + score + ", playTime=" + playTime + " where nickname=\"" + name + "\"";
+        Debug.Log("점수 및 시간 저장 쿼리 :: " + query);
+
+        if (InsertOrUpdateRequest(query)) return true;
+        else return false;
+    }
+
+    /* 플레이어 상위 5개 랭킹 조회 메소드 */
+    public List<PlayerClass> SelectPlayers()
+    {
+        string query = "select rank() over (order by score desc, playTime asc) as 'rank',nickname,score,playTime,saveTime from playerInfo limit 5";
+        Debug.Log("플레이어 랭킹 조회 쿼리 :: " + query);
+
+        DataSet dataSet = SelectRequest(query);
+        if (dataSet != null)
+        {
+            List<PlayerClass> players = new List<PlayerClass>();
+
+            int length = dataSet.Tables[tableName].Rows.Count;
+            for (int i = 0; i < length; i++)
+            {
+                DataRow row = dataSet.Tables[tableName].Rows[i];
+                Debug.Log(row[0] + "" + row[1] + row[2] + row[3] + row[4]);
+                long rank = row.Field<long>("rank");
+                string nickname = row.Field<string>("nickname");
+                byte score = row.Field<byte>("score");
+                byte playTime = row.Field<byte>("playTime");
+                DateTime saveTime = row.Field<DateTime>("saveTime");
+
+                PlayerClass player = new PlayerClass(rank, nickname, score, playTime, saveTime);
+
+                Debug.Log("조회된 플레이어 :: " + player);
+
+                players.Add(player);
+            }
+            return players;
+        }
+        else return null;
+    }
+
+    /* (공용) 저장 전용 메소드 */
+    public bool InsertOrUpdateRequest(string pQuery)
     {
         try
         {
-            string query = "insert into " + tableName + "(nickname) value(\"" + name + "\")";
-
-            Debug.Log("닉네임 저장 쿼리 :: " + query);
-
-            MySqlCommand command = new MySqlCommand();
-            command.Connection = SqlConnection;
-            command.CommandText = query;
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = SqlConnection;
+            cmd.CommandText = pQuery;
 
             if ((SqlConnection == null) || (SqlConnection.State != ConnectionState.Open))
             {
                 SqlConnection.Open();
             }
 
-            command.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
             SqlConnection.Close();
-
-            nickname = name;
 
             return true;
         }
         catch (System.Exception e)
         {
-            Debug.Log("닉네임 저장 실패 :: " + e.ToString());
+            Debug.Log("저장 실패 :: " + e.ToString());
             return false;
         }
     }
 
-    /* 조회 메소드 (커스텀 필요) */
+    /* (공용) 조회 전용 메소드 */
     public DataSet SelectRequest(string pQuery)
     {
         try
         {
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = SqlConnection;
+            cmd.CommandText = pQuery;
+
             if ((SqlConnection == null) || (SqlConnection.State != ConnectionState.Open))
             {
                 SqlConnection.Open();
             }
-
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = SqlConnection;
-            cmd.CommandText = pQuery;
 
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             DataSet dataSet = new DataSet();
@@ -195,7 +256,7 @@ public class DBManager
         }
     }
 
-    // Disconnect
+    /* 연결 해제 메소드 */
     public void OnApplicationQuit()
     {
         if (SqlConnection != null && SqlConnection.State != ConnectionState.Closed)
