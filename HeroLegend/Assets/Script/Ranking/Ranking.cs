@@ -8,12 +8,13 @@ using UnityEngine.UI;
 public class Ranking : MonoBehaviour
 {
     public Text[] rank = new Text[5];
+ 
 
     public void Start()
     {
-        List<PlayerClass> players = DBManager.Instance.SelectPlayers();
+        List<PlayerClass> players = DBManager.Instance.ShowRanking();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             if (players[i] == null) break;//5인 이하일 경우 종료
 
