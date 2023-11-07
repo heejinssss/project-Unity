@@ -54,6 +54,9 @@ public class Reposition : MonoBehaviour
                     transform.Translate(Vector3.right * boxdirX * 80);
 
                 }
+                // ItemBox.health = maxHealth;
+                // ItemBox.isLive = true;
+                // SpawnData.item.setActive(false);
                 break;
 
         }
