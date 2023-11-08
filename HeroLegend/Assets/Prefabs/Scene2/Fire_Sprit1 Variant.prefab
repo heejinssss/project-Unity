@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8755732308030988305, guid: b916e913649658e4296eb88aa617a9e4, type: 3}
       propertyPath: m_TagString
-      value: PlayerSkill
+      value: PlayerSkillFire
       objectReference: {fileID: 0}
     - target: {fileID: 8755732308030988334, guid: b916e913649658e4296eb88aa617a9e4, type: 3}
       propertyPath: m_LocalScale.x
@@ -71,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 8755732308030988334, guid: b916e913649658e4296eb88aa617a9e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755732308030988335, guid: b916e913649658e4296eb88aa617a9e4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

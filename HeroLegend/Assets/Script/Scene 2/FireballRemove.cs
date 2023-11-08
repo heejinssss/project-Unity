@@ -25,22 +25,18 @@ public class FireballRemove : MonoBehaviour
     }
 
     // 스킬 맞췄을 때
-    public void Hit(GameObject e)
+    public void Hit()
     {
-        Remove();
-        GameObject Effect = Instantiate(e, transform.position, transform.rotation);
+        Animator anim = GetComponent<Animator>();
+        anim.SetTrigger("hit");
+        Invoke("Remove", 1);
+        
     }
 
     public void Remove()
     {
+
         gameObject.SetActive(false) ;
         Destroy(gameObject);
-    }
-
-
-    // 스킬 맞았을 때
-    public void Active()
-    {
-        Hit(effect);
     }
 }

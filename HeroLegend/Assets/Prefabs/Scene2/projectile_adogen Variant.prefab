@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1406215708321838941, guid: 1a71f4e961ebc4545a3c1131e6fb0515, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1406215708321838943, guid: 1a71f4e961ebc4545a3c1131e6fb0515, type: 3}
       propertyPath: m_Name
       value: projectile_adogen Variant
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1406215708321838943, guid: 1a71f4e961ebc4545a3c1131e6fb0515, type: 3}
       propertyPath: m_TagString
-      value: PlayerSkill
+      value: PlayerSkillOil
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

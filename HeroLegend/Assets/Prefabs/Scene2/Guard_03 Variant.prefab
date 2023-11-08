@@ -17,6 +17,18 @@ PrefabInstance:
       value: PlayerSkill
       objectReference: {fileID: 0}
     - target: {fileID: 4400202450295462575, guid: 17ab42a1fd902014c8daa6cb7987190e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400202450295462575, guid: 17ab42a1fd902014c8daa6cb7987190e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400202450295462575, guid: 17ab42a1fd902014c8daa6cb7987190e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400202450295462575, guid: 17ab42a1fd902014c8daa6cb7987190e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
