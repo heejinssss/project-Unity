@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager1 : MonoBehaviour
+public class GameManager3 : MonoBehaviour
 {
-    public TalkManager1 talkManager;
+    public TalkManager3 talkManager;
     public GameObject talkPanel;
     public Image portraitImg;
     public Text talkText;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAction2 : MonoBehaviour
@@ -10,17 +8,20 @@ public class PlayerAction2 : MonoBehaviour
     Vector3 dirVec;
     GameObject scanObject;
 
-    void Awake() {
+    void Awake()
+    {
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
+    void Update()
+    {
         // Scan Object
         if (Input.GetButtonDown("Jump"))
             manager.Action(scanObject);
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         // Ray
         Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
