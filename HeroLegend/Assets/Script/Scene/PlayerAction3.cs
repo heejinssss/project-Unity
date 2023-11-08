@@ -1,25 +1,29 @@
 using UnityEngine;
 
-public class AutomaticRunner : MonoBehaviour
+public class PlayerAction3 : MonoBehaviour
 {
+    public GameManager3 manager;
+
     public float Speed;
 
     public float moveSpeed = 5.0f;
     private int spacebarCount = 0;
 
     private bool spacebarActivated = false;
-    private float rightMoveDuration = 0.5f; // 이동 시간 (right)
+    private float rightMoveDuration = 3.0f; // 이동 시간 (right)
     private float rightMoveTimer = 0.0f;
 
-    private float downMoveDuration = 3.0f; // 이동 시간 (down)
+    private float downMoveDuration = 0.5f; // 이동 시간 (down)
     private float downMoveTimer = 0.0f;
 
     Rigidbody2D rigid;
+    Vector3 dirVec;
+    GameObject scanObject;
+
     Animator anim;
     float h;
     float v;
     bool isHorizonMove; // 수평으로 이동하고 있는가?
-    Vector3 dirVec;
 
     void Awake()
     {
@@ -29,6 +33,10 @@ public class AutomaticRunner : MonoBehaviour
 
     void Update()
     {
+        // Scan Object
+        if (Input.GetButtonDown("Jump"))
+            manager.Action(scanObject);
+
         if (spacebarActivated) // 3번째 스크립트 미클릭!
         {
             rightMoveTimer += Time.deltaTime;
@@ -77,7 +85,7 @@ public class AutomaticRunner : MonoBehaviour
             }
             /********************* 우향 이동 [E] *********************/
         }
-        else // 3번째 스크립트 클릭하면 여자친구 이동 시작
+        else // 3번째 스크립트 클릭하면 주인공 횡단보도로 이동 시작
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -131,8 +139,13 @@ public class AutomaticRunner : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 수평 이동이라면 vs 수평 이동이 아니라면
-        Vector2 moveVec = isHorizonMove ? new Vector2(h, 0) : new Vector2(0, v);
-        rigid.velocity = moveVec * Speed;
+        // Ray
+        Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+
+        if (rayHit.collider != null)
+            scanObject = rayHit.collider.gameObject;
+        else
+            scanObject = null;
     }
 }
