@@ -42,7 +42,7 @@ public class DialogManager4 : MonoBehaviour
             talkIndex = 0;
             isAction = false;
 
-            // º¸½º¿ÍÀÇ ´ëÈ­°¡ ³¡³µ´Ù¸é º¸½ºÀü ½ÃÀÛ
+            // ë³´ìŠ¤ì™€ì˜ ëŒ€í™”ê°€ ëë‚¬ë‹¤ë©´ ë³´ìŠ¤ì „ ì‹œì‘
             if (id == 100)
             {
                 camera4.ZoomCamera();
@@ -52,10 +52,8 @@ public class DialogManager4 : MonoBehaviour
             {
                 gameManager.DeactivateResultDelieverObject();
 
-                // ´ÙÀ½ Áö¿ª ¼±ÅÃÇÏ´Â °÷À¸·Î ÀüÈ¯ÇÏÀÚ
-                // ÄÚµå µé¾î°¥ ºÎºĞ /////////////////////
-
-                /////////////////////////////////////////            
+                // ë‹¤ìŒ ì§€ì—­ ì„ íƒí•˜ëŠ” ê³³ìœ¼ë¡œ ì „í™˜í•˜ì
+                Invoke("GoToMap", 1f);
             }
             else if (id == 102)
             {
@@ -65,12 +63,12 @@ public class DialogManager4 : MonoBehaviour
             return;
         }
 
-        // ¿©±â¼­ npc¿¡ µû¸¥ ºĞ±âÃ³¸®µµ °¡´É
+        // ì—¬ê¸°ì„œ npcì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ë„ ê°€ëŠ¥
         if (isNpc)
         {
             talkText.text = talkData.Split(':')[0];
 
-            // ÃÊ»óÈ­¸¦ ´Ù º¸¿©ÁÖ±â
+            // ì´ˆìƒí™”ë¥¼ ë‹¤ ë³´ì—¬ì£¼ê¸°
             portraitImg.sprite = talkManager.GetPortrait(int.Parse(talkData.Split(':')[1]));
             portraitImg.color = new Color(1, 1, 1, 1);
         }
@@ -78,7 +76,7 @@ public class DialogManager4 : MonoBehaviour
         {
             talkText.text = talkData;
 
-            // ¾Èº¸ÀÌ°Ô ÇÏ±â
+            // ì•ˆë³´ì´ê²Œ í•˜ê¸°
             portraitImg.color = new Color(1, 1, 1, 0);
         }
 
@@ -89,5 +87,10 @@ public class DialogManager4 : MonoBehaviour
     void StartLegBoss()
     {
         gameManager.SceneMove4("Scene 4 - 1");
+    }
+
+    void GoToMap()
+    {
+        gameManager.SceneMove4("Map");
     }
 }
