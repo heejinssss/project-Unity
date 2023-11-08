@@ -20,7 +20,7 @@ public class SkillRemove : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             Hit(deActiveEffect);
-        }
+        } 
     }
 
     // 스킬 맞췄을 때
@@ -47,6 +47,4 @@ public class SkillRemove : MonoBehaviour
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
-
-
 }

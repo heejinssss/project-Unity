@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PLayerDamaged : MonoBehaviour
+public class PlayerDamaged : MonoBehaviour
 {
     public GameManager gameManager;
     SpriteRenderer spriteRenderer;
     Animator anim;
     Rigidbody2D rigid;
+    bool isStunned;
 
-    // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -18,35 +19,37 @@ public class PLayerDamaged : MonoBehaviour
         anim = playerTransform.Find("UnitRoot").GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {            
-            OnDamaged(collision.transform.position);
+        {
+            // enemy skill 피격 효과
+            if (collision.gameObject.CompareTag("EnemySkill")) collision.gameObject.GetComponent<FireballRemove>().Hit();
+
+            if (!isStunned) OnDamaged(collision.transform.position); // 무적 상태 아닐시 피격 
         }
     }
 
     public void OnDie()
     {
-        
+        anim.SetBool("isDead", true);
     }
     public void OnDamaged(Vector2 targetPos)
     {
-        // health Down
+        // 체력 감소
         gameManager.HealthDown();
 
-        gameObject.layer = 9;
+        // 피격 후 빨간색 
+        ChangeColor(new Color(1, 0, 0, 1));
 
-        // view Alpha
-       ChangeColor(new Color(1, 0, 0, 1));
+        // 무적
+        isStunned = true;
 
-        // Reaction Force
+        // 피격 시 반동
         int dirc = ((transform.position.x - targetPos.x) > 0) ? 1 : -1;
         rigid.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
 
-
-        anim.SetTrigger("isStunned");
+        // 2초후 무적 및 피격 상태 해제 
         Invoke("OffDamaged", 2);
     }
 
@@ -55,14 +58,16 @@ public class PLayerDamaged : MonoBehaviour
     {
         gameObject.layer = 0;
         ChangeColor(new Color(1, 1, 1, 1));
+        isStunned = false;
     }
 
     void ChangeColor(Color newColor)
     {
-        SpriteRenderer[] children = GetComponentsInChildren<SpriteRenderer>(); // 모든 SpriteRenderer 컴포넌트를 찾습니다.
+        // 모든 SpriteRenderer 컴포넌트 찾기
+        SpriteRenderer[] children = GetComponentsInChildren<SpriteRenderer>(); 
         foreach (SpriteRenderer sr in children)
         {
-            sr.color = newColor; // 각 SpriteRenderer의 색상을 변경합니다.
+            sr.color = newColor; // 각 SpriteRenderer 색상 변경
         }
     }
 }

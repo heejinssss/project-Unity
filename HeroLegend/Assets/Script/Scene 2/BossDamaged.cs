@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossDamaged : MonoBehaviour
 {
-    public int hp = 100;
+    public GameManager gameManager;
     private Animator anim;
 
     // Start is called before the first frame update
@@ -15,17 +15,22 @@ public class BossDamaged : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerSkill"))
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "PlayerSkill" || LayerMask.LayerToName(collision.gameObject.layer) == "Item")
         {
             SkillRemove skillRemove = collision.gameObject.GetComponent<SkillRemove>();
             skillRemove.DeActive();
-
-            // anim.SetTrigger("hit");
         } else if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-            collision.gameObject.GetComponent<SkillRemove>().Active();
-            anim.SetTrigger("hit");
-            hp -= 1;
+            if (collision.gameObject.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+            {
+                collision.gameObject.GetComponent<SkillRemove>().Active();
+                anim.SetTrigger("hit");
+                gameManager.BossHealthDown();
+            }
+            else
+            {
+                collision.gameObject.GetComponent<SkillRemove>().DeActive();
+            }
         }
     }
 }

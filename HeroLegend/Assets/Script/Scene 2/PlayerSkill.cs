@@ -8,6 +8,8 @@ public class PlayerSkill : MonoBehaviour
     // ½ºÅ³ ÇÁ¸®Æé
     public GameObject water; 
     public GameObject fire;
+    public GameObject effect;
+    public GameManager gameManager;
 
     Animator anim;
 
@@ -38,13 +40,26 @@ public class PlayerSkill : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-            Debug.Log("ÅÁ¼öÀ° ¹ß»ç");
+            Quaternion rotation = Quaternion.Euler(0, 0, 90);
+            GameObject effect1 = Instantiate(effect, collision.gameObject.transform.position, rotation);
+            StartCoroutine(DeleteEffect(effect1));
             Rigidbody2D objectRb = collision.gameObject.GetComponent<Rigidbody2D>();
             objectRb.AddForce(-transform.right * launchSpeed, ForceMode2D.Impulse);
+        } else if (collision.gameObject.CompareTag("Item"))
+        {
+            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
+            gameManager.HealthUp();
         }
+    }
+
+    IEnumerator DeleteEffect(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     void CreateProjectile(GameObject projectilePrefab)
