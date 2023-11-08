@@ -81,6 +81,14 @@ public class Enemy : MonoBehaviour
 
     }
 
+    // public void Init(SpawnData data)
+    // {
+    //     // anim.runtimeAnimatorController = animCon[data.spriteType];
+    //     maxHealth = data.health;
+    //     health = data.health;
+    // }
+
+
     // IEnumerator KnockBack()
     // {
     //     yield return wait;

@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [Header("# Game Control")]
-    // public bool isLive;
-    // public float gameTime;
+    public bool isLive;
+    public float gameTime;
     // public float maxGameTime = 2*10f;
     // [Header("# Player Info")]
     // public int playerId;
@@ -85,19 +85,19 @@ public class GameManager : MonoBehaviour
     //     Application.Quit();
     // }
 
-    // void Update()
-    // {
-    //     if (!isLive)
-    //         return;
+    void Update()
+    {
+        // if (!isLive)
+        //     return;
 
-    //     gameTime += Time.deltaTime;
+        gameTime += Time.deltaTime;
 
-    //     if (gameTime > maxGameTime)
-    //     {
-    //         gameTime = maxGameTime;
-    //         GameVictory();
-    //     }
-    // }
+        // if (gameTime > maxGameTime)
+        // {
+        //     gameTime = maxGameTime;
+        //     GameVictory();
+        // }
+    }
     // public void GetExp()
     // {
     //     if (!isLive)

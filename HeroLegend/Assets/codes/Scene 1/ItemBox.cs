@@ -14,43 +14,68 @@ public class ItemBox : MonoBehaviour
     // SpriteRenderer spriter;
     WaitForFixedUpdate wait;
     public Transform player;
+    // public GameObject[] itemPrefabs;
+    public int id;
+    public SpawnedItem spawnedItemScript;
+    private Transform boxTransform;
+
+
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        spawnedItemScript = GetComponent<SpawnedItem>();
+        // spawnedItemScript = GetComponent<Spawn
         // spriter = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
+        boxTransform = transform;
+
     }
     void LateUpdate()
     {
-        if (isLive)
+        if (!GameManager.instance.isLive)
             return;
-        // Vector3 distance_box = player.position - transform.position;
-        // if (!isLive && distance_box[0] > 18)
-        // {   
-        //     isLive = true;
-        //     // transform.gameObject.SetActive(true);
-        // }
+        if (!isLive) 
+            return;
+    
+    }
+    // void LateUpdate()
+    // {
+    //     if (isLive)
+    //         return;
+    //     // Vector3 distance_box = player.position - transform.position;
+    //     // if (!isLive && distance_box[0] > 18)
+    //     // {   
+    //     //     isLive = true;
+    //     //     // transform.gameObject.SetActive(true);
+    //     // }
         
-        // Debug.Log(distance_box);
+    //     // Debug.Log(distance_box);
 
 
-        // if (!GameManager.instance.isLive)
-        //     return;
-        if (!isLive)
-        {
-            Vector3 distance_box = player.position - transform.position;
+    //     // if (!GameManager.instance.isLive)
+    //     //     return;
+    //     if (!isLive)
+    //     {
+    //         Vector3 distance_box = player.position - transform.position;
             
-            if (!isLive && distance_box[0] > 18)
-            {   
-            isLive = true;
-            transform.gameObject.SetActive(true);
-            }
-        } 
-            return;
+    //         if (!isLive && distance_box[0] > )
+    //         {   
+    //         isLive = true;
+    //         transform.gameObject.SetActive(true);
+    //         }
+    //     } 
+    //         return;
         
+    // }
+
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        maxHealth = data.health;
+        health = data.health;
     }
 
     void OnEnable()
@@ -63,12 +88,33 @@ public class ItemBox : MonoBehaviour
         health = maxHealth;
     }
 
-    // public void Init(SpawnData data)
+    void Dead()
+    {
+
+        if (spawnedItemScript != null)
+        {
+            Debug.Log("Hi");
+            spawnedItemScript.DropItem(boxTransform.position); 
+
+            // spawnedItemScript.DropItem();
+        }
+        gameObject.SetActive(false);
+        // StartCoroutine(DropItem());
+
+    }
+    // IEnumerator DropItem()
     // {
-    //     anim.runtimeAnimatorController = animCon[data.spriteType];
-    //     maxHealth = data.health;
-    //     health = data.health;
+    //     yield return new WaitForSeconds(0.5f);
+    //     int randomItemIndex = Random.Range(0, itemPrefabs.Length);
+    //     GameObject spawnedItem = Instantiate(itemPrefabs[randomItemIndex], transform.position, Quaternion.identity);
+        
     // }
+// if (spawnedItem.CompareTag("Player"))
+//         {
+//             spawnedItem.gameObject.SetActive(false);
+//         }
+
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -81,17 +127,21 @@ public class ItemBox : MonoBehaviour
         if (health > 0) {
 
         }
-        else {
-            Dead();
+        else
+        {
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            // spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true);
+            // Dead();
         }
+
+ 
+
 
     }
     
-    void Dead()
-    {
-        gameObject.SetActive(false);
-
-    }
 
 }
 

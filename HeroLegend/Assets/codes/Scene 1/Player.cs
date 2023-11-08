@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public RectTransform rectTransform; 
     private CapsuleCollider2D playerCollider; 
     public bool isRespawnTime;
+    public bool dir_plus;
 
     Animator anim;
     
@@ -93,7 +94,10 @@ public class Player : MonoBehaviour
 
 
     }
-
+    bool Direction()
+    {
+        return rigid.velocity.normalized.x > 0;
+    }
     void Jump()
     {
         
