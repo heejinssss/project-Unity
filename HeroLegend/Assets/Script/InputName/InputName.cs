@@ -16,7 +16,7 @@ public class InputName : MonoBehaviour
         Debug.Log("닉네임 입력 버튼 클릭 이벤트 발생 :: " + name);
 
         /* DB 저장 */
-        if (DBManager.Instance.InsertNickname(name))
+        if (DBManager.Instance.InputNickname(name))
         {
             NameView.SetActive(false);
 
