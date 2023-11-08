@@ -23,25 +23,25 @@ public class GameManager4 : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isReturnToTopDownWorld") == 1)
         {
-            // ¹Ì´Ï°ÔÀÓ¿¡¼­ µ¹¾Æ¿ÔÀ» °æ¿ì
-            // ´Ù½Ã 0À¸·Î ÃÊ±âÈ­ÇÏÀÚ, ´ÙÀ½ ¹øÀÇ ¿ÀÀÛµ¿À» ¸·±â À§ÇØ¼­
+            // ë¯¸ë‹ˆê²Œì„ì—ì„œ ëŒì•„ì™”ì„ ê²½ìš°
+            // ë‹¤ì‹œ 0ìœ¼ë¡œ ì´ˆê¸°í™”í•˜ì, ë‹¤ìŒ ë²ˆì˜ ì˜¤ì‘ë™ì„ ë§‰ê¸° ìœ„í•´ì„œ
             PlayerPrefs.SetInt("isReturnToTopDownWorld", 0);
             WhenReturnToTopDownWorld();
 
             resultDelieverObject.SetActive(true);
 
-            // º¸½º¸¦ Å¬¸®¾îÇÏ°í ³ª¿ÔÀ» ¶§
+            // ë³´ìŠ¤ë¥¼ í´ë¦¬ì–´í•˜ê³  ë‚˜ì™”ì„ ë•Œ
             if (PlayerPrefs.GetInt("isClear4") == 1)
             {
                 // dialogManager.Talk(101, true);
                 resultDelieverObject.GetComponent<ObjData4>().id = 101;
             }
-            else // ½ÇÆĞÇß´Ù¸é
+            else // ì‹¤íŒ¨í–ˆë‹¤ë©´
             {
                 // dialogManager.Talk(102, true);
                 resultDelieverObject.GetComponent<ObjData4>().id = 102;
 
-                // Å¬¸®¾î ½ÇÆĞ ½Ã¿¡µµ ºê±İ Ãâ·Â
+                // í´ë¦¬ì–´ ì‹¤íŒ¨ ì‹œì—ë„ ë¸Œê¸ˆ ì¶œë ¥
                 bgmManager.StartBgm();
             }
 
@@ -53,23 +53,23 @@ public class GameManager4 : MonoBehaviour
         }
         else
         {
-            // µµÀüÇÏ°í ³ª¿Â °ÍÀÌ ¾Æ´Ñ °æ¿ì(µµÀüÇÏ·¯ ¿Â °Í => ºê±İ Ãâ·Â)
+            // ë„ì „í•˜ê³  ë‚˜ì˜¨ ê²ƒì´ ì•„ë‹Œ ê²½ìš°(ë„ì „í•˜ëŸ¬ ì˜¨ ê²ƒ => ë¸Œê¸ˆ ì¶œë ¥)
             bgmManager.StartBgm();
         }
 
         if (PlayerPrefs.GetInt("isClear4") == 1)
         {
-            // º¸½º¸¦ Å¬¸®¾îÇÏ°í ÇßÀ» ¶§, (³ª¿ÔÀ» ¶§¸¸ ¹İ¿µµÊ, ÀÌÈÄ´Â ¹İ¿µX)
+            // ë³´ìŠ¤ë¥¼ í´ë¦¬ì–´í•˜ê³  í–ˆì„ ë•Œ, (ë‚˜ì™”ì„ ë•Œë§Œ ë°˜ì˜ë¨, ì´í›„ëŠ” ë°˜ì˜X)
             legBoss.ChangeShapeWhenClear();
 
-            // ³ªÁß¿¡ ÃÊ±âÈ­ÇÏ´Â ºÎºĞÀ» ´Ù¸¥ ÀûÀıÇÑ °÷¿¡ ³ÖÀÚ
+            // ë‚˜ì¤‘ì— ì´ˆê¸°í™”í•˜ëŠ” ë¶€ë¶„ì„ ë‹¤ë¥¸ ì ì ˆí•œ ê³³ì— ë„£ì
             PlayerPrefs.SetInt("isClear4", 0);
         }
     }
 
     public void StageMove4()
     {
-        // ¹® ¿©´Â ¼Ò¸®
+        // ë¬¸ ì—¬ëŠ” ì†Œë¦¬
         audioSource.Play();
         Stages[curStage].SetActive(false);
 
