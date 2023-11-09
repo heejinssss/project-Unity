@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Note
+  - Door
   - Rock
   - Enemy
   - Ground
@@ -20,11 +22,14 @@ TagManager:
   - 
   - Water
   - UI
+  - Object
+  -
+  - Player
+  - PlayerDamaged
   - Ground
   - Enemy
-  - Player
-  - 
-  - 
+  -
+  -
   - 
   - 
   - 
