@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CenterFrame : MonoBehaviour
+public class CenterFrame4 : MonoBehaviour
 {
     AudioSource myAudio;
-    NoteManager theNote;
-    ScoreManager theScore;
-    EffectManager theEffect;
+    NoteManager4 theNote;
+    ScoreManager4 theScore;
+    EffectManager4 theEffect;
     bool musicStart = false;
 
-    Result theResult;
+    Result4 theResult;
 
     private void Start()
     {
         myAudio = GetComponent<AudioSource>();
-        theNote = FindObjectOfType<NoteManager>();
-        theScore = FindObjectOfType<ScoreManager>();
-        theEffect = FindObjectOfType<EffectManager>();
-        theResult = FindObjectOfType<Result>();
+        theNote = FindObjectOfType<NoteManager4>();
+        theScore = FindObjectOfType<ScoreManager4>();
+        theEffect = FindObjectOfType<EffectManager4>();
+        theResult = FindObjectOfType<Result4>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,8 +31,8 @@ public class CenterFrame : MonoBehaviour
                 musicStart = true;
             }
         } 
-        else if (!myAudio.isPlaying) { // °ÔÀÓÀ» ½ÃÀÛÇß°í, À½¾ÇÀÌ ³¡³µÀ¸¸é °ÔÀÓ Á¾·á
-            PlayerController.s_canPresskey = false;
+        else if (!myAudio.isPlaying) { // ê²Œì„ì„ ì‹œì‘í–ˆê³ , ìŒì•…ì´ ëë‚¬ìœ¼ë©´ ê²Œì„ ì¢…ë£Œ
+            PlayerController4.s_canPresskey = false;
             theNote.RemoveNote();
             // theResult.ShowResult();
             

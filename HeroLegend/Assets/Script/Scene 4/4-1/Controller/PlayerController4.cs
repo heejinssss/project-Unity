@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour   
+public class PlayerController4 : MonoBehaviour   
 {
     public static bool s_canPresskey = true;
 
-    TimingManager theTimingManager;
+    TimingManager4 theTimingManager;
 
     private void Start()
     {
-        theTimingManager = FindObjectOfType<TimingManager>();
+        theTimingManager = FindObjectOfType<TimingManager4>();
         s_canPresskey = true;
     }
 
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         {
             if (s_canPresskey)
             {
-                // ∆«¡§ √º≈©
+                // ÌåêÏ†ï Ï≤¥ÌÅ¨
                 theTimingManager.CheckTiming();
             }
         }

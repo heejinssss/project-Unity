@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteManager : MonoBehaviour
+public class NoteManager4 : MonoBehaviour
 {
-    // ºĞ´ç ºñÆ® ¼ö(ºĞ´ç ³ëÆ® ¼ö)
+    // ë¶„ë‹¹ ë¹„íŠ¸ ìˆ˜(ë¶„ë‹¹ ë…¸íŠ¸ ìˆ˜)
     public int bpm = 0;
 
-    // ¸®µë °ÔÀÓ¿¡¼­´Â ¿ÀÂ÷°¡ Àû¾î¾ß ÇÏ¹Ç·Î float ´ë½Å double
+    // ë¦¬ë“¬ ê²Œì„ì—ì„œëŠ” ì˜¤ì°¨ê°€ ì ì–´ì•¼ í•˜ë¯€ë¡œ float ëŒ€ì‹  double
     double currentTime = 0d;
 
     AudioSource startCountdownAudio;
@@ -17,15 +17,15 @@ public class NoteManager : MonoBehaviour
 
     [SerializeField] Transform tfNoteAppear = null;
 
-    TimingManager theTimingManager;
-    EffectManager theEffectManager;
-    ScoreManager theScoreManager;
+    TimingManager4 theTimingManager;
+    EffectManager4 theEffectManager;
+    ScoreManager4 theScoreManager;
 
     private void Start()
     {
-        theEffectManager = FindObjectOfType<EffectManager>();
-        theTimingManager = GetComponent<TimingManager>();
-        theScoreManager = FindObjectOfType<ScoreManager>();
+        theEffectManager = FindObjectOfType<EffectManager4>();
+        theTimingManager = GetComponent<TimingManager4>();
+        theScoreManager = FindObjectOfType<ScoreManager4>();
 
         startCountdownAudio = GetComponent<AudioSource>();
         startCountdownAudio.Play();
@@ -45,21 +45,21 @@ public class NoteManager : MonoBehaviour
         {
             currentTime += Time.deltaTime;
 
-            // 60(double) / bpm => 1ºñÆ® ´ç ½Ã°£
+            // 60(double) / bpm => 1ë¹„íŠ¸ ë‹¹ ì‹œê°„
             if (currentTime >= 30d / bpm)
             {
                 if (Random.value < 0.4)
                 {
-                    GameObject t_note = ObjectPool.instance.noteQueue.Dequeue();
+                    GameObject t_note = ObjectPool4.instance.noteQueue.Dequeue();
                     t_note.transform.position = tfNoteAppear.position;
                     t_note.SetActive(true);
                     t_note.transform.localScale = new Vector3(1, 1, 1);
                     theTimingManager.boxNoteList.Add(t_note);
                 }
 
-                // ÇÁ·¹ÀÓ ´ÜÀ§·Î ¾÷µ¥ÀÌÆ® ÇÏ±â¿¡ 0.51005xx ¹¹ ÀÌ·± ½ÄÀ¸·Î ¿ÀÂ÷°¡ »ı±è
-                // ±Ùµ¥ ÀÌ¸¦ ±×³É 0À¸·Î ÃÊ±âÈ­ ÇØ¹ö¸®¸é ±× ¿ÀÂ÷°¡ ´©ÀûµÇ¼­ ³ªÁß¿¡´Â À½ÀÌ ¾È¸Â°í ±×·² ¼ö ÀÖ´Ù
-                // ±×·¡¼­ ±×°Í±îÁö °í·ÁÇØ¼­ ´ÙÀ½ ³ëÆ®´Â ¿ÀÂ÷ ¸¸Å­ ´õ »¡¸® ³ª¿À´Â ½ÄÀ¸·Î Á¶Á¤
+                // í”„ë ˆì„ ë‹¨ìœ„ë¡œ ì—…ë°ì´íŠ¸ í•˜ê¸°ì— 0.51005xx ë­ ì´ëŸ° ì‹ìœ¼ë¡œ ì˜¤ì°¨ê°€ ìƒê¹€
+                // ê·¼ë° ì´ë¥¼ ê·¸ëƒ¥ 0ìœ¼ë¡œ ì´ˆê¸°í™” í•´ë²„ë¦¬ë©´ ê·¸ ì˜¤ì°¨ê°€ ëˆ„ì ë˜ì„œ ë‚˜ì¤‘ì—ëŠ” ìŒì´ ì•ˆë§ê³  ê·¸ëŸ´ ìˆ˜ ìˆë‹¤
+                // ê·¸ë˜ì„œ ê·¸ê²ƒê¹Œì§€ ê³ ë ¤í•´ì„œ ë‹¤ìŒ ë…¸íŠ¸ëŠ” ì˜¤ì°¨ ë§Œí¼ ë” ë¹¨ë¦¬ ë‚˜ì˜¤ëŠ” ì‹ìœ¼ë¡œ ì¡°ì •
                 currentTime -= 30d / bpm;
             }
         }
@@ -70,7 +70,7 @@ public class NoteManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            if (collision.GetComponent<Note>().GetNoteFlag())
+            if (collision.GetComponent<Note4>().GetNoteFlag())
             {
                 theTimingManager.MissRecord();
                 theEffectManager.JudgementEffect(4);
@@ -79,7 +79,7 @@ public class NoteManager : MonoBehaviour
             }
             theTimingManager.boxNoteList.Remove(collision.gameObject);
 
-            ObjectPool.instance.noteQueue.Enqueue(collision.gameObject);
+            ObjectPool4.instance.noteQueue.Enqueue(collision.gameObject);
             collision.gameObject.SetActive(false);
         }
     }
@@ -91,7 +91,7 @@ public class NoteManager : MonoBehaviour
         for (int i = 0; i < theTimingManager.boxNoteList.Count; i++)
         {
             theTimingManager.boxNoteList[i].SetActive(false);
-            ObjectPool.instance.noteQueue.Enqueue(theTimingManager.boxNoteList[i]);
+            ObjectPool4.instance.noteQueue.Enqueue(theTimingManager.boxNoteList[i]);
         }
     }
 }
