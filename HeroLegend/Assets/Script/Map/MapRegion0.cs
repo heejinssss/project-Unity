@@ -4,14 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MapRegion : MonoBehaviour
+public class MapRegion0 : MonoBehaviour
 {
     public Button[] regions;
     int[] clearStatus = new int[5];
 
+    AudioSource regionClickAudioSource;
+
+    private void Awake()
+    {
+        regionClickAudioSource = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
-        // Å¬¸®¾î Á¤º¸ ºÒ·¯¿À±â
+        // í´ë¦¬ì–´ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
         GetClearStatus();
 
         bool didClearAll = true;
@@ -19,11 +26,11 @@ public class MapRegion : MonoBehaviour
 
         for (int i = 0; i < numOfRegions; i++)
         {
-            // RGBA¿¡¼­ Alpha °ªÀÌ 0.5ÀÌ»óÀÎ ºÎºĞ¸¸ Å¬¸¯ ¿µ¿ªÀÌ µÇµµ·Ï ¼³Á¤
+            // RGBAì—ì„œ Alpha ê°’ì´ 0.5ì´ìƒì¸ ë¶€ë¶„ë§Œ í´ë¦­ ì˜ì—­ì´ ë˜ë„ë¡ ì„¤ì •
             regions[i].GetComponent<Image>().alphaHitTestMinimumThreshold = 0.5f;
 
-            // ¸¶Áö¸· Áö¿ª(º¸½º)ÀÌ ¾Æ´Ï°í, Å¬¸®¾îÇßÀ» °æ¿ì, ¼³Á¤µÇ¾î ÀÖ´Â ÃÊ·Ï»ö Disabled Color°¡ ¶ßµµ·Ï
-            // + ´Ù½Ã ±× Áö¿ªÀ» ¼±ÅÃÇÒ ¼ö ¾ø°Ô
+            // ë§ˆì§€ë§‰ ì§€ì—­(ë³´ìŠ¤)ì´ ì•„ë‹ˆê³ , í´ë¦¬ì–´í–ˆì„ ê²½ìš°, ì„¤ì •ë˜ì–´ ìˆëŠ” ì´ˆë¡ìƒ‰ Disabled Colorê°€ ëœ¨ë„ë¡
+            // + ë‹¤ì‹œ ê·¸ ì§€ì—­ì„ ì„ íƒí•  ìˆ˜ ì—†ê²Œ
             if (i < numOfRegions - 1)
             {
                 if (clearStatus[i] == 1)
@@ -32,13 +39,13 @@ public class MapRegion : MonoBehaviour
                 }
                 else
                 {
-                    // ÇÏ³ª¶óµµ ¾È ±ü ½ºÅ×ÀÌÁö°¡ ÀÖ´Â °æ¿ì
+                    // í•˜ë‚˜ë¼ë„ ì•ˆ ê¹¬ ìŠ¤í…Œì´ì§€ê°€ ìˆëŠ” ê²½ìš°
                     didClearAll = false;
                 }
             }
         }
 
-        // ¸¶Áö¸· º¸½º´Â ÀÌÀü 4 ½ºÅ×ÀÌÁö¸¦ ¸ğµÎ Å¬¸®¾î ÇØ¾ß ¿­¸®µµ·Ï
+        // ë§ˆì§€ë§‰ ë³´ìŠ¤ëŠ” ì´ì „ 4 ìŠ¤í…Œì´ì§€ë¥¼ ëª¨ë‘ í´ë¦¬ì–´ í•´ì•¼ ì—´ë¦¬ë„ë¡
         if (didClearAll)
         {
             regions[numOfRegions - 1].interactable = true;
@@ -51,8 +58,8 @@ public class MapRegion : MonoBehaviour
 
     void GetClearStatus()
     {
-        // Å¬¸®¾î Çß´ÂÁö ¿©ºÎ ºÒ·¯¿À±â
-        // ÀÌ ºÎºĞÀÌ ÀûÀıÈ÷ ¹Ù²î¾î¾ß ÇÕ´Ï´Ù
+        // í´ë¦¬ì–´ í–ˆëŠ”ì§€ ì—¬ë¶€ ë¶ˆëŸ¬ì˜¤ê¸°
+        // ì´ ë¶€ë¶„ì´ ì ì ˆíˆ ë°”ë€Œì–´ì•¼ í•©ë‹ˆë‹¤
         clearStatus[0] = 0;
         clearStatus[1] = 0;
         clearStatus[2] = 0;
@@ -62,9 +69,10 @@ public class MapRegion : MonoBehaviour
 
     public void MoveScene(string sceneName)
     {
-        // ÇÊ¿äÇÏ´Ù¸é ½ºÅ©¸³Æ® Ãß°¡ ¿¹Á¤
+        // í•„ìš”í•˜ë‹¤ë©´ ìŠ¤í¬ë¦½íŠ¸ ì¶”ê°€ ì˜ˆì •
+        regionClickAudioSource.Play();
         SceneManager.LoadScene(sceneName);
     }
 
-    // regions[i].interactable = false; ·Î ¹öÆ°À» disabled »óÅÂ·Î ¸¸µé ¼ö ÀÖ´Ù => Disabled Color·Î ³ª¿È
+    // regions[i].interactable = false; ë¡œ ë²„íŠ¼ì„ disabled ìƒíƒœë¡œ ë§Œë“¤ ìˆ˜ ìˆë‹¤ => Disabled Colorë¡œ ë‚˜ì˜´
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ComboManager : MonoBehaviour
+public class ComboManager4 : MonoBehaviour
 {
     [SerializeField] GameObject goComboImage = null;
     [SerializeField] TextMeshProUGUI txtCombo = null;

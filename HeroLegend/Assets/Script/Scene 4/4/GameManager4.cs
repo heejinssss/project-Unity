@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager4 : MonoBehaviour
 {
     public PlayerMovement4 player;
-    public LegBossShape legBoss;
+    public LegBossShape4 legBoss;
     public GameObject[] Stages;
     public DialogManager4 dialogManager;
     public GameObject resultDelieverObject;
