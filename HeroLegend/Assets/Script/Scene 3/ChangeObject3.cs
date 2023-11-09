@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeObject : MonoBehaviour
+public class ChangeObject3 : MonoBehaviour
 {
     public GameObject[] objects;
 

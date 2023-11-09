@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager2 : MonoBehaviour
+public class GameManager01 : MonoBehaviour
 {
-    public TalkManager2 talkManager;
+    public TalkManager01 talkManager;
     public GameObject talkPanel;
     public Image portraitImg;
     public Text talkText;
@@ -26,17 +24,21 @@ public class GameManager2 : MonoBehaviour
         //}
         //talkPanel.SetActive(isAction);
 
-        scanObject = scanObj;
-        ObjData objData = scanObject.GetComponent<ObjData>();
-        Talk(objData.id, objData.isNpc);
+        //scanObject = scanObj;
+        //ObjData objData = scanObject.GetComponent<ObjData>();
+        //Talk(objData.id, objData.isNpc);
+
+        Talk(1000, true);
 
         talkPanel.SetActive(isAction);
     }
 
-    void Talk(int id, bool isNpc) {
+    void Talk(int id, bool isNpc)
+    {
         string talkData = talkManager.GetTalk(id, talkIndex);
 
-        if (talkData == null) {
+        if (talkData == null)
+        {
             isAction = false;
             talkIndex = 0;
             return;
@@ -48,7 +50,8 @@ public class GameManager2 : MonoBehaviour
             portraitImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(':')[1]));
             portraitImg.color = new Color(1, 1, 1, 1);
         }
-        else {
+        else
+        {
             talkText.text = talkData;
             portraitImg.color = new Color(1, 1, 1, 0);
         }

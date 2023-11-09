@@ -23,14 +23,11 @@ TagManager:
   - Water
   - UI
   - Object
-  -
+  - 
   - Player
   - PlayerDamaged
   - Ground
   - Enemy
-  -
-  -
-  - 
   - 
   - 
   - 

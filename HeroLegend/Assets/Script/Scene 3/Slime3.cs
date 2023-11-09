@@ -15,11 +15,11 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.isLive)
+        if (!GameManager3.isLive)
             return;
 
-        float totalSpeed = GameManager.globalSpeed * speedRate * Time.deltaTime * -1f;
-        transform.Translate(totalSpeed, 0, 0); // Time.deltaTime ÇÁ·¹ÀÓ º° ¼Òºñ ½Ã°£ -> ½Ã°£ ´ÜÀ§ ÅëÀÏ
+        float totalSpeed = GameManager3.globalSpeed * speedRate * Time.deltaTime * -1f;
+        transform.Translate(totalSpeed, 0, 0); // Time.deltaTime í”„ë ˆì„ ë³„ ì†Œë¹„ ì‹œê°„ -> ì‹œê°„ ë‹¨ìœ„ í†µì¼
     }
 
     void OnCollisionExit2D(Collision2D collision)

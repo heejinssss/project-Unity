@@ -1,17 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TalkManager1 : MonoBehaviour
+public class TalkManager02 : MonoBehaviour
 {
     Dictionary<int, string[]> talkData;
     Dictionary<int, Sprite> portraitData;
 
     public Sprite[] portraitArr;
-    public CameraShake1 cameraShake;
 
-    void Awake() {
+    void Awake()
+    {
         talkData = new Dictionary<int, string[]>();
         portraitData = new Dictionary<int, Sprite>();
         GenerateData();
@@ -20,22 +19,17 @@ public class TalkManager1 : MonoBehaviour
     void GenerateData()
     {
         talkData.Add(1000, new string[] {
-            "ÈÄ·ç·è ÂÁÂÁÂÁ ÈÄ·ç·è ÂÁÂÁÂÁ (´Ş´Ş´Ş) ÈÄ·ç·è ÂÁÂÁÂÁ:1",
-            "¡¦:13",
-            "ÈÄ·ç·è ÂÁÂÁÂÁ ÈÄ·ç·è ÂÁÂÁÂÁ (´Ş´Ş´Ş) ÈÄ·ç·è ÂÁÂÁÂÁ:1",
-            "ÀÚ±â¾ß.:10",
-            "À½? ¿Ö? ÈÄ·ç·è ÂÁÂÁÂÁ:1",
-            "Á» Á¶¿ëÈ÷ ¸ÔÀ» ¼ö ¾ø¾î?:10",
-            "ÀÚ±â°¡ ¸éÄ¡±â ÇÏ´Ï±î ³ªÇÑÅ× ÃáÀåÀÌ ´Ù Æ¢Àİ¾Æ.:10",
-            "¿¡~ ±×Ä¡¸¸ ÀÌ·¸°Ô ¸Ô¾î¾ß ´õ ¸ÀÀÖ´Â °É. (´Ş´Ş´Ş):2",
-            "Á£°¡¶ôÁúµµ ¾û¸ÁÀÌ°í¡¦:15",
-            "´Ù¸®´Â ¶Ç ¿Ö ÀÌ·¸°Ô ¶°´Â °Å¾ß? ÁöÁø ³­ ÁÙ ¾Ë¾Ò¾î.:15",
-            "...¾Ë¾Ò¾î. Á¶½ÉÇÒ°Ô.:5",
-            "ÇÏ¿©Æ°... ¾ù, ÅÁ¼öÀ° ³ª¿Ô´Ù. (¼Ò½º¸¦ ºÎÀ¸·Á ÇÑ´Ù):9",
-            "¾ß¾ß!!!! º×Áö¸¶!!!!:2",
-            "ÅÁ¼öÀ°Àº Âï¸ÔÀÌÁö ¹» ºÎÀ¸·Á°í ÇØ?? ÁøÂ¥ Å«ÀÏ³¯ »·Çß³×.:4",
-            "¡¦:12"
+            "í›„ë£¨ë£© ì©ì©ì© í›„ë£¨ë£© ì©ì©ì© ë‹¬ë‹¬ë‹¬ í›„ë£¨ë£© ì©ì©ì©:1",
+            "â€¦ì§„ì§œ ì§œì¦ë‚˜ì„œ ê°™ì´ ëª» ë¨¹ê² ë„¤!:11",
+            "ë‚˜ ë¨¼ì € ê°ˆ í…Œë‹ˆê¹Œ ë§˜ í¸í•˜ê²Œ ì©ì©ê±°ë¦¬ë©´ì„œ ë¨¹ì–´.:15",
+            "ì–´? ì•¼! ì–´ë”” ê°€!:2",
+            "... ì–˜ëŠ” ì•„ê¹ê²Œ ì´ê±¸ ë‹¤ ë‚¨ê¸°ê³  ê°”ë„¤.:5",
+            "í›„ë£¨ë£© ì©ì©ì©:1",
+            "â™ªâ™©ì “ê°€ë½ì§ˆ ì˜í•´ì•¼ë§Œ ë°¥ì„ ë¨¹ë‚˜ìš” ì˜ëª»í•´ë„ ì„œíˆ´ëŸ¬ë„ ë°¥ ì˜ë¨¹ì–´ìš”â™ªâ™©:1",
         });
+
+        //talkData.Add(100, new string[] { "í‰ë²”í•œ ì‹íƒì´ë‹¤." });
+        //talkData.Add(200, new string[] { "í‰ë²”í•œ ì‹íƒì´ë‹¤." });
 
         portraitData.Add(1000 + 0, portraitArr[0]);
         portraitData.Add(1000 + 1, portraitArr[1]);
@@ -55,22 +49,19 @@ public class TalkManager1 : MonoBehaviour
         portraitData.Add(1000 + 15, portraitArr[15]);
     }
 
-    public string GetTalk(int id, int talkIndex) {
-
-        if (talkIndex == 0 || talkIndex == 2 || talkIndex == 7) // "´Ş´Ş´Ş" ½ºÅ©¸³Æ®°¡ ÀÖÀ» ¶§¿¡¸¸ È­¸é Áøµ¿
+    public string GetTalk(int id, int talkIndex)
+    {
+        if (talkIndex == talkData[id].Length)
         {
-            cameraShake.shakeDuration = 1.0f;
-        }
-
-        if (talkIndex == talkData[id].Length) {
-            SceneManager.LoadScene("Intro.02");
+            SceneManager.LoadScene("Intro.03");
             return null;
         }
         else
             return talkData[id][talkIndex];
     }
 
-    public Sprite GetPortrait(int id, int portraitIndex) {
+    public Sprite GetPortrait(int id, int portraitIndex)
+    {
         return portraitData[id + portraitIndex];
     }
 }
