@@ -13,7 +13,6 @@ public class SpawnedItem : MonoBehaviour
         
     }
 
-    // Coroutine으로 아이템 생성
     public void DropItem(Vector3 spawnPosition)
     {
         StartCoroutine(DropItemCoroutine(spawnPosition));
@@ -26,12 +25,9 @@ public class SpawnedItem : MonoBehaviour
     {
 
         yield return new WaitForSeconds(0.5f);        
-        // 이후 추가 동작을 수행할 수 있습니다.
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // 다른 코드...
     }
 }
