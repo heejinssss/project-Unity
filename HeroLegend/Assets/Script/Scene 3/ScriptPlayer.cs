@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScriptPlayer : MonoBehaviour
+public class ScriptPlayer3 : MonoBehaviour
 {
-    public GameManager gameManager;
+    public GameManager3 gameManager;
 
 
     void Update()

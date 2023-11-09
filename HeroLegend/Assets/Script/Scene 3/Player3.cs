@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+public class Player3 : MonoBehaviour
 {
     public enum State { Stand, Run, Jump, Hit, Death }
     public float startJumpPower;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public bool isGround;
     public bool isJumpKey;
     public UnityEvent onHit;
-    public GameManager gameManager;
+    public GameManager3 gameManager;
 
     Rigidbody2D rigid;
     Animator animator;
@@ -33,40 +33,40 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.isLive)
+        if (!GameManager3.isLive)
             return;
 
-        // 1-1. ¼ô Á¡ÇÁ (±âº» Á¡ÇÁ)
-        if (Input.GetButtonDown("Jump") && isGround) // ´©¸¥ Ã¹ »óÅÂ
+        // 1-1. ìˆ ì í”„ (ê¸°ë³¸ ì í”„)
+        if (Input.GetButtonDown("Jump") && isGround) // ëˆ„ë¥¸ ì²« ìƒíƒœ
         {
             rigid.AddForce(Vector2.up * startJumpPower, ForceMode2D.Impulse);
         }
 
-        // InputÀÌ FixedUpdate¿¡ µé¾îÀÖÀ» °æ¿ì, °¡²û ¾ÃÈ÷´Â °æ¿ì°¡ ÀÖÀ½ -> º¯¼ö ¼±¾ğ
+        // Inputì´ FixedUpdateì— ë“¤ì–´ìˆì„ ê²½ìš°, ê°€ë” ì”¹íˆëŠ” ê²½ìš°ê°€ ìˆìŒ -> ë³€ìˆ˜ ì„ ì–¸
         isJumpKey = Input.GetButton("Jump");
     }
 
     void FixedUpdate()
     {
-        if (!GameManager.isLive)
+        if (!GameManager3.isLive)
             return;
 
-        // 1-2. ·Õ Á¡ÇÁ
-        if (isJumpKey && !isGround) // ´©¸¥ »óÅÂ Áö¼Ó
+        // 1-2. ë¡± ì í”„
+        if (isJumpKey && !isGround) // ëˆ„ë¥¸ ìƒíƒœ ì§€ì†
         {
             reducedJumpPower = Mathf.Lerp(reducedJumpPower, 0, 0.1f); // jumpPower -> 0
             rigid.AddForce(Vector2.up * reducedJumpPower, ForceMode2D.Impulse);
         }
     }
 
-    // 2. ÂøÁö (¹°¸® Ãæµ¹ ÀÌº¥Æ®)
+    // 2. ì°©ì§€ (ë¬¼ë¦¬ ì¶©ëŒ ì´ë²¤íŠ¸)
     void OnCollisionStay2D(Collision2D collision)
     {
         if (!isGround)
         {
             ChangeAnim(State.Run);
             // sound.PlaySound(Sounder.Sfx.Land);
-            reducedJumpPower = jumpPower; // Á¡ÇÁ »óÅÂ¿¡¼­ 0ÀÌ µÇ¾ú´Ù°¡, ÂøÁöÇßÀ» ¶§ ´Ù½Ã 1·Î
+            reducedJumpPower = jumpPower; // ì í”„ ìƒíƒœì—ì„œ 0ì´ ë˜ì—ˆë‹¤ê°€, ì°©ì§€í–ˆì„ ë•Œ ë‹¤ì‹œ 1ë¡œ
         }
         isGround = true;
     }
@@ -81,12 +81,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    // 3. Àå¾Ö¹° ÅÍÄ¡ (Æ®¸®°Å Ãæµ¹ ÀÌº¥Æ®)
+    // 3. ì¥ì• ë¬¼ í„°ì¹˜ (íŠ¸ë¦¬ê±° ì¶©ëŒ ì´ë²¤íŠ¸)
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            Debug.Log("Enemy");
+            // rigid.simulated = false; // rigidBodyëŠ” simulatedë¡œ í™œì„±í™” ë° ë¹„í™œì„±í™”
             // sound.PlaySound(Sounder.Sfx.Hit);
+            // onHit.Invoke(); // onHitì— ì—°ê²°ëœ í•¨ìˆ˜ í˜¸ì¶œ
+
             OnDamaged(collision.transform.position);
 
         }
@@ -97,7 +101,8 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Finish")
         {
-            // Àå¸é ÀüÈ¯
+            // ì¥ë©´ ì „í™˜
+            Debug.Log("Finish");
             gameManager.NextStage();
         }
     }
@@ -108,11 +113,13 @@ public class Player : MonoBehaviour
         // Health Down
         gameManager.HealthDown();
 
-        if (GameManager.isLive)
+        if (GameManager3.isLive)
         {
             // Change Layer (Immortal Active)
             gameObject.layer = 9; // 9 = PlayerDamaged
-
+            // Reaction Force
+            // int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1; // í”Œë ˆì´ì–´ x ì¶• - ì¶©ëŒ ì •ë³´ xì¶•
+            // rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
             // Animation
             ChangeAnim(State.Hit);
             Invoke("OffDamaged", 1);
@@ -133,7 +140,7 @@ public class Player : MonoBehaviour
         ChangeAnim(State.Death);
     }
 
-    // 4. ¾Ö´Ï¸ŞÀÌ¼Ç
+    // 4. ì• ë‹ˆë©”ì´ì…˜
     void ChangeAnim(State state)
     {
         animator.SetInteger("State", (int)state);

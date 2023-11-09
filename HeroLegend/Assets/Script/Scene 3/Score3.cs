@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+public class Score3 : MonoBehaviour
 {
 
     Text uiText;
@@ -16,9 +16,9 @@ public class Score : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!GameManager.isLive)
+        if (!GameManager3.isLive)
             return;
 
-        uiText.text = GameManager.score.ToString("F0");
+        uiText.text = GameManager3.score.ToString("F0");
     }
 }
