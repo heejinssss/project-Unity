@@ -12,7 +12,7 @@ public class Ranking : MonoBehaviour
 
     public void Start()
     {
-        List<PlayerClass> players = DBManager.Instance.ShowRanking();
+        List<PlayerRankingClass> players = DBManager.Instance.ShowRanking();
 
         for (int i = 0; i < players.Count; i++)
         {
