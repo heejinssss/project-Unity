@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sounder : MonoBehaviour
+public class Sounder3 : MonoBehaviour
 {
     public enum Sfx { Jump, Land, Hit, Start }
     public AudioClip[] clips;

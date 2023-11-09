@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraShake1 : MonoBehaviour
+public class CameraShake0 : MonoBehaviour
 {
     public Transform cameraTransform;
     public float shakeDuration = 0f;

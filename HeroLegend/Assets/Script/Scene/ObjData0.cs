@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjData : MonoBehaviour
+public class ObjData0 : MonoBehaviour
 {
     public int id;
     public bool isNpc;

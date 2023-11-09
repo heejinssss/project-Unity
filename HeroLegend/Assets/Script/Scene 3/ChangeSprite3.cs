@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeSprite : MonoBehaviour
+public class ChangeSprite3 : MonoBehaviour
 {
     public Sprite[] sprites;
     SpriteRenderer spriter;

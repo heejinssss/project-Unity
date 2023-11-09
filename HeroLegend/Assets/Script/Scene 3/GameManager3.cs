@@ -4,12 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager3 : MonoBehaviour
 {
     const float ORIGIN_SPEED = 3;
     public int stageIndex;
     public int health;
-    public Player player;
+    public Player3 player;
     public GameObject[] stages;
 
     public static float globalSpeed;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        isLive = true; // °ÔÀÓ ½ÃÀÛ ¹öÆ°À» ´­·¶À» ¶§ true·Î º¯È¯
+        isLive = true; // ê²Œì„ ì‹œì‘ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ trueë¡œ ë³€í™˜
 
         if (!PlayerPrefs.HasKey("Score"))
             PlayerPrefs.SetFloat("Score", 0);
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(0);
-        Time.timeScale = 1; // ½Ã°£ º¹±¸
+        Time.timeScale = 1; // ì‹œê°„ ë³µêµ¬
         isLive = true;
     }
 }
