@@ -2,34 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimingManager : MonoBehaviour
+public class TimingManager4 : MonoBehaviour
 {
 
-    // »ı¼ºµÈ ³ëÆ®¸¦ ´ã´Â List => ÆÇÁ¤¹üÀ§¿¡ ÀÖ´ÂÁö ¸ğµç ³ëÆ®¸¦ ºñ±³ÇØ¾ß ÇÔ
+    // ìƒì„±ëœ ë…¸íŠ¸ë¥¼ ë‹´ëŠ” List => íŒì •ë²”ìœ„ì— ìˆëŠ”ì§€ ëª¨ë“  ë…¸íŠ¸ë¥¼ ë¹„êµí•´ì•¼ í•¨
     public List<GameObject> boxNoteList = new List<GameObject>();
 
     int[] judgementRecord = new int[5];
 
-    [SerializeField] Transform Center = null;            // ÆÇÁ¤ ¹üÀ§ÀÇ Áß½ÉÀ» ¾Ë·ÁÁÖ´Â º¯¼ö
-    [SerializeField] RectTransform[] timingRect = null;  // ´Ù¾çÇÑ ÆÇÁ¤ ¹üÀ§ (Perfect, Cool, Good, Bad)
-    Vector2[] timingBoxs = null;                         // ÆÇÁ¤ ¹üÀ§ÀÇ ÃÖ¼Ò°ª(x), ÃÖ´ë°ª(y)
-                                                         // ¿©±â¿¡ RectTransformÀÇ °ªÀ» Á¤¸®ÇØ¼­ ³Ö¾îÁÙ°Å
+    [SerializeField] Transform Center = null;            // íŒì • ë²”ìœ„ì˜ ì¤‘ì‹¬ì„ ì•Œë ¤ì£¼ëŠ” ë³€ìˆ˜
+    [SerializeField] RectTransform[] timingRect = null;  // ë‹¤ì–‘í•œ íŒì • ë²”ìœ„ (Perfect, Cool, Good, Bad)
+    Vector2[] timingBoxs = null;                         // íŒì • ë²”ìœ„ì˜ ìµœì†Œê°’(x), ìµœëŒ€ê°’(y)
+                                                         // ì—¬ê¸°ì— RectTransformì˜ ê°’ì„ ì •ë¦¬í•´ì„œ ë„£ì–´ì¤„ê±°
 
-    EffectManager theEffect;
-    ScoreManager theScoreManager;
+    EffectManager4 theEffect;
+    ScoreManager4 theScoreManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        theEffect = FindObjectOfType<EffectManager>();
-        theScoreManager = FindObjectOfType<ScoreManager>();
+        theEffect = FindObjectOfType<EffectManager4>();
+        theScoreManager = FindObjectOfType<ScoreManager4>();
 
-        // Å¸ÀÌ¹Ö ¹Ú½º ¼³Á¤
+        // íƒ€ì´ë° ë°•ìŠ¤ ì„¤ì •
         timingBoxs = new Vector2[timingRect.Length];
         for (int i = 0; i < timingRect.Length; i++)
         {
-            // °¢°¢ÀÇ ÆÇÁ¤ ¹üÀ§ÀÇ ÃÖ¼Ò°ª°ú ÃÖ´ë°ª
-            // 0¹øÂ° Perfect°¡ ÆÇÁ¤ ¹üÀ§°¡ °¡Àå Á¼°í, 3¹øÂ° Bad°¡ °¡Àå ³Ğ°Ú´Ù
+            // ê°ê°ì˜ íŒì • ë²”ìœ„ì˜ ìµœì†Œê°’ê³¼ ìµœëŒ€ê°’
+            // 0ë²ˆì§¸ Perfectê°€ íŒì • ë²”ìœ„ê°€ ê°€ì¥ ì¢ê³ , 3ë²ˆì§¸ Badê°€ ê°€ì¥ ë„“ê² ë‹¤
             timingBoxs[i].Set(Center.localPosition.x - timingRect[i].rect.width / 2,
                               Center.localPosition.x + timingRect[i].rect.width / 2);
         }
@@ -47,18 +47,18 @@ public class TimingManager : MonoBehaviour
             {
                 if (timingBoxs[x].x <= t_notePosX && t_notePosX <= timingBoxs[x].y)
                 {
-                    boxNoteList[i].GetComponent<Note>().HideNote();
+                    boxNoteList[i].GetComponent<Note4>().HideNote();
                     boxNoteList.RemoveAt(i);
 
-                    // ÀÌÆåÆ® ¿¬Ãâ
-                    if (x < timingBoxs.Length - 1) // bad ÆÇÁ¤ÀÌ ¾Æ´Ò ¶§¸¸
+                    // ì´í™íŠ¸ ì—°ì¶œ
+                    if (x < timingBoxs.Length - 1) // bad íŒì •ì´ ì•„ë‹ ë•Œë§Œ
                     {
                         theEffect.NoteHitEffect();
                     }
-                    judgementRecord[x]++;          // ÆÇÁ¤ ±â·Ï
-                    theEffect.JudgementEffect(x);  // ÆÇÁ¤ ¿¬Ãâ
+                    judgementRecord[x]++;          // íŒì • ê¸°ë¡
+                    theEffect.JudgementEffect(x);  // íŒì • ì—°ì¶œ
 
-                    // Á¡¼ö Áõ°¡
+                    // ì ìˆ˜ ì¦ê°€
                     theScoreManager.IncreaseScore(x);
 
                     return;
@@ -79,6 +79,6 @@ public class TimingManager : MonoBehaviour
 
     public void MissRecord()
     {
-        judgementRecord[4]++;   // ÆÇÁ¤ ±â·Ï
+        judgementRecord[4]++;   // íŒì • ê¸°ë¡
     }
 }

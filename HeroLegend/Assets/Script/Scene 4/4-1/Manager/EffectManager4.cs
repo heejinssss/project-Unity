@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectManager : MonoBehaviour
+public class EffectManager4 : MonoBehaviour
 {
     [SerializeField] Animator noteHitAnimator = null;
     string hit = "Hit";
