@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager4 : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI txtScore = null;
 
@@ -16,16 +16,16 @@ public class ScoreManager : MonoBehaviour
     Animator myAnim;
     string animScoreUp = "ScoreUp";
 
-    ComboManager theCombo;
+    ComboManager4 theCombo;
 
-    Result result;
+    Result4 result;
 
 
     void Start()
     {
-        theCombo = FindObjectOfType<ComboManager>();
+        theCombo = FindObjectOfType<ComboManager4>();
         myAnim = GetComponent<Animator>();
-        result = FindObjectOfType<Result>();
+        result = FindObjectOfType<Result4>();
         currentScore = 0;
         txtScore.text = "0";
     }
@@ -34,17 +34,17 @@ public class ScoreManager : MonoBehaviour
     {
         int t_increaseScore = increaseScore;
 
-        // ∞°¡ﬂƒ° ∞ËªÍ
+        // Í∞ÄÏ§ëÏπò Í≥ÑÏÇ∞
         t_increaseScore = (int)(t_increaseScore * weight[p_JudgementState]);
 
         if (t_increaseScore > 0)
         {
-            // ƒﬁ∫∏ ¡ı∞°
+            // ÏΩ§Î≥¥ Ï¶ùÍ∞Ä
             theCombo.IncreaseCombo();
 
             myAnim.SetTrigger(animScoreUp);
 
-            // ƒﬁ∫∏ ∫∏≥ Ω∫ ¡°ºˆ ∞ËªÍ
+            // ÏΩ§Î≥¥ Î≥¥ÎÑàÏä§ Ï†êÏàò Í≥ÑÏÇ∞
             int t_currentCombo = theCombo.GetCurrentCombo();
             int t_bonusComboScore = (t_currentCombo / 10) * comboBonusScore;
 

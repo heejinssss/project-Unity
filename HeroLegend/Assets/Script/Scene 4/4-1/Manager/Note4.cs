@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class Note4 : MonoBehaviour
 {
     public float noteSpeed = 800;
 
     UnityEngine.UI.Image noteImage;
 
-    // °´Ã¼°¡ È°¼ºÈ­ µÉ ¶§¸¶´Ù È£ÃâµÇ´Â ÇÔ¼ö
+    // ê°ì²´ê°€ í™œì„±í™” ë  ë•Œë§ˆë‹¤ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     private void OnEnable()
     {
-        // ÀÌ¹ÌÁö ÄÄÆ÷³ÍÆ®¸¦ °è¼Ó °¡Á®¿À¸é, ¾µ µ¥ ¾ø´Â Çàµ¿À» ¹İº¹ÇÏ´Â°Å
-        // null°ªÀÏ¶§¸¸ °¡Á®¿À°Ô ¸¸µé°í
+        // ì´ë¯¸ì§€ ì»´í¬ë„ŒíŠ¸ë¥¼ ê³„ì† ê°€ì ¸ì˜¤ë©´, ì“¸ ë° ì—†ëŠ” í–‰ë™ì„ ë°˜ë³µí•˜ëŠ”ê±°
+        // nullê°’ì¼ë•Œë§Œ ê°€ì ¸ì˜¤ê²Œ ë§Œë“¤ê³ 
         if (noteImage == null)
             noteImage = GetComponent<UnityEngine.UI.Image>();
 
-        // Å¥¸¦ µ¹´Ùº¸¸é ÀÌÀü¿¡ ½ºÆäÀÌ½º ¸ÂÃç¼­ ¾Æ·¡°¡ false µÇ¾î ÀÖ´Â °æ¿ì ÀÖÀ¸´Ï±î
+        // íë¥¼ ëŒë‹¤ë³´ë©´ ì´ì „ì— ìŠ¤í˜ì´ìŠ¤ ë§ì¶°ì„œ ì•„ë˜ê°€ false ë˜ì–´ ìˆëŠ” ê²½ìš° ìˆìœ¼ë‹ˆê¹Œ
         noteImage.enabled = true;
     }
 
