@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
         if (isJumpKey && !isGround) // 누른 상태 지속
         {
             reducedJumpPower = Mathf.Lerp(reducedJumpPower, 0, 0.1f); // jumpPower -> 0
-            //jumpPower = Mathf.Lerp(jumpPower, 0, 0.1f); // jumpPower -> 0
             rigid.AddForce(Vector2.up * reducedJumpPower, ForceMode2D.Impulse);
         }
     }
@@ -76,7 +75,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Land")
         {
-            Debug.Log("Jump");
             ChangeAnim(State.Jump);
             // sound.PlaySound(Sounder.Sfx.Jump);
             isGround = false;
@@ -88,23 +86,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy");
-            // rigid.simulated = false; // rigidBody는 simulated로 활성화 및 비활성화
             // sound.PlaySound(Sounder.Sfx.Hit);
-            // onHit.Invoke(); // onHit에 연결된 함수 호출
             OnDamaged(collision.transform.position);
 
         }
         else if (collision.gameObject.tag == "Item")
         {
-            Debug.Log("Item");
             gameManager.health += 1;
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Finish")
         {
             // 장면 전환
-            Debug.Log("Finish");
             gameManager.NextStage();
         }
     }
@@ -112,7 +105,6 @@ public class Player : MonoBehaviour
 
     void OnDamaged(Vector2 targetPos)
     {
-        Debug.Log("OnDamaged");
         // Health Down
         gameManager.HealthDown();
 
@@ -120,10 +112,6 @@ public class Player : MonoBehaviour
         {
             // Change Layer (Immortal Active)
             gameObject.layer = 9; // 9 = PlayerDamaged
-
-            // Reaction Force
-            // int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1; // 플레이어 x 축 - 충돌 정보 x축
-            // rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
 
             // Animation
             ChangeAnim(State.Hit);
@@ -134,16 +122,13 @@ public class Player : MonoBehaviour
 
     void OffDamaged()
     {
-        Debug.Log("OffDamaged");
         gameObject.layer = 8; // 8 = Player
-        // rigid.simulated = true;
         ChangeAnim(State.Run);
     }
 
 
     public void OnDie()
     {
-        Debug.Log("OnDie");
         transform.GetChild(1).gameObject.SetActive(false);
         ChangeAnim(State.Death);
     }
@@ -151,7 +136,6 @@ public class Player : MonoBehaviour
     // 4. 애니메이션
     void ChangeAnim(State state)
     {
-        Debug.Log("ChangeAnim : " + state);
         animator.SetInteger("State", (int)state);
     }
 }
