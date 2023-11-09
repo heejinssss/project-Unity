@@ -9,6 +9,7 @@ public class BgmManager4 : MonoBehaviour
     private void Awake()
     {
         bgmSource = GetComponent<AudioSource>();
+        
     }
 
     public void StartBgm()
