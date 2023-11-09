@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeScript : MonoBehaviour
+public class FadeScript0 : MonoBehaviour
 {
     public Image Panel;
     float time = 0f;

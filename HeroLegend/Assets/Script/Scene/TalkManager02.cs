@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TalkManager2 : MonoBehaviour
+public class TalkManager02 : MonoBehaviour
 {
     Dictionary<int, string[]> talkData;
     Dictionary<int, Sprite> portraitData;

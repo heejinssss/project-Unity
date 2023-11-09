@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AutomaticRunner : MonoBehaviour
+public class AutomaticRunner0 : MonoBehaviour
 {
     public float Speed;
 

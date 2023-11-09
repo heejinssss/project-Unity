@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerAction3 : MonoBehaviour
+public class PlayerAction03 : MonoBehaviour
 {
-    public GameManager3 manager;
+    public GameManager03 manager;
 
     public float Speed;
 

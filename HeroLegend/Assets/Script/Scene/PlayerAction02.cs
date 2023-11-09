@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerAction1 : MonoBehaviour
+public class PlayerAction02 : MonoBehaviour
 {
-    public GameManager1 manager;
+    public GameManager02 manager;
 
     Rigidbody2D rigid;
     Vector3 dirVec;
