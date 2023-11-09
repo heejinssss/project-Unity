@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LegBossShape : MonoBehaviour
+public class LegBossShape4 : MonoBehaviour
 {
 
     SpriteRenderer spriteRenderer;

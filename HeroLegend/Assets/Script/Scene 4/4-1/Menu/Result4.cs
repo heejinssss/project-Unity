@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Result : MonoBehaviour
+public class Result4 : MonoBehaviour
 {
-    // Æò¼Ò¿¡´Â ºñÈ°¼ºÈ­ ÇØ³õ°í, ÇÊ¿äÇÒ ¶§ È°¼ºÈ­½ÃÅ³°Å
+    // í‰ì†Œì—ëŠ” ë¹„í™œì„±í™” í•´ë†“ê³ , í•„ìš”í•  ë•Œ í™œì„±í™”ì‹œí‚¬ê±°
     [SerializeField] GameObject goUI = null;
 
     [SerializeField] TextMeshProUGUI[] txtCount = null;
@@ -19,16 +19,16 @@ public class Result : MonoBehaviour
 
     public int clearPoint = 1000;
 
-    ScoreManager theScore;
-    ComboManager theCombo;
-    TimingManager theTiming;
+    ScoreManager4 theScore;
+    ComboManager4 theCombo;
+    TimingManager4 theTiming;
     AudioSource resultAudio;
 
     private void Start()
     {
-        theScore = FindObjectOfType<ScoreManager>();
-        theCombo = FindObjectOfType<ComboManager>();
-        theTiming = FindObjectOfType<TimingManager>();
+        theScore = FindObjectOfType<ScoreManager4>();
+        theCombo = FindObjectOfType<ComboManager4>();
+        theTiming = FindObjectOfType<TimingManager4>();
         resultAudio = GetComponent<AudioSource>();
     }
 
@@ -52,7 +52,7 @@ public class Result : MonoBehaviour
 
         if (t_currentScore < clearPoint) 
         {
-            // ½ÇÆĞ ½Ã
+            // ì‹¤íŒ¨ ì‹œ
             txtResult.text = "<#FF0000>Fail..</color>";
 
             resultAudio.clip = resultAudioClips[1];
@@ -60,7 +60,7 @@ public class Result : MonoBehaviour
         }
         else
         {
-            // ¼º°ø ½Ã
+            // ì„±ê³µ ì‹œ
             txtResult.text = "<#00FF00>Clear!</color>";
 
             resultAudio.clip = resultAudioClips[0];
@@ -72,17 +72,17 @@ public class Result : MonoBehaviour
     {
         int t_currentScore = theScore.GetCurrentScore();
 
-        // Àü´ŞÇÒ µ¥ÀÌÅÍ ÀúÀå
+        // ì „ë‹¬í•  ë°ì´í„° ì €ì¥
         PlayerPrefs.SetInt("isReturnToTopDownWorld", 1);
 
         if (t_currentScore < clearPoint)
         {
-            // ½ÇÆĞÇßÀ» ¶§
+            // ì‹¤íŒ¨í–ˆì„ ë•Œ
             PlayerPrefs.SetInt("isClear4", 0);
         }
         else
         {
-            // ½Â¸®ÇßÀ» ¶§
+            // ìŠ¹ë¦¬í–ˆì„ ë•Œ
             PlayerPrefs.SetInt("isClear4", 1);
         }
 
