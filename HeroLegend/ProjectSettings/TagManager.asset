@@ -6,6 +6,15 @@ TagManager:
   tags:
   - Note
   - Door
+  - Rock
+  - Enemy
+  - Ground
+  - Area
+  - Dust
+  - Bullet
+  - ItemBox
+  - Start
+  - Noise
   layers:
   - Default
   - TransparentFX
@@ -14,10 +23,13 @@ TagManager:
   - Water
   - UI
   - Object
-  - 
+  -
   - Player
   - PlayerDamaged
-  - 
+  - Ground
+  - Enemy
+  -
+  -
   - 
   - 
   - 

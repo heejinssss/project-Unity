@@ -52,7 +52,7 @@ public class EffectManager : MonoBehaviour
         legBossAnimator.SetTrigger("LegBossAttack");
         legShakeAnimator.SetTrigger("LegHit");
 
-        effectAudio.volume = 0.4f;
+        effectAudio.volume = 0.25f;
         effectAudio.clip = effectAudioClips[1];
         effectAudio.Play();
     }
