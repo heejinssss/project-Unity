@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 
 /* 공통으로 사용할 타이머 스크립트 */
-/*
- * CONFIRM :: 초기화 + 세팅 필수
- */
 public class TimeManager : MonoBehaviour
 {
 
@@ -16,18 +13,17 @@ public class TimeManager : MonoBehaviour
     private int min;
 
     /* 텍스트 UI */
-    private Text text;
+    public Text text;
 
-    /*
-     * CONFIRM :: 타이머 식별자 논의 (게임별 닉네임을 분리하는가, 게임별 랭킹을 분리하는가, 닉네임을 UNIQUE 처리해도 되는가)
-     */
-
-    public void Start()
+    public void setTime(int time)
     {
-       /*
-        * TO DO :: DB에서 현재 playTime 받아와 세팅 (전제: 장면 전환 시마다의 DB 업데이트)
-        */
-
+        min = 0;
+        sec = 0;
+        if (sec >= 60)
+        {
+            min = time / 60;
+        }
+        sec = time % 60;
     }
 
     public void Update()

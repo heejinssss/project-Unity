@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Ranking : MonoBehaviour
 {
     public Text[] rank = new Text[5];
- 
+
 
     public void Start()
     {
