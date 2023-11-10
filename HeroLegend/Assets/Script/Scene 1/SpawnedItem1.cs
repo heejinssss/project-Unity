@@ -18,7 +18,6 @@ public class SpawnedItem1 : MonoBehaviour
     {
         StartCoroutine(DropItemCoroutine(spawnPosition));
         int randomItemIndex = Random.Range(0, itemPrefabs.Length);
-        Debug.Log(randomItemIndex);
         GameObject spawnedItem = Instantiate(itemPrefabs[randomItemIndex], spawnPosition, Quaternion.identity);
     }
 
