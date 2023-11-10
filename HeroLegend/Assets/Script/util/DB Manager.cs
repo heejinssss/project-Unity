@@ -53,7 +53,7 @@ public class DBManager
         catch (System.Exception e)
         {
             Debug.Log("데이터베이스 연결 실패 : " + e.ToString());
-            
+
         }
     }
 
@@ -71,7 +71,7 @@ public class DBManager
             NicknameManager.Nickname = nickname;
             return true;
         }
-        else if(InsertNickname(nickname))
+        else if (InsertNickname(nickname))
         {
             NicknameManager.Nickname = nickname;
             return true;
@@ -82,9 +82,9 @@ public class DBManager
     /*** 게임 시작 시 동작할 메소드 (첫번째 맵 시작 시에 호출) ***/
     public bool StartGame(int roundNum, string playerName)
     {
-        if(GetPlayingInfo(roundNum, playerName)!=null)
+        if (GetPlayingInfo(roundNum, playerName) != null)
         {
-            if (UpdatePlayingInfo(roundNum, playerName, 0, 0)) return true;
+            if (UpdatePlayingInfo(roundNum, 0, playerName, 0, 0)) return true;
             return false;
         }
         if (InsertPlayingInfo(roundNum, playerName)) return true;
@@ -97,8 +97,8 @@ public class DBManager
         return GetPlayingInfo(roundNum, playerName);
     }
 
-    /*** 장면 전환 시 동작할 메소드 (각 맵 종료 시마다 호출) ***/
-    public bool ChangeScene(int roundNum, string playerName, int score, int playTime)
+    /*** 장면 전환 시 동작할 메소드 (마지막 맵 제외 각 맵 종료 시마다 호출) ***/
+    public bool ChangeScene(int roundNum, int sceneNum, string playerName, int score, int playTime)
     {
         //PlayingClass playing=GetPlayingInfo(roundNum, playerName);
         //if (playing==null) return false;
@@ -106,7 +106,7 @@ public class DBManager
         //score += playing.getScore();
         //playTime+= playing.getPlayTime();
 
-        if (UpdatePlayingInfo(roundNum, playerName, score, playTime)) return true;
+        if (UpdatePlayingInfo(roundNum, sceneNum, playerName, score, playTime)) return true;
         return false;
     }
 
@@ -114,9 +114,9 @@ public class DBManager
     public bool EndGame(int roundNum, string playerName, int score, int playTime)
     {
         PlayerClass player = GetPlayerInfo(playerName);
-        if (player==null) return false;
+        if (player == null) return false;
 
-        score+= player.getScore();
+        score += player.getScore();
         playTime += player.getPlayTime();
 
         if (UpdatePlayerInfo(playerName, score, playTime) && DeletePlayingInfo(roundNum, playerName)) return true;
@@ -135,7 +135,7 @@ public class DBManager
     /* 닉네임 존재 확인 메소드 */
     private bool ExistNickname(string nickname)
     {
-        string query = "select nickname from "+playerTable+" where nickname = \""+nickname+"\"";
+        string query = "select nickname from " + playerTable + " where nickname = \"" + nickname + "\"";
         Debug.Log("닉네임 조회 쿼리 :: " + query);
 
         if (SelectRequest(query).Tables[0].Rows.Count != 0) return true;
@@ -155,17 +155,18 @@ public class DBManager
     /* 플레잉 기록 조회 메소드 */
     private PlayingClass GetPlayingInfo(int roundNum, string playerName)
     {
-        string query = "select score, playTime from " + playingTable + " where roundNum=" + roundNum + " and playerName=\"" + playerName + "\"";
+        string query = "select score, playTime, sceneNum from " + playingTable + " where roundNum=" + roundNum + " and playerName=\"" + playerName + "\"";
         Debug.Log("플레잉 기록 조회 쿼리 :: " + query);
 
         DataSet dataSet = SelectRequest(query);
-        if (dataSet != null)
-        { 
+        if (dataSet.Tables[0].Rows.Count != 0)
+        {
             DataRow row = dataSet.Tables[0].Rows[0];
             int score = Convert.ToInt32(row["score"]);
             int playTime = Convert.ToInt32(row["playTime"]);
+            int sceneNum = Convert.ToInt32(row["sceneNum"]);
 
-            PlayingClass playing = new PlayingClass(score,playTime);
+            PlayingClass playing = new PlayingClass(score, playTime, sceneNum);
             Debug.Log("조회된 플레잉 기록 :: " + playing);
 
             return playing;
@@ -184,9 +185,9 @@ public class DBManager
     }
 
     /* 플레잉 기록 업데이트 메소드, 초기화 시에도 사용 */
-    private bool UpdatePlayingInfo(int roundNum, string playerName, int score, int playTime)
+    private bool UpdatePlayingInfo(int roundNum, int sceneNum, string playerName, int score, int playTime)
     {
-        string query = "update " + playingTable + " set score=" + score + ", playTime=" + playTime + " where roundNum="+roundNum+" and playerName=\"" + playerName + "\"";
+        string query = "update " + playingTable + " set score=" + score + ", playTime=" + playTime + ", sceneNum=" + sceneNum + " where roundNum=" + roundNum + " and playerName=\"" + playerName + "\"";
         Debug.Log("플레잉 기록 업데이트 쿼리 :: " + query);
 
         if (InsertOrUpdateRequest(query)) return true;
@@ -227,10 +228,10 @@ public class DBManager
     /* 플레잉 기록 삭제 메소드 */
     private bool DeletePlayingInfo(int roundNum, string playerName)
     {
-        string query="delete from "+playingTable+" where roundNum="+roundNum+" and playerName=\""+playerName+"\"";
+        string query = "delete from " + playingTable + " where roundNum=" + roundNum + " and playerName=\"" + playerName + "\"";
         Debug.Log("플레잉 기록 삭제 쿼리 :: " + query);
 
-        if(InsertOrUpdateRequest(query)) return true;
+        if (InsertOrUpdateRequest(query)) return true;
         return false;
     }
 
