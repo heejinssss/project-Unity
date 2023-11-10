@@ -4,16 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - PlayerSkill
-  - PlayerAttack
-  - Boss
-  - BossSkill
+  - Note
+  - Door
+  - Rock
   - Enemy
-  - EnemySkill
-  - PlayerSkillOil
-  - PlayerSkillFire
-  - Item
+  - Ground
+  - Area
+  - Dust
+  - Bullet
+  - ItemBox
+  - Start
+  - Noise
   layers:
   - Default
   - TransparentFX
@@ -21,12 +22,12 @@ TagManager:
   - PlatForm
   - Water
   - UI
-  - Player
-  - PlayerSkill
-  - PlayerAttack
-  - Enemy
-  - Item
+  - Object
   - 
+  - Player
+  - PlayerDamaged
+  - Ground
+  - Enemy
   - 
   - 
   - 
