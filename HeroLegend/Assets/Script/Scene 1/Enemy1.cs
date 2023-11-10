@@ -16,6 +16,7 @@ public class Enemy1 : MonoBehaviour
     // SpriteRenderer spriter;
     WaitForFixedUpdate wait;
 
+    // public bossPatterns[];
 
     void Awake()
     {
