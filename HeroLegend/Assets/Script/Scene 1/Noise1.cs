@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Noise : MonoBehaviour
+public class Noise1 : MonoBehaviour
 {
 
 
