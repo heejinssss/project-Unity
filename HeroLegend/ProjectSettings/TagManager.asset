@@ -15,6 +15,13 @@ TagManager:
   - ItemBox
   - Start
   - Noise
+  - Boss
+  - Item
+  - PlayerAttack
+  - EnemySkill
+  - PlayerSkill
+  - PlayerSkillOil
+  - PlayerSkillFire
   layers:
   - Default
   - TransparentFX
@@ -28,9 +35,9 @@ TagManager:
   - PlayerDamaged
   - Ground
   - Enemy
-  - 
-  - 
-  - 
+  - PlayerSkill
+  - PlayerAttack
+  - Item
   - 
   - 
   - 
