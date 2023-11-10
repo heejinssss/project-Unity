@@ -7,13 +7,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
     public float jumpForce = 30f; 
     private bool isJumping = false; 
-    public Scanner scanner;
+    public Scanner1 scanner;
     // public Barrier barrier;
     // public GameObject barrier;    // public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
 
         anim = playerTransform.Find("UnitRoot").GetComponent<Animator>();
-        scanner = GetComponent<Scanner>();
+        scanner = GetComponent<Scanner1>();
 
         // hands = GetComponentsInChildren<Hand>(true);
     }
@@ -146,6 +146,7 @@ public class Player : MonoBehaviour
             // playerCollider.enabled = true;
         }
     }
+
 }
 
 

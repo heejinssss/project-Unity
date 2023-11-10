@@ -6,7 +6,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Follow : MonoBehaviour
+public class Follow1 : MonoBehaviour
 {
     public Transform player;
     public float moveSpeed = 13;

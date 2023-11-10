@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager1 instance;
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     // public int exp;
     // public int[] nextExp = {3, 5, 10, 100, 150, 210, 280, 360, 450, 600};
     [Header("# Game Object")]
-    public PoolManager pool;
-    public Player player;
+    public PoolManager1 pool;
+    public Player1 player;
     // public LevelUp uiLevelUp;
     // public Result uiResult;
     // public Transform uiJoy;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy1 : MonoBehaviour
 {
     public float health;
     public float maxHealth;
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
 
     void OnEnable()
     {
-        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        target = GameManager1.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
