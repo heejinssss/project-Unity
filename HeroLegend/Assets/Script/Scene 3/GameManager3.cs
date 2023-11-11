@@ -11,6 +11,7 @@ public class GameManager3 : MonoBehaviour
     const float ORIGIN_SPEED = 3;
     public int stageIndex;
     public int health;
+    private int preHealth;
     public Player3 player;
     public GameObject[] stages;
     public GameObject playerObj;
@@ -18,6 +19,9 @@ public class GameManager3 : MonoBehaviour
     public static float globalSpeed;
     public static float score;
     public static bool isLive;
+    public static bool isRestart;
+    public static int restartObj;
+    public static int tempRestartObj;
     public GameObject uiHealth;
     public GameObject uiOver;
 
@@ -40,7 +44,9 @@ public class GameManager3 : MonoBehaviour
 
     void Awake()
     {
-        isLive = true; // 게임 시작 버튼을 눌렀을 때 true로 변환
+        isLive = true; // 寃뚯엫 ?쒖옉 踰꾪듉???뚮?????true濡?蹂??
+        isRestart = false;
+        restartObj = 0;
 
         if (!PlayerPrefs.HasKey("Score"))
             PlayerPrefs.SetFloat("Score", 0);
@@ -68,6 +74,7 @@ public class GameManager3 : MonoBehaviour
         }
         if (storyStages.Contains(stageIndex))
         {
+            preHealth = health;
             playerObj.SetActive(false);
             uiHealth.SetActive(false);
             Talk(stageIndex);
@@ -132,7 +139,7 @@ public class GameManager3 : MonoBehaviour
                 case "blackShockStart":
                     black.SetActive(true);
                     defaultPanel.SetActive(true);
-                    defaultText.text = "��!!!!!!!!!!!!!";
+                    defaultText.text = "쾅!!!!!!!!!!!!!";
                     break;
                 case "blackShockEnd":
                     defaultPanel.SetActive(false);
@@ -199,9 +206,16 @@ public class GameManager3 : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(0);
-        Time.timeScale = 1; // 시간 복구
+        Debug.Log("Restart!!");
+        health = preHealth;
+        player.ChangeAnim(Player3.State.Run);
+        uiOver.SetActive(false) ;
+        player.gameObject.layer = 8;
+        player.transform.GetChild(1).gameObject.SetActive(true);
+
+        Time.timeScale = 1; // ?쒓컙 蹂듦뎄
         isLive = true;
+        isRestart = true;
     }
 
 }

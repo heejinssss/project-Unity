@@ -62,7 +62,7 @@ public class Player3 : MonoBehaviour
     // 2. 착지 (물리 충돌 이벤트)
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (!isGround)
+        if (!isGround && GameManager3.isLive)
         {
             ChangeAnim(State.Run);
             // sound.PlaySound(Sounder.Sfx.Land);
@@ -86,7 +86,6 @@ public class Player3 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy");
             // rigid.simulated = false; // rigidBody는 simulated로 활성화 및 비활성화
             // sound.PlaySound(Sounder.Sfx.Hit);
             // onHit.Invoke(); // onHit에 연결된 함수 호출
@@ -102,7 +101,6 @@ public class Player3 : MonoBehaviour
         else if (collision.gameObject.tag == "Finish")
         {
             // 장면 전환
-            Debug.Log("Finish");
             gameManager.NextStage();
         }
     }
@@ -116,7 +114,6 @@ public class Player3 : MonoBehaviour
         if (GameManager3.isLive)
         {
             // Change Layer (Immortal Active)
-            gameObject.layer = 9; // 9 = PlayerDamaged
             // Reaction Force
             // int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1; // 플레이어 x 축 - 충돌 정보 x축
             // rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
@@ -125,12 +122,17 @@ public class Player3 : MonoBehaviour
             Invoke("OffDamaged", 1);
 
         }
+        gameObject.layer = 9; // 9 = PlayerDamaged
     }
 
     void OffDamaged()
     {
-        gameObject.layer = 8; // 8 = Player
-        ChangeAnim(State.Run);
+        if (GameManager3.isLive)
+        {
+            ChangeAnim(State.Run);
+            gameObject.layer = 8; // 8 = Player
+
+        }
     }
 
 
@@ -141,7 +143,7 @@ public class Player3 : MonoBehaviour
     }
 
     // 4. 애니메이션
-    void ChangeAnim(State state)
+    public void ChangeAnim(State state)
     {
         animator.SetInteger("State", (int)state);
     }
