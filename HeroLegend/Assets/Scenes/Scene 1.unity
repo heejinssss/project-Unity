@@ -7704,8 +7704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7da866be5b21c846af3dc2e06e92ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 1000
+  health: 100
+  maxHealth: 100
   animCon: []
   target: {fileID: 1788035708}
 --- !u!114 &1432838676
@@ -7720,6 +7720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4657d8df1783db64a809fe0ca987c913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   bulletPrefabs:
   - {fileID: 1686760350924006426, guid: fdaad9d5cb8ef0d4690fd92927dafb5a, type: 3}
   - {fileID: 569012318105240650, guid: 9c2bddbe3b7277c47bfcb9f0be7b3198, type: 3}
@@ -14370,7 +14371,7 @@ Animator:
   m_GameObject: {fileID: 7573831301567885095}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04b1226072f24b54faf4e53e69a50129, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

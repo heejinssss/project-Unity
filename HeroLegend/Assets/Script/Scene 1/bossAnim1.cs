@@ -6,6 +6,7 @@ using UnityEngine;
 public class bossAnim1 : MonoBehaviour
 {
     private Animator animator;
+    public float damage;
     private string[] attacks = { "skill_1", "skill_2", "skill_3", "evade_1", "jump"};
     float timer;
     float attackInterval = 5.0f;
@@ -150,6 +151,14 @@ public class bossAnim1 : MonoBehaviour
             // animator.SetTrigger("evade_1");
         }
     
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Area"))
+            return;
+
+        gameObject.SetActive(false);
     }
 
 }

@@ -15,6 +15,10 @@ public class Enemy1 : MonoBehaviour
     Animator anim;
     // SpriteRenderer spriter;
     WaitForFixedUpdate wait;
+    private Animator animator;
+    Player1 player1;
+    
+    
 
     // public bossPatterns[];
 
@@ -25,6 +29,9 @@ public class Enemy1 : MonoBehaviour
         anim = GetComponent<Animator>();
         // spriter = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
+        player1 = GameManager1.instance.player.GetComponent<Player1>();
+        animator = GetComponent<Animator>();
+
     }
 
 
@@ -69,8 +76,21 @@ public class Enemy1 : MonoBehaviour
     {
         if (!collision.CompareTag("Noise") || !isLive)
             return;
-        
-        // health -= collision.GetComponent<Noise>().damage;
+        health -= collision.GetComponent<Noise1>().damage;
+        animator.SetTrigger("hit_1");
+
+
+        // int damage = player1.Mike.activeSelf ? collision.GetComponent<PoolManager1>().prefabs[1].Damage : collision.GetComponent<PoolManager1>().prefabs[0].damage;
+        // health -= damage;
+        // if (player1.Mike.activeSelf == true)
+        // {
+        //     health -= collision.GetComponent<Noise1>().prefabId[0].damage;
+        // }
+        // else
+        // {
+        //     health -= collision.GetComponent<Noise1>().prefabId[0].damage;
+        // }
+
         // StartCoroutine(KnockBack());
 
         if (health > 0) {
@@ -100,7 +120,14 @@ public class Enemy1 : MonoBehaviour
 
     void Dead()
     {
+        animator.SetBool("hit_1", true);
+        // animator.SetBool("death", true);
+        StartCoroutine(BeforeDead());
         gameObject.SetActive(false);
 
+    }
+    IEnumerator BeforeDead()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

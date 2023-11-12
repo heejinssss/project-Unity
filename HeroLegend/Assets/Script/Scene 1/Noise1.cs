@@ -10,15 +10,28 @@ public class Noise1 : MonoBehaviour
     public float damage;
     
     Rigidbody2D rigid;
+
+    Player1 player1;
     
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        player1 = FindObjectOfType<Player1>(); 
+
     }
 
     public void Init(float damage, Vector3 dir)
     {
-        this.damage = damage;
+        // GetChild(0).gameObject.SetActive(false)
+        if (player1.transform.GetChild(1).gameObject.activeSelf == true)
+        {
+            damage = 10;
+        }
+        else
+        {
+            damage = 3;
+        }     
+        // this.damage = damage;
         // rigid.velocity = dir;
         rigid.velocity = dir * 30f;
         
