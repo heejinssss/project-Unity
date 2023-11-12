@@ -12,6 +12,8 @@ public class Player1 : MonoBehaviour
     public Vector2 inputVec;
     public float speed;
     public float jumpForce = 30f; 
+    // public float maxHealth;
+    // public float health;
     private bool isJumping = false; 
     public Scanner1 scanner;
     // public Barrier barrier;
@@ -146,6 +148,21 @@ public class Player1 : MonoBehaviour
             // playerCollider.enabled = true;
         }
     }
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!GameManager1.instance.isLive)
+            return;
+        GameManager1.instance.health -= 10;
+
+        if (GameManager1.instance.health < 0) {
+            for (int index=2; index < transform.childCount; index++) {
+                transform.GetChild(index).gameObject.SetActive(false);
+            }
+
+            anim.SetTrigger("Dead");
+            GameManager1.instance.GameOver();
+        }
+    }
 
 }
 
@@ -215,19 +232,4 @@ public class Player1 : MonoBehaviour
     //     }
     // }
 
-    // void OnCollisionStay2D(Collision2D collision)
-    // {
-        // if (!GameManager.instance.isLive)
-        //     return;
-        // GameManager.instance.health -= Time.deltaTime * 10;
-
-        // if (GameManager.instance.health < 0) {
-        //     for (int index=2; index < transform.childCount; index++) {
-        //         transform.GetChild(index).gameObject.SetActive(false);
-        //     }
-
-            // anim.SetTrigger("Dead");
-            // GameManager.instance.GameOver();
-        // }
-    // }
 
