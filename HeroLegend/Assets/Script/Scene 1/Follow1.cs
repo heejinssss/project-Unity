@@ -9,12 +9,13 @@ using UnityEngine.AI;
 public class Follow1 : MonoBehaviour
 {
     public Transform player;
-    public float moveSpeed = 13;
+    public float moveSpeed = 17;
     private bool isMoving = false; 
     public float startDelay = 3f;
     private Rigidbody2D enemy;
     private Vector2 movement;
     public int Speed;
+    public bool isAttacking;
     // private GameObject dust;
 
     void Start()
@@ -63,7 +64,10 @@ public class Follow1 : MonoBehaviour
             Animator enemyAnimator = enemy.GetComponent<Animator>();
             enemyAnimator.SetTrigger("run");
         }
+
     }
+
+
 
     void moveCharacter(Vector2 direction)
     {

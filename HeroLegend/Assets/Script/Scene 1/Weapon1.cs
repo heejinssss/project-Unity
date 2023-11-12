@@ -118,7 +118,6 @@ public class Weapon1 : MonoBehaviour
             return;
 
         Vector3 targetPos = player.scanner.nearestTarget.position;
-        Debug.Log(targetPos);
         targetPos[1] = 1f;
 
         Vector3 dir = targetPos - transform.position;
