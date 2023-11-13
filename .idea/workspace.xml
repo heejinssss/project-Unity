@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="19a42271-acf9-4dd2-9db1-7967cb6d305f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/ItemEat1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/ItemEat1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/FireBullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/FireBullet.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/HamRoasted.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/HamRoasted.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/Hit_12.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/Hit_12.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/ItemBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/ItemBox.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/heart.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/heart.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/speaker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Prefabs/Scene 1/speaker.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Scenes/Scene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Scenes/Scene 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Barrier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Barrier1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Barrier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Barrier1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Dust.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Dust1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Dust.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Dust1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Enemy1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Enemy.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Enemy1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Follow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Follow1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Follow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Follow1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/GameManager1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/GameManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/GameManager1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/ItemBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/ItemBox1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/ItemBox.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/ItemBox1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/MoveCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/MoveCamera1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/MoveCamera.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/MoveCamera1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Noise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Noise1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Noise.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Noise1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Player1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Player1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerAttack1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerAttack.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerAttack1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerMove1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerMove.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PlayerMove1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PoolManager1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PoolManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/PoolManager1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Reposition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Reposition1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Reposition.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Reposition1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Scanner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Scanner1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Scanner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Scanner1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/SpawnedItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/SpawnedItem1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/SpawnedItem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/SpawnedItem1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Spawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Spawner1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Spawner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Spawner1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Weapon1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Weapon.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Script/Scene 1/Weapon1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/Assets/Sprites/Scene2/aura/Effect_5/Effect_5.skel.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/Assets/Sprites/Scene2/aura/Effect_5/Effect_5.skel.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroLegend/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/HeroLegend/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2XVqswzeZcSmID036Ku6igYrZrk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SSAFY/Desktop/S09P31A704&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19a42271-acf9-4dd2-9db1-7967cb6d305f" name="Changes" comment="" />
+      <created>1698724804157</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698724804157</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
