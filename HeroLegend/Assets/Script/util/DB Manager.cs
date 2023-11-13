@@ -119,7 +119,7 @@ public class DBManager
         score += player.getScore();
         playTime += player.getPlayTime();
 
-        if (UpdatePlayerInfo(playerName, score, playTime) && DeletePlayingInfo(roundNum, playerName)) return true;
+        if (UpdatePlayerInfo(playerName, score, playTime, roundNum) && DeletePlayingInfo(roundNum, playerName)) return true;
         return false;
     }
 
@@ -195,9 +195,9 @@ public class DBManager
     }
 
     /* 플레이어 기록 조회 메소드 */
-    private PlayerClass GetPlayerInfo(string nickname)
+    public PlayerClass GetPlayerInfo(string nickname)
     {
-        string query = "select score, playTime from " + playerTable + " where nickname=\"" + nickname + "\"";
+        string query = "select score, playTime, clear1,clear2,clear3,clear4,clear5 from " + playerTable + " where nickname=\"" + nickname + "\"";
         Debug.Log("플레이어 기록 조회 쿼리 :: " + query);
 
         DataSet dataSet = SelectRequest(query);
@@ -206,9 +206,17 @@ public class DBManager
             DataRow row = dataSet.Tables[playerTable].Rows[0];
             int score = row.Field<int>("score");
             int playTime = row.Field<int>("playTime");
+            bool[] clear = new bool[5];
+            clear[0] = row.Field<bool>("clear1");
+            clear[1] = row.Field<bool>("clear2");
+            clear[2] = row.Field<bool>("clear3");
+            clear[3] = row.Field<bool>("clear4");
+            clear[4] = row.Field<bool>("clear5");
 
-            PlayerClass player = new PlayerClass(score, playTime);
-            Debug.Log("조회된 플레이어 기록 :: " + player);
+            PlayerClass player = new PlayerClass(score, playTime, clear);
+            Debug.Log("조회된 플레이어 기록 :: " + player.getScore()+" , "+player.getPlayTime());
+            bool[] temp=player.getClear();
+            Debug.Log("조회된 플레이어 기록 :: " + temp[0] + temp[1] + temp[2] + temp[3] + temp[4]);
 
             return player;
         }
@@ -216,9 +224,9 @@ public class DBManager
     }
 
     /* 플레이어 기록 업데이트 메소드 */
-    private bool UpdatePlayerInfo(string nickname, int score, int playTime)
+    private bool UpdatePlayerInfo(string nickname, int score, int playTime, int roundNum)
     {
-        string query = "update " + playerTable + " set score=" + score + ", playTime=" + playTime + " where nickname=\"" + nickname + "\"";
+        string query = "update " + playerTable + " set score=" + score + ", playTime=" + playTime + ", clear"+(roundNum)+"=1 where nickname=\"" + nickname + "\"";
         Debug.Log("플레이어 기록 업데이트 쿼리 :: " + query);
 
         if (InsertOrUpdateRequest(query)) return true;
