@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBox : MonoBehaviour
+public class ItemBox1 : MonoBehaviour
 {
     public float health;
     public float maxHealth;
@@ -16,7 +16,7 @@ public class ItemBox : MonoBehaviour
     public Transform player;
     // public GameObject[] itemPrefabs;
     public int id;
-    public SpawnedItem spawnedItemScript;
+    public SpawnedItem1 spawnedItemScript;
     private Transform boxTransform;
 
 
@@ -26,7 +26,7 @@ public class ItemBox : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
-        spawnedItemScript = GetComponent<SpawnedItem>();
+        spawnedItemScript = GetComponent<SpawnedItem1>();
         // spawnedItemScript = GetComponent<Spawn
         // spriter = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
@@ -35,7 +35,7 @@ public class ItemBox : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (!GameManager.instance.isLive)
+        if (!GameManager1.instance.isLive)
             return;
         if (!isLive) 
             return;
@@ -121,7 +121,7 @@ public class ItemBox : MonoBehaviour
         if (!collision.CompareTag("Noise") || !isLive)
             return;
         
-        health -= collision.GetComponent<Noise>().damage;
+        health -= collision.GetComponent<Noise1>().damage;
         // StartCoroutine(KnockBack());
 
         if (health > 0) {

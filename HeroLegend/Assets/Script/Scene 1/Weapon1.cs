@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon1 : MonoBehaviour
 {
     public int id;
     public int prefabId;
     public float damage;
     public int count;
     public float speed;
-    Player player;
+    Player1 player;
     private Transform noise;
 
     float timer;
 
     void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GetComponentInParent<Player1>();
         // player = GameManager.instance.player;
     }
 
@@ -118,7 +118,6 @@ public class Weapon : MonoBehaviour
             return;
 
         Vector3 targetPos = player.scanner.nearestTarget.position;
-        Debug.Log(targetPos);
         targetPos[1] = 1f;
 
         Vector3 dir = targetPos - transform.position;
@@ -155,16 +154,16 @@ public class Weapon : MonoBehaviour
 
         if (!player.transform.GetChild(1).gameObject.activeSelf)
         {
-            noise = GameManager.instance.pool.Get(0).transform;
+            noise = GameManager1.instance.pool.Get(0).transform;
         }
         else
         {
-            noise = GameManager.instance.pool.Get(1).transform;
+            noise = GameManager1.instance.pool.Get(1).transform;
         }
 
         noise.position = transform.position;
         noise.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-        noise.GetComponent<Noise>().Init(damage, dir);
+        noise.GetComponent<Noise1>().Init(damage, dir);
 
     }
 }

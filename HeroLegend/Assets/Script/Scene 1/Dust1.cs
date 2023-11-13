@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Dust : MonoBehaviour
+public class Dust1 : MonoBehaviour
 {
     private Transform enemyTransform;
     private Vector3 initialPosition;
