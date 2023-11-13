@@ -26,6 +26,12 @@ public class TimeManager : MonoBehaviour
         sec = time % 60;
     }
 
+    public int getTime()
+    {
+        // 씬 종료 시마다 호출할 메소드의 playTime에 넣기 편하도록 추가
+        return 60 * min + (int)sec;
+    }
+
     public void Update()
     {
         sec += Time.deltaTime;
