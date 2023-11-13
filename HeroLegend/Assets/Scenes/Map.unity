@@ -321,7 +321,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1786372995}
-        m_TargetAssemblyTypeName: MapRegion, Assembly-CSharp
+        m_TargetAssemblyTypeName: MapRegion0, Assembly-CSharp
         m_MethodName: MoveScene
         m_Mode: 5
         m_Arguments:
