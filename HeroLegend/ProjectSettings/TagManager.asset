@@ -15,6 +15,13 @@ TagManager:
   - ItemBox
   - Start
   - Noise
+  - Boss
+  - Item
+  - PlayerAttack
+  - EnemySkill
+  - PlayerSkill
+  - PlayerSkillOil
+  - PlayerSkillFire
   - bulleteat
   - hearteat
   - speakereat
@@ -26,7 +33,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlatForm
   - Water
   - UI
   - Object
@@ -35,9 +42,9 @@ TagManager:
   - PlayerDamaged
   - Ground
   - Enemy
-  - 
-  - 
-  - 
+  - PlayerSkill
+  - PlayerAttack
+  - Item
   - 
   - ItemEat
   - BossAttack
