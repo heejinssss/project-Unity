@@ -19,11 +19,10 @@ public class Ranking : MonoBehaviour
             if (players[i] == null) break;//5인 이하일 경우 종료
 
             StringBuilder str = new StringBuilder();
-            str.Append(players[i].getRank()).Append(" ")
+            str.Append(i+1).Append(" ")
                 .Append(players[i].getNickname()).Append(" ")
                 .Append(players[i].getScore()).Append(" ")
-                .Append(players[i].getPlayTime()).Append(" ")
-                .Append(players[i].getSaveTime()).Append(" ");
+                .Append(players[i].getPlayTime()).Append(" ");
 
             rank[i].text = str.ToString();
         }

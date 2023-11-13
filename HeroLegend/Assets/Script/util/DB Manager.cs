@@ -239,7 +239,7 @@ public class DBManager
     /* 플레이어 상위 5개 랭킹 조회 메소드 */
     private List<PlayerRankingClass> Select5Players()
     {
-        string query = "select rank() over (order by score desc, playTime asc) as 'rank',nickname,score,playTime,saveTime from playerInfo limit 5";
+        string query = "select rank() over (order by score desc, playTime asc) as 'rank',nickname,score,playTime from playerInfo limit 5";
         Debug.Log("플레이어 랭킹 조회 쿼리 :: " + query);
 
         DataSet dataSet = SelectRequest(query);
@@ -251,15 +251,14 @@ public class DBManager
             for (int i = 0; i < length; i++)
             {
                 DataRow row = dataSet.Tables[playerTable].Rows[i];
-                Debug.Log(row[0] + "" + row[1] + row[2] + row[3] + row[4]);
+                Debug.Log(row[0] + "" + row[1] + row[2] + row[3]);
 
                 long rank = row.Field<long>("rank");
                 string nickname = row.Field<string>("nickname");
                 int score = row.Field<int>("score");
                 int playTime = row.Field<int>("playTime");
-                DateTime saveTime = row.Field<DateTime>("saveTime");
 
-                PlayerRankingClass player = new PlayerRankingClass(rank, nickname, score, playTime, saveTime);
+                PlayerRankingClass player = new PlayerRankingClass(rank, nickname, score, playTime);
 
                 Debug.Log("조회된 플레이어 :: " + player);
 
