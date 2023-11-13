@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Result4 : MonoBehaviour
 {
@@ -24,17 +25,28 @@ public class Result4 : MonoBehaviour
     TimingManager4 theTiming;
     AudioSource resultAudio;
 
+    string nickname;
+
     private void Start()
     {
         theScore = FindObjectOfType<ScoreManager4>();
         theCombo = FindObjectOfType<ComboManager4>();
         theTiming = FindObjectOfType<TimingManager4>();
         resultAudio = GetComponent<AudioSource>();
+
+        // 닉네임을 제대로 바꿔주자
+        nickname = "test";
+        DBManager.Instance.InputNickname(nickname);
+        DBManager.Instance.StartGame(4, nickname);
+        PlayingClass data = DBManager.Instance.StartScene(4, nickname);
+        TimeManager timeManager = FindObjectOfType<TimeManager>();
+        timeManager.setTime(data.getPlayTime());
     }
 
     public void ShowResult()
     {
         goUI.SetActive(true);
+        Time.timeScale = 0f;
 
         int[] t_judgement = theTiming.GetJudgementRecord();
         int t_currentScore = theScore.GetCurrentScore();
@@ -84,8 +96,12 @@ public class Result4 : MonoBehaviour
         {
             // 승리했을 때
             PlayerPrefs.SetInt("isClear4", 1);
+
+            // 스코어는 임시로 0
+            // DBManager.Instance.ChangeScene(4, int sceneNum, nickname, 0, TimeManager.text.text);
         }
 
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Scene 4");
     }
 }
