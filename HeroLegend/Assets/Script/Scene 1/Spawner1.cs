@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner1 : MonoBehaviour
 {
 
     // void Update()
@@ -14,14 +14,14 @@ public class Spawner : MonoBehaviour
     //         GameManager.instance.pool.Get(0);
     //     }    
     // }
-    Player player;
+    Player1 player;
     public Rigidbody2D rigid;
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
     // public RectTransform rect;
     // int level;
     float timer;
-    float spawnInterval = 1.0f;
+    float spawnInterval = 3.0f;
 
     void Awake()
     {
@@ -52,10 +52,11 @@ public class Spawner : MonoBehaviour
     }
     void Spawn() 
     {
-        GameObject itembox = GameManager.instance.pool.Get(2);
+        GameObject itembox = GameManager1.instance.pool.Get(2);
         // Debug.Log(spawnPoint.position);
-        itembox.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
-        itembox.GetComponent<ItemBox>().Init(spawnData[0]);
+        itembox.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;       
+    
+        itembox.GetComponent<ItemBox1>().Init(spawnData[0]);
     }
 }
 

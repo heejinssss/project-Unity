@@ -22,6 +22,13 @@ TagManager:
   - PlayerSkill
   - PlayerSkillOil
   - PlayerSkillFire
+  - bulleteat
+  - hearteat
+  - speakereat
+  - boomeat
+  - Item
+  - Land
+  - BossAttack
   layers:
   - Default
   - TransparentFX
@@ -39,8 +46,8 @@ TagManager:
   - PlayerAttack
   - Item
   - 
-  - 
-  - 
+  - ItemEat
+  - BossAttack
   - 
   - 
   - 

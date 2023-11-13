@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class MapRegion0 : MonoBehaviour
 {
     public Button[] regions;
-    int[] clearStatus = new int[5];
+    bool[] clearStatus = new bool[5];
 
     AudioSource regionClickAudioSource;
+    string nickname;
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class MapRegion0 : MonoBehaviour
             // + 다시 그 지역을 선택할 수 없게
             if (i < numOfRegions - 1)
             {
-                if (clearStatus[i] == 1)
+                if (clearStatus[i])
                 {
                     regions[i].interactable = false;
                 }
@@ -60,11 +61,16 @@ public class MapRegion0 : MonoBehaviour
     {
         // 클리어 했는지 여부 불러오기
         // 이 부분이 적절히 바뀌어야 합니다
-        clearStatus[0] = 0;
-        clearStatus[1] = 0;
-        clearStatus[2] = 0;
-        clearStatus[3] = 0;
-        clearStatus[4] = 0;
+        nickname = "temp";
+
+        DBManager.Instance.InputNickname(nickname);
+        bool[] clearinfo = DBManager.Instance.GetPlayerInfo(nickname).getClear();
+
+        clearStatus[0] = clearinfo[3];
+        clearStatus[1] = clearinfo[1];
+        clearStatus[2] = clearinfo[2];
+        clearStatus[3] = clearinfo[0];
+        clearStatus[4] = clearinfo[4];
     }
 
     public void MoveScene(string sceneName)
