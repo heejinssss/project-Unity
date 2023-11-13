@@ -60,7 +60,7 @@ public class MapRegion0 : MonoBehaviour
     {
         // 클리어 했는지 여부 불러오기
         // 이 부분이 적절히 바뀌어야 합니다
-        clearStatus[0] = 0;
+        clearStatus[0] = 1;
         clearStatus[1] = 0;
         clearStatus[2] = 0;
         clearStatus[3] = 0;
