@@ -37,12 +37,11 @@ public class Result4 : MonoBehaviour
         resultAudio = GetComponent<AudioSource>();
 
         // 닉네임을 제대로 바꿔주자
-        nickname = "test";
-        DBManager.Instance.InputNickname(nickname);
+        nickname = "temp";
         DBManager.Instance.StartGame(4, nickname);
-        PlayingClass data = DBManager.Instance.StartScene(4, nickname);
         timeManager = FindObjectOfType<TimeManager>();
-        timeManager.setTime(data.getPlayTime());
+        // timeManager.setTime(data.getPlayTime());
+        timeManager.setTime(0);
     }
 
     public void ShowResult()
@@ -100,8 +99,10 @@ public class Result4 : MonoBehaviour
             PlayerPrefs.SetInt("isClear4", 1);
 
             // 스코어는 임시로 0
-            DBManager.Instance.ChangeScene(4, -1, nickname, 0, timeManager.getTime());
+            DBManager.Instance.EndGame(4, nickname, 0, timeManager.getTime());
         }
+
+        Debug.Log(DBManager.Instance.GetPlayerInfo(nickname).getClear());
 
         Time.timeScale = 1f;
         SceneManager.LoadScene("Scene 4");
