@@ -7,13 +7,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
     public float jumpForce = 30f; 
+    // public float maxHealth;
+    // public float health;
     private bool isJumping = false; 
-    public Scanner scanner;
+    public Scanner1 scanner;
     // public Barrier barrier;
     // public GameObject barrier;    // public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
     public bool dir_plus;
 
     Animator anim;
+
+    // public Barrier barrier;
     
     void Awake()
     {
@@ -36,7 +40,8 @@ public class Player : MonoBehaviour
 
 
         anim = playerTransform.Find("UnitRoot").GetComponent<Animator>();
-        scanner = GetComponent<Scanner>();
+        scanner = GetComponent<Scanner1>();
+        // barrier = GetComponentInChildren<Barrier1>();
 
         // hands = GetComponentsInChildren<Hand>(true);
     }
@@ -146,6 +151,49 @@ public class Player : MonoBehaviour
             // playerCollider.enabled = true;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+    
+        
+        // if (!GameManager1.instance.isLive)
+        //     return;
+        // if (collision.gameObject)
+        // Debug.Log("return");
+        if (transform.GetChild(0).gameObject.activeSelf == true && collision.gameObject.CompareTag("BossAttack"))
+        {
+            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
+        }
+
+        if (transform.GetChild(0).gameObject.activeSelf == true)
+
+            return;
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("BossAttack"))
+        {
+            if (collision.gameObject.CompareTag("BossAttack"))
+            {
+                Debug.Log("ouch!!");
+                collision.gameObject.SetActive(false);
+                Destroy(collision.gameObject);
+            }
+            GameManager1.instance.health -= 10;
+
+
+
+            if (GameManager1.instance.health < 0) 
+            {
+                for (int index = 2; index < transform.childCount; index++) 
+                {
+                    transform.GetChild(index).gameObject.SetActive(false);
+                }
+
+                anim.SetTrigger("Dead");
+                GameManager1.instance.GameOver();
+            }
+        }
+    }
+
 }
 
 
@@ -214,19 +262,4 @@ public class Player : MonoBehaviour
     //     }
     // }
 
-    // void OnCollisionStay2D(Collision2D collision)
-    // {
-        // if (!GameManager.instance.isLive)
-        //     return;
-        // GameManager.instance.health -= Time.deltaTime * 10;
-
-        // if (GameManager.instance.health < 0) {
-        //     for (int index=2; index < transform.childCount; index++) {
-        //         transform.GetChild(index).gameObject.SetActive(false);
-        //     }
-
-            // anim.SetTrigger("Dead");
-            // GameManager.instance.GameOver();
-        // }
-    // }
 

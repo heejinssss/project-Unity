@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reposition : MonoBehaviour
+public class Reposition1 : MonoBehaviour
 {
     // void LateUpdate()
     // {
@@ -22,7 +22,7 @@ public class Reposition : MonoBehaviour
         if (!collision.CompareTag("Area"))
             return;
 
-        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 playerPos = GameManager1.instance.player.transform.position;
         Vector3 myPos = transform.position;
 
 

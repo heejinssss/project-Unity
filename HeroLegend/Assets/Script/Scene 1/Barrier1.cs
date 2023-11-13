@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Barrier : MonoBehaviour
+public class Barrier1 : MonoBehaviour
 
 {
-    Player player;
+    Player1 player;
 
     // // Start is called before the first frame update
     void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GetComponentInParent<Player1>();
 
     }
 
