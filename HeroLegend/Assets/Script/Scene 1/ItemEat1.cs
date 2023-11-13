@@ -22,29 +22,33 @@ public class ItemEat1 : MonoBehaviour
         if (collision.CompareTag("speakereat") || collision.CompareTag("bulleteat") || collision.CompareTag("boomeat") || collision.CompareTag("hearteat"))
         {
 
-            HandleItemCollection(collision.tag);
-            
-            // 해당 아이템을 비활성화
             collision.gameObject.SetActive(false);
+            HandleItemCollection(collision.tag);
         }
     }
 
     void HandleItemCollection(string tag)
-    {
-        // 각 아이템에 따른 처리를 추가
+    {       
         switch (tag)
         {
             case "speakereat":
+                GameManager1.instance.player.GetComponent<Player1>().transform.GetChild(1).gameObject.SetActive(true);
                 // "speakereat" 아이템에 대한 처리
                 break;
             case "bulleteat":
-                // "bulleteat" 아이템에 대한 처리
+                // GameManager1.instance.player.GetComponent<Player1>().transform.damage += 1;
+                // GameManager1.instance.player.GetComponent<Player1>().GetComponent<Noise1>.damage;
+                // Noise1.characterdamage += 1;
+                GameManager1.instance.characterdamage += 1;
                 break;
             case "boomeat":
-                // "boomeat" 아이템에 대한 처리
                 break;
             case "hearteat":
-                // "hearteat" 아이템에 대한 처리
+                Debug.Log("20% up");
+                if (GameManager1.instance.health < GameManager1.instance.maxHealth - 20)
+                {
+                    GameManager1.instance.health += 20;
+                }
                 break;
             // 추가적인 태그에 대한 처리를 필요에 따라 추가
         }

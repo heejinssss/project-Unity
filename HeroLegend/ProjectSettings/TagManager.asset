@@ -19,6 +19,9 @@ TagManager:
   - hearteat
   - speakereat
   - boomeat
+  - Item
+  - Land
+  - BossAttack
   layers:
   - Default
   - TransparentFX
@@ -37,7 +40,7 @@ TagManager:
   - 
   - 
   - ItemEat
-  - 
+  - BossAttack
   - 
   - 
   - 

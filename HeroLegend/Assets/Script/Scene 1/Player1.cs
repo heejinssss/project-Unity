@@ -28,6 +28,8 @@ public class Player1 : MonoBehaviour
     public bool dir_plus;
 
     Animator anim;
+
+    // public Barrier barrier;
     
     void Awake()
     {
@@ -39,6 +41,7 @@ public class Player1 : MonoBehaviour
 
         anim = playerTransform.Find("UnitRoot").GetComponent<Animator>();
         scanner = GetComponent<Scanner1>();
+        // barrier = GetComponentInChildren<Barrier1>();
 
         // hands = GetComponentsInChildren<Hand>(true);
     }
@@ -148,19 +151,46 @@ public class Player1 : MonoBehaviour
             // playerCollider.enabled = true;
         }
     }
-    void OnCollisionStay2D(Collision2D collision)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!GameManager1.instance.isLive)
+    
+        
+        // if (!GameManager1.instance.isLive)
+        //     return;
+        // if (collision.gameObject)
+        // Debug.Log("return");
+        if (transform.GetChild(0).gameObject.activeSelf == true && collision.gameObject.CompareTag("BossAttack"))
+        {
+            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
+        }
+
+        if (transform.GetChild(0).gameObject.activeSelf == true)
+
             return;
-        GameManager1.instance.health -= 10;
-
-        if (GameManager1.instance.health < 0) {
-            for (int index=2; index < transform.childCount; index++) {
-                transform.GetChild(index).gameObject.SetActive(false);
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("BossAttack"))
+        {
+            if (collision.gameObject.CompareTag("BossAttack"))
+            {
+                Debug.Log("ouch!!");
+                collision.gameObject.SetActive(false);
+                Destroy(collision.gameObject);
             }
+            GameManager1.instance.health -= 10;
 
-            anim.SetTrigger("Dead");
-            GameManager1.instance.GameOver();
+
+
+            if (GameManager1.instance.health < 0) 
+            {
+                for (int index = 2; index < transform.childCount; index++) 
+                {
+                    transform.GetChild(index).gameObject.SetActive(false);
+                }
+
+                anim.SetTrigger("Dead");
+                GameManager1.instance.GameOver();
+            }
         }
     }
 

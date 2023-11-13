@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Enemy1 : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
+    // public float health;
+    // public float maxHealth;
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
     bool isLive;
@@ -31,6 +31,7 @@ public class Enemy1 : MonoBehaviour
         wait = new WaitForFixedUpdate();
         player1 = GameManager1.instance.player.GetComponent<Player1>();
         animator = GetComponent<Animator>();
+        
 
     }
 
@@ -49,6 +50,9 @@ public class Enemy1 : MonoBehaviour
     {
         // if (!GameManager.instance.isLive)
         //     return;
+        // float bosshealth = GameManager1.instance.bosshealth;
+        // float bossmaxhealth = GameManager1.instance.maxbosshealth;
+
         if (!isLive) 
             return;
     
@@ -61,8 +65,8 @@ public class Enemy1 : MonoBehaviour
         coll.enabled = true;
         rigid.simulated = true;
         // spriter.sortingOrder = 2;
-        anim.SetBool("Dead", false);
-        health = maxHealth;
+        anim.SetBool("death", false);
+        // bosshealth = bossmaxhealth;
     }
     
     // public void Init(SpawnData data)
@@ -74,9 +78,10 @@ public class Enemy1 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (!collision.CompareTag("Noise") || !isLive)
             return;
-        health -= collision.GetComponent<Noise1>().damage;
+        GameManager1.instance.bosshealth -= collision.GetComponent<Noise1>().damage;
         animator.SetTrigger("hit_1");
 
 
@@ -92,8 +97,9 @@ public class Enemy1 : MonoBehaviour
         // }
 
         // StartCoroutine(KnockBack());
+        
 
-        if (health > 0) {
+        if (GameManager1.instance.bosshealth > 0) {
 
         }
         else {
@@ -117,11 +123,11 @@ public class Enemy1 : MonoBehaviour
     //     Vector3 dirVec = transform.position - playerPos;
     //     rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     // }
-
     void Dead()
     {
-        animator.SetBool("hit_1", true);
-        // animator.SetBool("death", true);
+        Debug.Log("dead");
+        animator.SetBool("hit_2", true);
+        animator.SetBool("death", true);
         StartCoroutine(BeforeDead());
         gameObject.SetActive(false);
 

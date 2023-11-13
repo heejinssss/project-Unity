@@ -15,6 +15,9 @@ public class GameManager1 : MonoBehaviour
     // public int playerId;
     public float health;
     public float maxHealth = 100;
+    public float bosshealth = 1000;
+    public float maxbosshealth = 1000;
+    public float characterdamage;
 
     // public int level;
     // public int kill;
@@ -36,6 +39,7 @@ public class GameManager1 : MonoBehaviour
     {
         // playerId = id;
         health = maxHealth;
+        // bosshealth = maxbosshealth;
         player.gameObject.SetActive(true);
         // uiLevelUp.Select(playerId % 2);
         Resume();  

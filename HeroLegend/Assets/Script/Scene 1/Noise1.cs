@@ -8,6 +8,8 @@ public class Noise1 : MonoBehaviour
 
 
     public float damage;
+    public float weapondamage;
+    // public float characterdamage;
     
     Rigidbody2D rigid;
 
@@ -25,12 +27,16 @@ public class Noise1 : MonoBehaviour
         // GetChild(0).gameObject.SetActive(false)
         if (player1.transform.GetChild(1).gameObject.activeSelf == true)
         {
-            damage = 10;
+            weapondamage = 10;
         }
         else
         {
-            damage = 3;
+            weapondamage = 3;
         }     
+
+        this.damage = GameManager1.instance.characterdamage + weapondamage;
+        Debug.Log($"{GameManager1.instance.characterdamage}");
+
         // this.damage = damage;
         // rigid.velocity = dir;
         rigid.velocity = dir * 30f;

@@ -34,12 +34,12 @@ public class AnimationEvent : MonoBehaviour {
 		if (enemy && atkTimes <= 3) {
 			Animator enemyAnimator = enemy.GetComponent<Animator> ();
 			if (atkTimes == 1) {
-				enemyAnimator.SetTrigger ("hit_1");
+				// enemyAnimator.SetTrigger ("hit_1");
 			} else if (atkTimes == 2) {
-				enemyAnimator.SetTrigger ("hit_2");
+				// enemyAnimator.SetTrigger ("hit_2");
 			} else if (atkTimes == 3) {
-				enemyAnimator.SetTrigger ("hit_2");
-				enemyAnimator.SetTrigger ("death");
+				// enemyAnimator.SetTrigger ("hit_2");
+				// enemyAnimator.SetTrigger ("death");
 			} 
 		}
 	}

@@ -153,12 +153,12 @@ public class bossAnim1 : MonoBehaviour
     
     }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Area"))
-            return;
+    // void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if (!collision.CompareTag("Area"))
+    //         return;
 
-        gameObject.SetActive(false);
-    }
+    //     gameObject.SetActive(false);
+    // }
 
 }
