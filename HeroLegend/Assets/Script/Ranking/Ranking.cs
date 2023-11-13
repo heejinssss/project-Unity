@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class Ranking : MonoBehaviour
 {
     public Text[] rank = new Text[5];
+    public Text[] name=new Text[5];
+    public Text[] score = new Text[5];
+    public Text[] playTime= new Text[5];
 
 
     public void Start()
@@ -18,13 +21,11 @@ public class Ranking : MonoBehaviour
         {
             if (players[i] == null) break;//5인 이하일 경우 종료
 
-            StringBuilder str = new StringBuilder();
-            str.Append(i+1).Append(" ")
-                .Append(players[i].getNickname()).Append(" ")
-                .Append(players[i].getScore()).Append(" ")
-                .Append(players[i].getPlayTime()).Append(" ");
+            rank[i].text = Convert.ToString(i+1);
+            name[i].text = players[i].getNickname();
+            score[i].text = Convert.ToString(players[i].getScore());
+            playTime[i].text = Convert.ToString(players[i].getPlayTime());
 
-            rank[i].text = str.ToString();
         }
     }
 
