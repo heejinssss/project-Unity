@@ -43,9 +43,7 @@ public class DialogManager4 : MonoBehaviour
             MonsterDead4 monsterDead = FindObjectOfType<MonsterDead4>();
             monsterDead.MonsterDead();
         }
-
-        // 인트로에서 할머니와의 대화 회상 타이밍
-        if (id == 4010)
+        else if (id == 4010) // 인트로에서 할머니와의 대화 회상 타이밍
         {
             if (talkIndex == 9)
             {
@@ -59,6 +57,31 @@ public class DialogManager4 : MonoBehaviour
                 // 회색 배경을 걷을 타이밍
                 PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
                 pastBackground4.PastBackgroun4FadeOut();
+            }
+        }
+        else if (id == 4100)
+        {
+            if (talkIndex == 6)
+            {
+                SpecialMonster4 specialMonster4 = FindObjectOfType<SpecialMonster4>();
+                specialMonster4.ActivateSpecialMonster();
+            }
+            else if (talkIndex == 9)
+            {
+                SpecialMonster4 specialMonster4 = FindObjectOfType<SpecialMonster4>();
+                specialMonster4.SpecialMonsterDead();
+            }
+            else if (talkIndex == 14)
+            {
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeIn();
+                pastBackground4.ActivateMapUI();
+            }
+            else if (talkIndex == 25)
+            {
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeOut();
+                pastBackground4.DeactivateMapUI();
             }
         }
 
@@ -87,6 +110,16 @@ public class DialogManager4 : MonoBehaviour
             else if (id == 4001)
             {
                 gameManager.DeactivateResultDelieverObject();
+            }
+            else if (id == 4030)
+            {
+                // 인트로에서 문 넘어갈 때 나오는 대사였다면
+                PastBackground4 pastBackground = FindObjectOfType<PastBackground4>();
+                pastBackground.DeactivateResultDelieverObject2();
+            }
+            else if (id == 4100)
+            {
+                GoToMap();
             }
 
             return;
