@@ -153,11 +153,9 @@ public class Player1 : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision)
-    {
-    
-        
-        // if (!GameManager1.instance.isLive)
-        //     return;
+    {        
+        if (!GameManager1.instance.isLive)
+            return;
         // if (collision.gameObject)
         // Debug.Log("return");
         if (transform.GetChild(0).gameObject.activeSelf == true && collision.gameObject.CompareTag("BossAttack"))
