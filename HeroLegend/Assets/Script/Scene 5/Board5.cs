@@ -6,20 +6,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public sealed class Board : MonoBehaviour
+public sealed class Board5 : MonoBehaviour
 {
-    public static Board Instance { get; private set; }
+    public static Board5 Instance { get; private set; }
 
-    public Row[] rows;
-    public Tile[,] Tiles { get; private set; }
+    public Row5[] rows;
+    public Tile5[,] Tiles { get; private set; }
 
     public int Width => Tiles.GetLength(0);
     public int Height => Tiles.GetLength(1);
 
-    private Tile _selectedTile1;
-    private Tile _selectedTile2;
+    private Tile5 _selectedTile1;
+    private Tile5 _selectedTile2;
 
-    private readonly List<Tile> _selection = new List<Tile>();
+    private readonly List<Tile5> _selection = new List<Tile5>();
 
     private const float TweenDuration = 0.52f;
 
@@ -28,7 +28,7 @@ public sealed class Board : MonoBehaviour
 
     private void Start()
     {
-        Tiles = new Tile[rows.Max(row => row.tiles.Length), rows.Length];
+        Tiles = new Tile5[rows.Max(row => row.tiles.Length), rows.Length];
 
         for (var y = 0; y < Height; y++)
         {
@@ -40,21 +40,21 @@ public sealed class Board : MonoBehaviour
                 tile.y = y;
 
                 Tiles[x, y] = rows[y].tiles[x];
-                tile.Item = ItemDatabase.Items[Random.Range(0, ItemDatabase.Items.Length)];
+                tile.Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
             }
         }
 
-        /* Å¸ÀÏ ¼¯±â ¹öÆ°[S] */
+        /* íƒ€ì¼ ì„ê¸° ë²„íŠ¼[S] */
         var shuffleButton = GameObject.Find("ShuffleButton").GetComponent<Button>();
         shuffleButton.onClick.AddListener(ShuffleTiles);
     }
 
     public void ShuffleTiles()
     {
-        List<Tile> allTiles = new List<Tile>();
-        List<Item> allItems = new List<Item>();
+        List<Tile5> allTiles = new List<Tile5>();
+        List<Item5> allItems = new List<Item5>();
 
-        // ¸ğµç Å¸ÀÏ°ú ¾ÆÀÌÅÛÀ» ¸®½ºÆ®¿¡ Ãß°¡
+        // ëª¨ë“  íƒ€ì¼ê³¼ ì•„ì´í…œì„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
         for (int x = 0; x < Width; x++)
         {
             for (int y = 0; y < Height; y++)
@@ -64,31 +64,31 @@ public sealed class Board : MonoBehaviour
             }
         }
 
-        // ¾ÆÀÌÅÛ ¸®½ºÆ®¸¦ ·£´ıÇÏ°Ô ¼¯À½
+        // ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¥¼ ëœë¤í•˜ê²Œ ì„ìŒ
         for (int i = 0; i < allItems.Count; i++)
         {
-            Item temp = allItems[i];
+            Item5 temp = allItems[i];
             int randomIndex = Random.Range(i, allItems.Count);
             allItems[i] = allItems[randomIndex];
             allItems[randomIndex] = temp;
         }
 
-        // °¢ Å¸ÀÏ¿¡ ·£´ıÇÏ°Ô ¼¯ÀÎ ¾ÆÀÌÅÛÀ» ÇÒ´ç
+        // ê° íƒ€ì¼ì— ëœë¤í•˜ê²Œ ì„ì¸ ì•„ì´í…œì„ í• ë‹¹
         for (int i = 0; i < allTiles.Count; i++)
         {
             allTiles[i].Item = allItems[i];
         }
     }
-    /* Å¸ÀÏ ¼¯±â ¹öÆ°[E] */
+    /* íƒ€ì¼ ì„ê¸° ë²„íŠ¼[E] */
 
-    public async void Select(Tile tile)
+    public async void Select(Tile5 tile)
     {
         if (!_selection.Contains(tile)) _selection.Add(tile);
 
-        // µÎ °³ÀÇ Å¸ÀÏÀÌ ¼±ÅÃµÇ¾ú´Â°¡?
+        // ë‘ ê°œì˜ íƒ€ì¼ì´ ì„ íƒë˜ì—ˆëŠ”ê°€?
         if (_selection.Count < 2) return;
 
-        // Ã¹ ¹øÂ° Å¸ÀÏ°ú µÎ ¹øÂ° Å¸ÀÏÀÌ ÀÎÁ¢ÇØ ÀÖ´ÂÁö È®ÀÎ
+        // ì²« ë²ˆì§¸ íƒ€ì¼ê³¼ ë‘ ë²ˆì§¸ íƒ€ì¼ì´ ì¸ì ‘í•´ ìˆëŠ”ì§€ í™•ì¸
         if (!IsAdjacent(_selection[0], _selection[1]))
         {
             Debug.Log("Tiles are not adjacent.");
@@ -112,14 +112,14 @@ public sealed class Board : MonoBehaviour
         _selection.Clear();
     }
 
-    // ÀÎÁ¢ÇÑ Å¸ÀÏÀÎÁö È®ÀÎÇÏ´Â ¸Ş¼­µå
-    private bool IsAdjacent(Tile tile1, Tile tile2)
+    // ì¸ì ‘í•œ íƒ€ì¼ì¸ì§€ í™•ì¸í•˜ëŠ” ë©”ì„œë“œ
+    private bool IsAdjacent(Tile5 tile1, Tile5 tile2)
     {
         return (tile1.x == tile2.x && Mathf.Abs(tile1.y - tile2.y) == 1) ||
                (tile1.y == tile2.y && Mathf.Abs(tile1.x - tile2.x) == 1);
     }
 
-    public async Task Swap(Tile tile1, Tile tile2)
+    public async Task Swap(Tile5 tile1, Tile5 tile2)
     {
         var icon1 = tile1.icon;
         var icon2 = tile2.icon;
@@ -173,13 +173,13 @@ public sealed class Board : MonoBehaviour
 
                 await deflateSequence.Play().AsyncWaitForCompletion();
 
-                ScoreCounter.Instance.Score += tile.Item.value * connectedTiles.Count;
+                ScoreCounter5.Instance.Score += tile.Item.value * connectedTiles.Count;
 
                 var inflateSequence = DOTween.Sequence();
 
                 foreach (var connectedTile in connectedTiles)
                 {
-                    connectedTile.Item = ItemDatabase.Items[Random.Range(0, ItemDatabase.Items.Length)];
+                    connectedTile.Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
 
                     inflateSequence.Join(connectedTile.icon.transform.DOScale(Vector3.one, TweenDuration));
                 }
