@@ -7,7 +7,7 @@ public class DialogManager4 : MonoBehaviour
 {
     public TalkManager4 talkManager;
     public GameObject talkPanel;
-    public Image portraitImg;
+    public Image portraitImg;   
     public Text talkText;
     public GameObject scanObject;
     public GameManager4 gameManager;
@@ -37,6 +37,31 @@ public class DialogManager4 : MonoBehaviour
         string talkData = talkManager.GetTalk(id, talkIndex);
         audioSource.Play();
 
+        // 인트로에서 몬스터가 죽을 타이밍
+        if (id == 4001 && talkIndex == 6)
+        {
+            MonsterDead4 monsterDead = FindObjectOfType<MonsterDead4>();
+            monsterDead.MonsterDead();
+        }
+
+        // 인트로에서 할머니와의 대화 회상 타이밍
+        if (id == 4010)
+        {
+            if (talkIndex == 9)
+            {
+                // 회색 배경을 입힐 타이밍
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeIn();
+
+            }
+            else if (talkIndex == 16)
+            {
+                // 회색 배경을 걷을 타이밍
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeOut();
+            }
+        }
+
         if (talkData == null)
         {
             talkIndex = 0;
@@ -56,6 +81,10 @@ public class DialogManager4 : MonoBehaviour
                 Invoke("GoToMap", 1f);
             }
             else if (id == 102)
+            {
+                gameManager.DeactivateResultDelieverObject();
+            }
+            else if (id == 4001)
             {
                 gameManager.DeactivateResultDelieverObject();
             }
