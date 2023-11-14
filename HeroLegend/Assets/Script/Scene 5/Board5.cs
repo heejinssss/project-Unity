@@ -21,7 +21,8 @@ public sealed class Board5 : MonoBehaviour
 
     private readonly List<Tile5> _selection = new List<Tile5>();
 
-    private const float TweenDuration = 0.52f;
+    private const float TweenDuration = 0.2f; // 타일 교환 속도
+    private bool isSwapping = false; // 교환 중인지 여부
 
 
     private void Awake() => Instance = this;
@@ -83,6 +84,9 @@ public sealed class Board5 : MonoBehaviour
 
     public async void Select(Tile5 tile)
     {
+
+        if (isSwapping) return;
+
         if (!_selection.Contains(tile)) _selection.Add(tile);
 
         // 두 개의 타일이 선택되었는가?
@@ -98,6 +102,8 @@ public sealed class Board5 : MonoBehaviour
 
         Debug.Log($"Selected tiles at ({_selection[0].x}, {_selection[0].y}) ({_selection[1].x}, {_selection[1].y})");
 
+        isSwapping = true;
+
         await Swap(_selection[0], _selection[1]);
 
         if (CanPop())
@@ -108,6 +114,8 @@ public sealed class Board5 : MonoBehaviour
         {
             await Swap(_selection[0], _selection[1]);
         }
+
+        isSwapping = false;
 
         _selection.Clear();
     }
