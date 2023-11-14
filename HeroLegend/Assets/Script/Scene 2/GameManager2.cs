@@ -39,13 +39,13 @@ public class GameManager2 : MonoBehaviour
 
     public void EnemyCountDown()
     {
-        if (stageIndex < Stages.Length)
+        if (stageIndex < Stages.Length - 1)
         {
             enemyNum--;
             
             if (enemyNum <= 0)
             {
-                if (stageIndex < Stages.Length - 1) enemyNum = 6;
+                enemyNum = 6;
                 NextButton.SetActive(true);
             }
         }
