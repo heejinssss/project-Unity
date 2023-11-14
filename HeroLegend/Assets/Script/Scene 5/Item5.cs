@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Match-3/Item")]
-public sealed class Item : ScriptableObject
+public sealed class Item5 : ScriptableObject
 {
     public int value;
 
