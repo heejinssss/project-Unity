@@ -7,7 +7,7 @@ public class DialogManager4 : MonoBehaviour
 {
     public TalkManager4 talkManager;
     public GameObject talkPanel;
-    public Image portraitImg;
+    public Image portraitImg;   
     public Text talkText;
     public GameObject scanObject;
     public GameManager4 gameManager;
@@ -37,6 +37,54 @@ public class DialogManager4 : MonoBehaviour
         string talkData = talkManager.GetTalk(id, talkIndex);
         audioSource.Play();
 
+        // 인트로에서 몬스터가 죽을 타이밍
+        if (id == 4001 && talkIndex == 6)
+        {
+            MonsterDead4 monsterDead = FindObjectOfType<MonsterDead4>();
+            monsterDead.MonsterDead();
+        }
+        else if (id == 4010) // 인트로에서 할머니와의 대화 회상 타이밍
+        {
+            if (talkIndex == 9)
+            {
+                // 회색 배경을 입힐 타이밍
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeIn();
+
+            }
+            else if (talkIndex == 16)
+            {
+                // 회색 배경을 걷을 타이밍
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeOut();
+            }
+        }
+        else if (id == 4100)
+        {
+            if (talkIndex == 6)
+            {
+                SpecialMonster4 specialMonster4 = FindObjectOfType<SpecialMonster4>();
+                specialMonster4.ActivateSpecialMonster();
+            }
+            else if (talkIndex == 9)
+            {
+                SpecialMonster4 specialMonster4 = FindObjectOfType<SpecialMonster4>();
+                specialMonster4.SpecialMonsterDead();
+            }
+            else if (talkIndex == 14)
+            {
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeIn();
+                pastBackground4.ActivateMapUI();
+            }
+            else if (talkIndex == 25)
+            {
+                PastBackground4 pastBackground4 = FindObjectOfType<PastBackground4>();
+                pastBackground4.PastBackgroun4FadeOut();
+                pastBackground4.DeactivateMapUI();
+            }
+        }
+
         if (talkData == null)
         {
             talkIndex = 0;
@@ -58,6 +106,20 @@ public class DialogManager4 : MonoBehaviour
             else if (id == 102)
             {
                 gameManager.DeactivateResultDelieverObject();
+            }
+            else if (id == 4001)
+            {
+                gameManager.DeactivateResultDelieverObject();
+            }
+            else if (id == 4030)
+            {
+                // 인트로에서 문 넘어갈 때 나오는 대사였다면
+                PastBackground4 pastBackground = FindObjectOfType<PastBackground4>();
+                pastBackground.DeactivateResultDelieverObject2();
+            }
+            else if (id == 4100)
+            {
+                GoToMap();
             }
 
             return;

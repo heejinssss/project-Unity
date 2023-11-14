@@ -13,6 +13,8 @@ public class GameManager4 : MonoBehaviour
     public GameObject talkPanel;
     public BgmManager4 bgmManager;
 
+    public bool isIntro;
+
     private int curStage = 0;
 
     AudioSource audioSource;
@@ -20,6 +22,15 @@ public class GameManager4 : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (isIntro)
+        {
+            resultDelieverObject.SetActive(true);
+            ObjData4 objData = resultDelieverObject.GetComponent<ObjData4>();
+            dialogManager.Talk(objData.id, objData.isNpc);
+
+            talkPanel.SetActive(true);
+        }
 
         if (PlayerPrefs.GetInt("isReturnToTopDownWorld") == 1)
         {
@@ -76,6 +87,17 @@ public class GameManager4 : MonoBehaviour
         if (curStage == 0)
         {
             PlayerReposition(new Vector3(7.5f, -3.5f, -1f));
+
+            // 인트로라면 문 넘어갈 때 대사 출력
+            if (isIntro)
+            {
+                PastBackground4 pastBackground = FindObjectOfType<PastBackground4>();
+                pastBackground.ActivateResultDelieverObject2();
+
+                // 대화 출력
+                dialogManager.Talk(4030, true);
+                talkPanel.SetActive(true);
+            }
         }
         else if(curStage == 1)
         {
