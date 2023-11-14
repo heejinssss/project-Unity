@@ -13,6 +13,8 @@ public class GameManager4 : MonoBehaviour
     public GameObject talkPanel;
     public BgmManager4 bgmManager;
 
+    public bool isIntro;
+
     private int curStage = 0;
 
     AudioSource audioSource;
@@ -20,6 +22,15 @@ public class GameManager4 : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (isIntro)
+        {
+            resultDelieverObject.SetActive(true);
+            ObjData4 objData = resultDelieverObject.GetComponent<ObjData4>();
+            dialogManager.Talk(objData.id, objData.isNpc);
+
+            talkPanel.SetActive(true);
+        }
 
         if (PlayerPrefs.GetInt("isReturnToTopDownWorld") == 1)
         {
