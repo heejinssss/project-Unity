@@ -10,9 +10,7 @@ public class GameManager1 : MonoBehaviour
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
-    // public float maxGameTime = 2*10f;
-    // [Header("# Player Info")]
-    // public int playerId;
+    [Header("# Player Info")]
     public float health;
     public float maxHealth = 100;
     public float bosshealth = 1000;
@@ -20,25 +18,23 @@ public class GameManager1 : MonoBehaviour
     public float characterdamage;
 
     // public int level;
-    // public int kill;
-    // public int exp;
-    // public int[] nextExp = {3, 5, 10, 100, 150, 210, 280, 360, 450, 600};
     [Header("# Game Object")]
     public PoolManager1 pool;
     public Player1 player;
-    // public LevelUp uiLevelUp;
-    // public Result uiResult;
+    public Result1 uiResult;
     // public Transform uiJoy;
-    // public GameObject enemyCleaner;
 
     void Awake()
     {
         instance = this;
+        Stop();
+
     }
     public void GameStart() 
     {
         // playerId = id;
         health = maxHealth;
+        isLive = true;
         // bosshealth = maxbosshealth;
         player.gameObject.SetActive(true);
         // uiLevelUp.Select(playerId % 2);
@@ -54,8 +50,8 @@ public class GameManager1 : MonoBehaviour
     {
         isLive = false;
         yield return new WaitForSeconds(0.5f);
-        // uiResult.gameObject.SetActive(true);
-        // uiResult.Lose();
+        uiResult.gameObject.SetActive(true);
+        uiResult.Lose();
         Stop();
         // AudioManager.instance.PlayBgm(false);
         // AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
@@ -70,31 +66,34 @@ public class GameManager1 : MonoBehaviour
         isLive = false;
         // enemyCleaner.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        // uiResult.gameObject.SetActive(true);
-        // uiResult.Win();
+        uiResult.gameObject.SetActive(true);
+        uiResult.Win();
         Stop();
 
         // AudioManager.instance.PlayBgm(false);
         // AudioManager.instance.PlaySfx(AudioManager.Sfx.Win);
 
     }
-    // public void GameRetry()
-    // {
-    //     SceneManager.LoadScene(0);
-    // }
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(6);
+    }
+    public void NextGameStage()
+    {
+        SceneManager.LoadScene(1);
+    }
 
-
-    // public void GameQuit()
-    // {
-    //     Application.Quit();
-    // }
 
     void Update()
     {
-        // if (!isLive)
-        //     return;
+        if (!isLive)
+            return;
 
         gameTime += Time.deltaTime;
+        if (bosshealth < 0)
+        {
+            GameVictory();
+        }
 
         // if (gameTime > maxGameTime)
         // {
@@ -102,19 +101,7 @@ public class GameManager1 : MonoBehaviour
         //     GameVictory();
         // }
     }
-    // public void GetExp()
-    // {
-    //     if (!isLive)
-    //         return;
-    //     exp ++;
 
-    //     if (exp == nextExp[Mathf.Min(level, nextExp.Length-1)]) {
-    //         level ++;
-    //         exp = 0;
-    //         uiLevelUp.Show();
-    //     }
-
-    // }
     public void Stop() 
     {
         isLive = false;

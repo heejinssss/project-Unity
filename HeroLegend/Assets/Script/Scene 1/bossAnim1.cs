@@ -23,6 +23,9 @@ public class bossAnim1 : MonoBehaviour
     {
         animator = this.GetComponent<Animator> ();
         followScript = GetComponent<Follow1>();
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("BossAttack"), LayerMask.NameToLayer("BossAttack"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("BossAttack"), LayerMask.NameToLayer("Enemy"), true);
+
     }
 
     // Update is called once per frame
