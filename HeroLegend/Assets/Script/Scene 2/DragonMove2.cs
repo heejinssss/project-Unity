@@ -207,28 +207,10 @@ public class DragonMove2 : MonoBehaviour
         yield return new WaitForSeconds(1);         
     }
 
-
-    IEnumerator FadeOutSprite(GameObject objectToFade)
-    {
-        SpriteRenderer spriteRenderer = objectToFade.GetComponent<SpriteRenderer>();
-        Color fadeColor = spriteRenderer.color;
-
-        // 1초 동안 서서히 사라지게 함
-        for (float i = 2; i >= 0; i -= Time.deltaTime)
-        {
-            // 새 알파 값 설정
-            fadeColor.a = i;
-            spriteRenderer.color = fadeColor;
-            yield return null;
-        }
-
-        Destroy(objectToFade);
-    }
-
     // 아우라 생성 및 사라지게 하는 함수
     void CreateAura()
     {
         GameObject aura1 = Instantiate(aura, transform.position + Vector3.down * 0.2f, transform.rotation);
-        StartCoroutine(FadeOutSprite(aura1));
+        Destroy(aura1);
     }
 }
