@@ -34,6 +34,11 @@ public class PlayerMovement4 : MonoBehaviour
         dirVec = Vector3.down;
     }
 
+    public void ScanNorth()
+    {
+        dirVec = Vector3.up;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Door")
@@ -81,17 +86,17 @@ public class PlayerMovement4 : MonoBehaviour
         }
 
         // Direction
-        if (vDown && movement.y == 1) // ªÛ
+        if (vDown && movement.y == 1) // ÏÉÅ
             dirVec = Vector3.up;
-        else if (vDown && movement.y == -1) // «œ
+        else if (vDown && movement.y == -1) // Ìïò
             dirVec = Vector3.down;
-        else if (hDown && movement.x == -1) // ¡¬
+        else if (hDown && movement.x == -1) // Ï¢å
             dirVec = Vector3.left;
-        else if (hDown && movement.x == 1) // øÏ
+        else if (hDown && movement.x == 1) // Ïö∞
             dirVec = Vector3.right;
 
         // Scan Object
-        // Ω∫∆‰¿ÃΩ∫πŸ ¥≠∑Øº≠ Ω∫ƒµ
+        // Ïä§ÌéòÏù¥Ïä§Î∞î ÎàåÎü¨ÏÑú Ïä§Ï∫î
         if (Input.GetButtonDown("Jump") && scanObject != null)
         {
             dialogManager.Action(scanObject);
