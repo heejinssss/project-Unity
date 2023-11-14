@@ -7,8 +7,19 @@ using UnityEngine.UI;
 
 public class Ranking : MonoBehaviour
 {
+    public GameObject[] obj=new GameObject[5];
     public Text[] rank = new Text[5];
+    public Text[] name=new Text[5];
+    public Text[] score = new Text[5];
+    public Text[] playTime= new Text[5];
 
+    public void Awake()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            obj[i].SetActive(false);
+        }
+    }
 
     public void Start()
     {
@@ -17,15 +28,13 @@ public class Ranking : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i] == null) break;//5인 이하일 경우 종료
+            if (players[i].getScore() == 0 && players[i].getPlayTime() == 0) break;//유의미한 데이터가 아닐 경우 종료
 
-            StringBuilder str = new StringBuilder();
-            str.Append(players[i].getRank()).Append(" ")
-                .Append(players[i].getNickname()).Append(" ")
-                .Append(players[i].getScore()).Append(" ")
-                .Append(players[i].getPlayTime()).Append(" ")
-                .Append(players[i].getSaveTime()).Append(" ");
-
-            rank[i].text = str.ToString();
+            rank[i].text = Convert.ToString(i+1);
+            name[i].text = players[i].getNickname();
+            score[i].text = Convert.ToString(players[i].getScore());
+            playTime[i].text = Convert.ToString(players[i].getPlayTime());
+            obj[i].SetActive(true);
         }
     }
 
