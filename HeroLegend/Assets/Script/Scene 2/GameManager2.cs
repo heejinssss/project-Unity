@@ -18,6 +18,9 @@ public class GameManager2 : MonoBehaviour
     public Image[] BossHealth;
     public GameObject RestartButton;
     public GameObject NextButton;
+    public GameObject bossHealthBar;
+    public GameObject ClearText;
+    public GameObject ClearButton;
 
     
     public void BossHealthDown()
@@ -56,6 +59,11 @@ public class GameManager2 : MonoBehaviour
         {
             Stages[stageIndex].SetActive(false);
             stageIndex++;
+
+            if (stageIndex == Stages.Length - 1)
+            {
+                bossHealthBar.SetActive(true);
+            }
             Stages[stageIndex].SetActive(true);
             PlayerReposition();
         }
@@ -63,8 +71,9 @@ public class GameManager2 : MonoBehaviour
         {
             // Time.timeScale = 0;
             Debug.Log("게임 클리어");
+            ClearButton.SetActive(true);
+            ClearText.SetActive(true);
             gameClear = true;
-            RestartButton.SetActive(true);
         }
     }
 
@@ -119,20 +128,18 @@ public class GameManager2 : MonoBehaviour
     // 처음부터 재시작
     public void Restart()
     {
-        if (gameClear)
-        {
-            Debug.Log("게임 클리어");
-            SceneManager.LoadScene("Scene 2");
-        } else
-        {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("Scene 2");
-        }
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Scene 2");
     }
 
     public void GoNext()
     {
         NextStage();
         NextButton.SetActive(false);
+    }
+
+    public void GoMap()
+    {
+        SceneManager.LoadScene("Map");
     }
 }
