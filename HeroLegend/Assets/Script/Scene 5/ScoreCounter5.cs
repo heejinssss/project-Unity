@@ -2,9 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class ScoreCounter : MonoBehaviour
+public sealed class ScoreCounter5 : MonoBehaviour
 {
-    public static ScoreCounter Instance { get; private set; }
+    public static ScoreCounter5 Instance { get; private set; }
 
     private int _score;
 
@@ -18,7 +18,7 @@ public sealed class ScoreCounter : MonoBehaviour
 
             _score = value;
 
-            scoreText.SetText($"Score {_score}");
+            scoreText.SetText($"{_score}");
         }
     }
 
