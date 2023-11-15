@@ -87,7 +87,21 @@ public sealed class Board5 : MonoBehaviour
 
         if (isSwapping) return;
 
-        if (!_selection.Contains(tile)) _selection.Add(tile);
+        //if (!_selection.Contains(tile)) _selection.Add(tile);
+
+        /* 선택된 타일 상호작용 [S] */
+        if (_selection.Count > 0 && _selection[0] != tile)
+        {
+            _selection[0].icon.transform.localScale = Vector3.one;
+        }
+
+        if (!_selection.Contains(tile))
+        {
+            _selection.Add(tile);
+            // 선택된 타일의 크기를 줄임
+            tile.icon.transform.localScale = Vector3.one * 0.8f;
+        }
+        /* 선택된 타일 상호작용 [E] */
 
         // 두 개의 타일이 선택되었는가?
         if (_selection.Count < 2) return;
