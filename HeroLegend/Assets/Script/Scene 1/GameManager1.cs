@@ -76,11 +76,11 @@ public class GameManager1 : MonoBehaviour
     }
     public void GameRetry()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("Scenes/Scene 1");
     }
     public void NextGameStage()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Scenes/Map");
     }
 
 
