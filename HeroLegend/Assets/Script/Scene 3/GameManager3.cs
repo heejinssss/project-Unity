@@ -44,14 +44,19 @@ public class GameManager3 : MonoBehaviour
     public GameObject UIMask;
     public GameObject UISlime;
     public GameObject UIBoss;
+    public GameObject UIGameStart;
+    public GameObject UIEnd;
 
     string playerName;
     string testName = "scene3test";
     public TimeManager3 timeManager;
 
+    BGMSounder3 sounder;
+
     void Awake()
     {
-        isLive = true; // 寃뚯엫 ?쒖옉 踰꾪듉???뚮?????true濡?蹂??
+        sounder = GetComponent<BGMSounder3>();
+        isLive = true;
         isRestart = false;
         restartObj = 0;
 
@@ -59,8 +64,8 @@ public class GameManager3 : MonoBehaviour
             PlayerPrefs.SetFloat("Score", 0);
 
         playerName = NicknameManager.Nickname;
-        DBManager.Instance.InputNickname(testName);
-        StartGame(testName);
+        DBManager.Instance.InputNickname(playerName);
+        StartGame(playerName);
         Talk(stageIndex); 
     }
 
@@ -75,8 +80,13 @@ public class GameManager3 : MonoBehaviour
 
     public void NextStage()
     {
+        if (stageIndex == 6) // Ending
+        {
+            EndGame(playerName);
+            SceneManager.LoadScene("Map");
+        }
         // Change Stages
-        if (stageIndex < stages.Length)
+        if (stageIndex < stages.Length - 1)
         {
             stages[stageIndex].SetActive(false);
             stageIndex++;
@@ -85,12 +95,7 @@ public class GameManager3 : MonoBehaviour
 
         if (storyStages.Contains(stageIndex)) // Story Scene
         {
-            EndScene(testName);
-            if (stageIndex == 6) // Ending
-            {
-                EndGame(testName);
-                SceneManager.LoadScene("Map");
-            }
+            EndScene(playerName);
             preHealth = health;
             playerObj.SetActive(false);
             uiHealth.SetActive(false);
@@ -99,7 +104,8 @@ public class GameManager3 : MonoBehaviour
             Talk(stageIndex);
         } else // Game Scene
         {
-            StartScene(testName);
+            GameStartUI();
+            StartScene(playerName);
             if (stageIndex == 5) // Boss
             {
                 uiHealth.SetActive(true);
@@ -113,6 +119,7 @@ public class GameManager3 : MonoBehaviour
                 uiStatus.SetActive(true);
                 uiTime.SetActive(true);
             }
+            Invoke("GameStartUIEnd", 2);
         }
     }
 
@@ -125,7 +132,14 @@ public class GameManager3 : MonoBehaviour
         else
         {
             // Player Die Effect
-            player.OnDie();
+            if (stageIndex == 5)
+            {
+                playerBoss.OnDie();
+            }
+            else
+            {
+                player.OnDie();
+            }
 
             uiOver.SetActive(true);
             isLive = false;
@@ -170,6 +184,7 @@ public class GameManager3 : MonoBehaviour
                 case "blackShockStart":
                     black.SetActive(true);
                     defaultPanel.SetActive(true);
+                    sounder.PlaySound(BGMSounder3.BGMSfx.Trouble);
                     defaultText.text = "쾅!!!!!!!!!!!!!";
                     break;
                 case "blackShockEnd":
@@ -180,6 +195,7 @@ public class GameManager3 : MonoBehaviour
                     boss0.transform.Translate(-7.5f, -2f, 0, Space.Self);
                     break;
                 case "blackBossStart":
+                    sounder.PlaySound(BGMSounder3.BGMSfx.Stage);
                     black.SetActive(true);
                     UIMask.SetActive(true);
                     break;
@@ -195,6 +211,7 @@ public class GameManager3 : MonoBehaviour
                 case "slimeChangeStart":
                     black.SetActive(true);
                     UISlime.SetActive(true);
+                    sounder.PlaySound(BGMSounder3.BGMSfx.Boss);
                     break;
                 case "slimeChangeEnd":
                     black.SetActive(false);
@@ -212,6 +229,11 @@ public class GameManager3 : MonoBehaviour
                 case "bossEndEnd":
                     black.SetActive(false);
                     UIBoss.SetActive(false);
+                    sounder.PlaySound(BGMSounder3.BGMSfx.End);
+                    break;
+                case "GameEnd":
+                    black.SetActive(true);
+                    UIEnd.SetActive(true);
                     break;
                 default:
                     break;
@@ -237,30 +259,31 @@ public class GameManager3 : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("Restart!!");
         health = preHealth;
         uiOver.SetActive(false) ;
         if (stageIndex == 5)
         {
             playerBoss.ChangeAnim(0);
             playerBoss.transform.GetChild(1).gameObject.SetActive(true);
+            playerBoss.gameObject.layer = 8;
+            Scene3_Boss scene3_Boss = new Scene3_Boss();
+            scene3_Boss.Think();
         }
         else
         {
             player.ChangeAnim(Player3.State.Run);
             player.transform.GetChild(1).gameObject.SetActive(true);
+            player.gameObject.layer = 8;
         }
 
         Time.timeScale = 1;
-        isLive = true;
         isRestart = true;
+        isLive = true;
     }
 
     public void StartGame(string nickname)
     {
         DBManager.Instance.StartGame(3, nickname);
-        timeManager.setTime(0);
-
     }
 
     public void EndGame(string nickname)
@@ -271,13 +294,24 @@ public class GameManager3 : MonoBehaviour
     public void StartScene(string nickname)
     {
         PlayingClass data = DBManager.Instance.StartScene(3, nickname);
-        timeManager.setTime(data.getPlayTime());
+        TimeManager3.countTime = true;
         Debug.Log("점수 :: " + data.getScore());
         Debug.Log("시간 :: " + data.getPlayTime());
     }
 
     public void EndScene(string nickname)
     {
-        // DBManager.Instance.ChangeScene(3, stageIndex - 1, nickname, score, (int)timeManager.getTime());
+        DBManager.Instance.ChangeScene(3, stageIndex - 1, nickname, (int)score, (int)timeManager.getTime());
+        TimeManager3.countTime = false;
+    }
+
+    public void GameStartUI()
+    {
+        UIGameStart.SetActive(true);
+    }
+
+    public void GameStartUIEnd()
+    {
+        UIGameStart.SetActive(false);
     }
 }
