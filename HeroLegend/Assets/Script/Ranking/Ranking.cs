@@ -32,10 +32,21 @@ public class Ranking : MonoBehaviour
 
             rank[i].text = Convert.ToString(i+1);
             name[i].text = players[i].getNickname();
-            score[i].text = Convert.ToString(players[i].getScore());
-            playTime[i].text = Convert.ToString(players[i].getPlayTime());
+            score[i].text = Convert.ToString(players[i].getScore())+"점";
+            playTime[i].text = setPlayerTimeText(players[i].getPlayTime());
             obj[i].SetActive(true);
         }
+    }
+
+    public string setPlayerTimeText(int playerTime)
+    {
+        string result = "";
+        if (playerTime >= 60)
+        {
+            result += (playerTime / 60) + "분 ";
+        }
+        result += (playerTime % 60) + "초";
+        return result;
     }
 
 }

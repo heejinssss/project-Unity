@@ -1353,6 +1353,7 @@ MonoBehaviour:
   resultDelieverObject: {fileID: 555056511}
   talkPanel: {fileID: 1885235892}
   bgmManager: {fileID: 212157398}
+  isIntro: 0
 --- !u!82 &608028632
 AudioSource:
   m_ObjectHideFlags: 0
