@@ -65,7 +65,7 @@ public class TalkManager01 : MonoBehaviour
 
         if (talkIndex == talkData[id].Length)
         {
-            SceneManager.LoadScene("Intro.02");
+            SceneManager.LoadScene("Intro 02");
             return null;
         }
         else
