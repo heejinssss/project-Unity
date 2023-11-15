@@ -199,4 +199,17 @@ public sealed class Board5 : MonoBehaviour
             }
         }
     }
+
+    /* 새로운 3 match Item [S] */
+    public void UpdateAllTiles()
+    {
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                Tiles[x, y].Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
+            }
+        }
+    }
+    /* 새로운 3 match Item [E] */
 }
