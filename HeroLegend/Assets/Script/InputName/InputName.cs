@@ -24,6 +24,7 @@ public class InputName : MonoBehaviour
 
             // 게임 내 모든 곳에서 사용할 닉네임 저장
             PlayerPrefs.SetString("nickname", name);
+            NicknameManager.nickname = name;
 
             // 클리어한 기록이 있는지 여부 확인
             // 한개라도 클리어했으면 Map으로 보내고
