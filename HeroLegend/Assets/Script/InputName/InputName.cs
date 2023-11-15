@@ -41,8 +41,6 @@ public class InputName : MonoBehaviour
                 SceneManager.LoadScene("Map");
                 // SceneManager.LoadScene("Intro.01");
             }
-
-
         }
         else
         {
