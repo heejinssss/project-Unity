@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Kimchi
   m_EditorClassIdentifier: 
   value: 0
-  sprite: {fileID: 21300000, guid: d618d9f170ae94541a4a654e2c7a49c7, type: 3}
+  sprite: {fileID: 21300000, guid: 4c1c32dad9ed79448bed082cc0f11225, type: 3}
