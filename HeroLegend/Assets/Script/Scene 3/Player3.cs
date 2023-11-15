@@ -16,19 +16,19 @@ public class Player3 : MonoBehaviour
 
     Rigidbody2D rigid;
     Animator animator;
-    // Sounder sound;
+    Sounder3 sound;
 
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        // sound = GetComponent<Sounder>();
+        sound = GetComponent<Sounder3>();
     }
 
     void Start()
     {
-        // sound.PlaySound(Sounder.Sfx.Start);
+        sound.PlaySound(Sounder3.Sfx.Start);
     }
 
     void Update()
@@ -65,7 +65,7 @@ public class Player3 : MonoBehaviour
         if (!isGround && GameManager3.isLive)
         {
             ChangeAnim(State.Run);
-            // sound.PlaySound(Sounder.Sfx.Land);
+            sound.PlaySound(Sounder3.Sfx.Land);
             reducedJumpPower = jumpPower; // 점프 상태에서 0이 되었다가, 착지했을 때 다시 1로
         }
         isGround = true;
@@ -76,7 +76,7 @@ public class Player3 : MonoBehaviour
         if (collision.gameObject.tag == "Land")
         {
             ChangeAnim(State.Jump);
-            // sound.PlaySound(Sounder.Sfx.Jump);
+            sound.PlaySound(Sounder3.Sfx.Jump);
             isGround = false;
         }
     }
@@ -91,6 +91,7 @@ public class Player3 : MonoBehaviour
         else if (collision.gameObject.tag == "Item")
         {
             gameManager.health += 1;
+            sound.PlaySound(Sounder3.Sfx.Item);
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Finish")
@@ -109,7 +110,8 @@ public class Player3 : MonoBehaviour
         if (GameManager3.isLive)
         {
             ChangeAnim(State.Hit);
-            //rigid.simulated = false;
+            gameObject.layer = 9;
+            sound.PlaySound(Sounder3.Sfx.Hit);
             Invoke("OffDamaged", 1);
         }
     }
@@ -119,7 +121,7 @@ public class Player3 : MonoBehaviour
         if (GameManager3.isLive)
         {
             ChangeAnim(State.Run);
-            //rigid.simulated = true;
+            gameObject.layer = 8;
         }
     }
 
@@ -127,6 +129,7 @@ public class Player3 : MonoBehaviour
     public void OnDie()
     {
         transform.GetChild(1).gameObject.SetActive(false);
+        sound.PlaySound(Sounder3.Sfx.Death);
         ChangeAnim(State.Death);
     }
 

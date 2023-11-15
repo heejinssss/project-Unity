@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sounder3 : MonoBehaviour
 {
-    public enum Sfx { Jump, Land, Hit, Start }
+    public enum Sfx { Jump, Land, Hit, Start, Item, Death}
     public AudioClip[] clips;
     AudioSource audios;
 
