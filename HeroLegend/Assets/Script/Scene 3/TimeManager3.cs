@@ -8,6 +8,7 @@ public class TimeManager3 : MonoBehaviour
     /* 시간 */
     private float sec;
     private int min;
+    public static bool countTime;
 
     /* 텍스트 UI */
     public Text text;
@@ -30,11 +31,14 @@ public class TimeManager3 : MonoBehaviour
 
     public void Update()
     {
-        sec += Time.deltaTime;
-        if (sec >= 60f)
+        if (countTime)
         {
-            min++;
-            sec = 0;
+            sec += Time.deltaTime;
+            if (sec >= 60f)
+            {
+                min++;
+                sec = 0;
+            }
         }
 
         text.text = string.Format("{0:D2}:{1:D2}", min, (int)sec);
