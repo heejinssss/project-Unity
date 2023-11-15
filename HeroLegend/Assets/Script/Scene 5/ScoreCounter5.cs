@@ -8,6 +8,8 @@ public sealed class ScoreCounter5 : MonoBehaviour
 
     private int _score;
 
+    private int itemNumber;
+
     public int Score
     {
         get => _score;
@@ -19,6 +21,17 @@ public sealed class ScoreCounter5 : MonoBehaviour
             _score = value;
 
             scoreText.SetText($"{_score}");
+
+            /* 새로운 3 match Item [S] */
+            if (_score >= 100)
+            {
+                itemNumber++;
+                ItemDatabase5.LoadItems($"Items {itemNumber+1}/");
+                _score = 0;
+
+                Board5.Instance.UpdateAllTiles();
+            }
+            /* 새로운 3 match Item [E] */
         }
     }
 
