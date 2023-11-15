@@ -10898,6 +10898,61 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1916847527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916847529}
+  - component: {fileID: 1916847528}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1916847528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916847527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e01f2a93df1dc349a131f7986fa732e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmClip: {fileID: 8300000, guid: 8665ed43639434c88b55e3daf6a7a1ab, type: 3}
+  bgmVolume: 0.3
+  sfxClips:
+  - {fileID: 8300000, guid: ac1959e5d4cc749848f917a804ec96c8, type: 3}
+  - {fileID: 8300000, guid: 04849f74f0ac146498c3d46da1f0604d, type: 3}
+  - {fileID: 8300000, guid: 1e9b72fb56395f844a88fb3e1b429034, type: 3}
+  - {fileID: 8300000, guid: 88b7248ebcd3c43428802d86338a1a80, type: 3}
+  - {fileID: 8300000, guid: 55916005255af4410b0318ffb4a5c0e7, type: 3}
+  - {fileID: 8300000, guid: 28f444b22673e0b46a7daa8ead836725, type: 3}
+  sfxVolume: 0.4
+  channels: 15
+--- !u!4 &1916847529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916847527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.783451, y: 6.9672003, z: -0.029640198}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1918416097
 GameObject:
   m_ObjectHideFlags: 0
@@ -15334,3 +15389,4 @@ SceneRoots:
   - {fileID: 2126372665}
   - {fileID: 316384120}
   - {fileID: 1039773713}
+  - {fileID: 1916847529}

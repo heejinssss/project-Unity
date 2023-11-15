@@ -17,6 +17,8 @@ public class Enemy1 : MonoBehaviour
     WaitForFixedUpdate wait;
     private Animator animator;
     Player1 player1;
+    private bool OgreSound = false;
+
     
     
 
@@ -84,7 +86,6 @@ public class Enemy1 : MonoBehaviour
         GameManager1.instance.bosshealth -= collision.GetComponent<Noise1>().damage;
         animator.SetTrigger("hit_1");
 
-
         // int damage = player1.Mike.activeSelf ? collision.GetComponent<PoolManager1>().prefabs[1].Damage : collision.GetComponent<PoolManager1>().prefabs[0].damage;
         // health -= damage;
         // if (player1.Mike.activeSelf == true)
@@ -100,6 +101,10 @@ public class Enemy1 : MonoBehaviour
         
 
         if (GameManager1.instance.bosshealth > 0) {
+            if (!OgreSound && (GameManager1.instance.bosshealth <= 60)) {
+            AudioManager1.instance.PlaySfx(AudioManager1.Sfx.OgreHurt);
+            OgreSound = true; 
+        }
 
         }
         else {

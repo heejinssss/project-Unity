@@ -36,6 +36,8 @@ public class Weapon1 : MonoBehaviour
                         if (!isButtonPressed)
                         {
                             Fire();
+                            // AudioManager1.instance.PlayBgm(false);
+                            AudioManager1.instance.PlaySfx(AudioManager1.Sfx.Fire);
                             // player.rectTransform.rotation.y = dir
                             isButtonPressed = true;
                         }
