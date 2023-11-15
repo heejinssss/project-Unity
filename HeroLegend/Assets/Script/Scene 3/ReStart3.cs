@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class ReStart3 : MonoBehaviour
 {
     private Vector3 initialVector;
+    public Vector3 initialPosition;
 
     void Awake()
     {
-        initialVector = transform.position;
+        //initialVector = transform.position;
+        initialPosition = transform.position;
         GameManager3.restartObj++;
         GameManager3.tempRestartObj++;
     }
@@ -19,7 +21,8 @@ public class ReStart3 : MonoBehaviour
         {
             if (GameManager3.tempRestartObj != 0)
             {
-                transform.position = initialVector;
+                //transform.position = initialVector;
+                transform.position = initialPosition;
                 GameManager3.tempRestartObj--;
                 if (transform.name == "Health Group")
                 {
