@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Mint
   m_EditorClassIdentifier: 
   value: 5
-  sprite: {fileID: 21300000, guid: 300f5274225e7f84eb97f6bfe1b1e5b7, type: 3}
+  sprite: {fileID: 21300000, guid: 0cee2b45a677601429a9cbebfdbf038a, type: 3}

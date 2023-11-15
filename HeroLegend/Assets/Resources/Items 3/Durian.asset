@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Durian
   m_EditorClassIdentifier: 
   value: 5
-  sprite: {fileID: 21300000, guid: 3734ea2c0414ef24a8c662f51a3e575e, type: 3}
+  sprite: {fileID: 21300000, guid: 1a20495278f65704abed4644410bdb91, type: 3}
