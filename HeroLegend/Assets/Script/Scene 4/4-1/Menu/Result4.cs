@@ -37,7 +37,7 @@ public class Result4 : MonoBehaviour
         resultAudio = GetComponent<AudioSource>();
 
         // 닉네임을 제대로 바꿔주자
-        nickname = "temp";
+        nickname = PlayerPrefs.GetString("nickname", "defaultNickname");
         DBManager.Instance.StartGame(4, nickname);
         timeManager = FindObjectOfType<TimeManager>();
         // timeManager.setTime(data.getPlayTime());
@@ -99,7 +99,8 @@ public class Result4 : MonoBehaviour
             PlayerPrefs.SetInt("isClear4", 1);
 
             // 스코어는 임시로 0
-            DBManager.Instance.EndGame(4, nickname, 0, timeManager.getTime());
+            int score4 = (int)(t_currentScore * 100 / 3000);
+            DBManager.Instance.EndGame(4, nickname, score4, timeManager.getTime());
         }
 
         Debug.Log(DBManager.Instance.GetPlayerInfo(nickname).getClear());

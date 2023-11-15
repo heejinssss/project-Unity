@@ -13,6 +13,7 @@ public class GameManager3 : MonoBehaviour
     public int health;
     private int preHealth;
     public Player3 player;
+    public PlayerBoss3 playerBoss;
     public GameObject[] stages;
     public GameObject playerObj;
 
@@ -24,6 +25,8 @@ public class GameManager3 : MonoBehaviour
     public static int tempRestartObj;
     public GameObject uiHealth;
     public GameObject uiOver;
+    public GameObject uiStatus;
+    public GameObject uiTime;
 
     public TalkManager talkManager;
     public GameObject talkPanel;
@@ -42,6 +45,10 @@ public class GameManager3 : MonoBehaviour
     public GameObject UISlime;
     public GameObject UIBoss;
 
+    string playerName;
+    string testName = "scene3test";
+    public TimeManager3 timeManager;
+
     void Awake()
     {
         isLive = true; // 寃뚯엫 ?쒖옉 踰꾪듉???뚮?????true濡?蹂??
@@ -51,6 +58,9 @@ public class GameManager3 : MonoBehaviour
         if (!PlayerPrefs.HasKey("Score"))
             PlayerPrefs.SetFloat("Score", 0);
 
+        playerName = NicknameManager.Nickname;
+        DBManager.Instance.InputNickname(testName);
+        StartGame(testName);
         Talk(stageIndex); 
     }
 
@@ -72,16 +82,37 @@ public class GameManager3 : MonoBehaviour
             stageIndex++;
             stages[stageIndex].SetActive(true);
         }
-        if (storyStages.Contains(stageIndex))
+
+        if (storyStages.Contains(stageIndex)) // Story Scene
         {
+            EndScene(testName);
+            if (stageIndex == 6) // Ending
+            {
+                EndGame(testName);
+                SceneManager.LoadScene("Map");
+            }
             preHealth = health;
             playerObj.SetActive(false);
             uiHealth.SetActive(false);
+            uiStatus.SetActive(false);
+            uiTime.SetActive(false);
             Talk(stageIndex);
-        } else
+        } else // Game Scene
         {
-            playerObj.SetActive(true);
-            uiHealth.SetActive(true);
+            StartScene(testName);
+            if (stageIndex == 5) // Boss
+            {
+                uiHealth.SetActive(true);
+                uiStatus.SetActive(true);
+                uiTime.SetActive(true);
+            }
+            else
+            {
+                playerObj.SetActive(true);
+                uiHealth.SetActive(true);
+                uiStatus.SetActive(true);
+                uiTime.SetActive(true);
+            }
         }
     }
 
@@ -208,14 +239,45 @@ public class GameManager3 : MonoBehaviour
     {
         Debug.Log("Restart!!");
         health = preHealth;
-        player.ChangeAnim(Player3.State.Run);
         uiOver.SetActive(false) ;
-        player.gameObject.layer = 8;
-        player.transform.GetChild(1).gameObject.SetActive(true);
+        if (stageIndex == 5)
+        {
+            playerBoss.ChangeAnim(0);
+            playerBoss.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            player.ChangeAnim(Player3.State.Run);
+            player.transform.GetChild(1).gameObject.SetActive(true);
+        }
 
-        Time.timeScale = 1; // ?쒓컙 蹂듦뎄
+        Time.timeScale = 1;
         isLive = true;
         isRestart = true;
     }
 
+    public void StartGame(string nickname)
+    {
+        DBManager.Instance.StartGame(3, nickname);
+        timeManager.setTime(0);
+
+    }
+
+    public void EndGame(string nickname)
+    {
+        DBManager.Instance.EndGame(3, nickname, (int)score, (int)timeManager.getTime());
+    }
+
+    public void StartScene(string nickname)
+    {
+        PlayingClass data = DBManager.Instance.StartScene(3, nickname);
+        timeManager.setTime(data.getPlayTime());
+        Debug.Log("점수 :: " + data.getScore());
+        Debug.Log("시간 :: " + data.getPlayTime());
+    }
+
+    public void EndScene(string nickname)
+    {
+        // DBManager.Instance.ChangeScene(3, stageIndex - 1, nickname, score, (int)timeManager.getTime());
+    }
 }

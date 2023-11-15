@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4195918511083531791}
   - component: {fileID: 8000754053020230908}
   - component: {fileID: 4966132277914883525}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Fireball
   m_TagString: EnemySkill
   m_Icon: {fileID: 0}
