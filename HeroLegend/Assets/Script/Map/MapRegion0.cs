@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class MapRegion0 : MonoBehaviour
 {
@@ -61,9 +62,13 @@ public class MapRegion0 : MonoBehaviour
     {
         // 클리어 했는지 여부 불러오기
         // 이 부분이 적절히 바뀌어야 합니다
-        nickname = "temp";
+        nickname = PlayerPrefs.GetString("nickname", "defaultNickname");
 
+        // 처음부터 플레이할 경우 없어도 되는 코드지만, Map에서부터 시작하는 경우 ///////////////
+        // + 이전에 PlayerPrefs에 저장하지 않았거나 DB에 넣지 않은 경우 에러를 방지하기 위해서 //
         DBManager.Instance.InputNickname(nickname);
+        /////////////////////////////////////////////////////////////////////////////////////////
+
         bool[] clearinfo = DBManager.Instance.GetPlayerInfo(nickname).getClear();
 
         clearStatus[0] = clearinfo[3];
