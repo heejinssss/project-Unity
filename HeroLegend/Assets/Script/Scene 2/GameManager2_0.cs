@@ -9,9 +9,12 @@ public class GameManager2_0 : MonoBehaviour
     public TalkManager2 talkManager;
     public GameObject talkPanel;
     public Text talkText;
+    public Image portraitImg;
+
     public GameObject scanObject;
     public GameObject portalButton;
     public GameObject cancelButton;
+
     public bool isAction;
     public int talkIndex;
 
@@ -19,7 +22,7 @@ public class GameManager2_0 : MonoBehaviour
     {
         scanObject = scanObj;
         ObjData0 objData = scanObj.GetComponent<ObjData0>();
-        Talk(objData.id, objData.isNpc);
+        Talk(objData.id);
         DeleteExclamationMark(objData);
 
         talkPanel.SetActive(isAction);
@@ -35,24 +38,18 @@ public class GameManager2_0 : MonoBehaviour
         }
     }
 
-    void Talk(int id, bool isNpc)
+    void Talk(int id)
     {
         string talkData = talkManager.GetTalk(id, talkIndex);
-        
         if (talkData == null) {
             isAction = false;
             talkIndex = 0;
             return;
         }
+        talkText.text = talkData;
 
-        if (isNpc)
-        {
-            talkText.text = talkData;
-        }
-        else
-        {
-            talkText.text = talkData;
-        }
+        Sprite portrait = talkManager.GetPortrait(id, talkIndex);
+        portraitImg.sprite = portrait;
 
         isAction = true;
         talkIndex++;

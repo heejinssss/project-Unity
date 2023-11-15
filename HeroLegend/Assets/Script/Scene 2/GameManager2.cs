@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class GameManager2 : MonoBehaviour
 {
+    TimeManager timeManager;
+
     public int stageIndex;
     public int health;
     public int bossHealth;
@@ -22,7 +24,13 @@ public class GameManager2 : MonoBehaviour
     public GameObject ClearText;
     public GameObject ClearButton;
 
-    
+    private void Awake()
+    {
+        timeManager = new TimeManager();
+        timeManager.setTime(0);
+        DBManager.Instance.StartGame(2, NicknameManager.nickname);
+    }
+
     public void BossHealthDown()
     {
         // 보스 피격
@@ -69,8 +77,11 @@ public class GameManager2 : MonoBehaviour
         }
         else
         {
-            // Time.timeScale = 0;
-            Debug.Log("게임 클리어");
+            // 게임클리어
+            int clearTime = timeManager.getTime();
+            Time.timeScale = 0;
+            int score = (clearTime < 480) ? 100 : (480/clearTime) * 100;
+            DBManager.Instance.EndGame(2, NicknameManager.nickname, score, clearTime);
             ClearButton.SetActive(true);
             ClearText.SetActive(true);
             gameClear = true;
@@ -129,6 +140,7 @@ public class GameManager2 : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
+        timeManager.setTime(0);
         SceneManager.LoadScene("Scene 2");
     }
 
