@@ -53,7 +53,7 @@ public class TalkManager02 : MonoBehaviour
     {
         if (talkIndex == talkData[id].Length)
         {
-            SceneManager.LoadScene("Intro.03");
+            SceneManager.LoadScene("Intro 03");
             return null;
         }
         else
