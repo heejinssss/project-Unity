@@ -39,8 +39,8 @@ public class InputName : MonoBehaviour
             else
             {
                 // 아직 하나도 클리어하지 않았다면, Intro.01로 보내자
-                SceneManager.LoadScene("Map");
-                // SceneManager.LoadScene("Intro.01");
+                // SceneManager.LoadScene("Map");
+                SceneManager.LoadScene("Intro 01");
             }
         }
         else
