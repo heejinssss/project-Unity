@@ -103,8 +103,6 @@ public class Result4 : MonoBehaviour
             DBManager.Instance.EndGame(4, nickname, score4, timeManager.getTime());
         }
 
-        Debug.Log(DBManager.Instance.GetPlayerInfo(nickname).getClear());
-
         Time.timeScale = 1f;
         SceneManager.LoadScene("Scene 4");
     }
