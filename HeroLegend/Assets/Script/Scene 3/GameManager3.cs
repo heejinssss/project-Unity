@@ -288,7 +288,7 @@ public class GameManager3 : MonoBehaviour
 
     public void EndGame(string nickname)
     {
-        DBManager.Instance.EndGame(3, nickname, (int)score, (int)timeManager.getTime());
+        DBManager.Instance.EndGame(3, nickname, (int)score * 10, (int)timeManager.getTime());
     }
 
     public void StartScene(string nickname)
@@ -301,7 +301,7 @@ public class GameManager3 : MonoBehaviour
 
     public void EndScene(string nickname)
     {
-        DBManager.Instance.ChangeScene(3, stageIndex - 1, nickname, (int)score * 10, (int)timeManager.getTime());
+        DBManager.Instance.ChangeScene(3, stageIndex - 1, nickname, (int)score, (int)timeManager.getTime());
         TimeManager3.countTime = false;
     }
 
