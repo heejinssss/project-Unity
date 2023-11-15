@@ -93,7 +93,6 @@ public class ItemBox1 : MonoBehaviour
 
         if (spawnedItemScript != null)
         {
-            Debug.Log("Hi");
             spawnedItemScript.DropItem(boxTransform.position); 
 
             // spawnedItemScript.DropItem();
@@ -134,6 +133,7 @@ public class ItemBox1 : MonoBehaviour
             rigid.simulated = false;
             // spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
+            AudioManager1.instance.PlaySfx(AudioManager1.Sfx.BoxOpen);
             // Dead();
         }
 

@@ -32,15 +32,12 @@ public class GameManager1 : MonoBehaviour
     }
     public void GameStart() 
     {
-        // playerId = id;
         health = maxHealth;
         isLive = true;
         // bosshealth = maxbosshealth;
         player.gameObject.SetActive(true);
-        // uiLevelUp.Select(playerId % 2);
         Resume();  
-        // AudioManager.instance.PlayBgm(true);
-        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+        AudioManager1.instance.PlayBgm(true);
     }
     public void GameOver()
     {
@@ -53,8 +50,8 @@ public class GameManager1 : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         Stop();
-        // AudioManager.instance.PlayBgm(false);
-        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
+        AudioManager1.instance.PlayBgm(false);
+        AudioManager1.instance.PlaySfx(AudioManager1.Sfx.Lose);
 
     }
     public void GameVictory()
@@ -64,14 +61,13 @@ public class GameManager1 : MonoBehaviour
     IEnumerator GameVictoryRoutine()
     {
         isLive = false;
-        // enemyCleaner.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         Stop();
 
-        // AudioManager.instance.PlayBgm(false);
-        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Win);
+        AudioManager1.instance.PlayBgm(false);
+        AudioManager1.instance.PlaySfx(AudioManager1.Sfx.Win);
 
     }
     public void GameRetry()

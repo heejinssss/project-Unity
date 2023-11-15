@@ -176,7 +176,7 @@ public class Player1 : MonoBehaviour
                 Destroy(collision.gameObject);
             }
             GameManager1.instance.health -= 10;
-
+            AudioManager1.instance.PlaySfx(AudioManager1.Sfx.Hit);
 
 
             if (GameManager1.instance.health < 0) 
