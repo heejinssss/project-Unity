@@ -23,6 +23,8 @@ public class GameManager1_1 : MonoBehaviour
     {
         Talk(id, talkIdx);
         Action();
+        AudioManager1_1.instance.PlayBgm(true);
+
     }
     public void Action()
     {
