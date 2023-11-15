@@ -28,8 +28,10 @@ public sealed class ScoreCounter5 : MonoBehaviour
                 itemNumber++;
                 ItemDatabase5.LoadItems($"Items {itemNumber+1}/");
                 _score = 0;
-
                 Board5.Instance.UpdateAllTiles();
+
+                // PlayerAction5의 메서드 호출
+                PlayerAction5.Instance.EnableSpecialAbilityFor10Seconds();
             }
             /* 새로운 3 match Item [E] */
         }
