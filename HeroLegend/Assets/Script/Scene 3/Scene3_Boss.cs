@@ -7,13 +7,15 @@ public class Scene3_Boss : MonoBehaviour
     public GameManager3 gameManager;
     Rigidbody2D rigid;
     Animator animator;
-    // Sounder sound;
+    BossSounder3 sound;
     public GameObject[] objects;
+    private int nextAnim;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        // sound = GetComponent<Sounder>();
+        sound = GetComponent<BossSounder3>();
 
         Think();
 
@@ -21,33 +23,30 @@ public class Scene3_Boss : MonoBehaviour
     }
 
 
-    void Think()
+    public void Think()
     {
         if (!GameManager3.isLive)
             return;
 
-        int nextAnim = Random.Range(1, 4);
+        nextAnim = Random.Range(1, 4);
         ChangeAnim(nextAnim);
 
         switch (nextAnim)
         {
             case 1:
                 // 1. Cleave
-                Debug.Log("Cleave");
-                Invoke("ChangeToIdle", 1.5f);
-                ChangeActive(0);
+                Invoke("ChangeToIdle", 1);
+                Invoke("ChangeActive", 1);
                 break;
             case 2:
-                // 2. Smash
-                Debug.Log("Smash");
-                Invoke("ChangeToIdle", 2);
-                ChangeActiveAll(2);
+                // 2. Breath
+                Invoke("ChangeToIdle", 1);
+                Invoke("ChangeActive", 1);
                 break;
             case 3:
-                // 3. Breath
-                Debug.Log("Breath");
-                Invoke("ChangeToIdle", 2);
-                ChangeActive(1);
+                // 3. Smash
+                Invoke("ChangeToIdle", 1);
+                Invoke("ChangeActive", 1);
                 break;
             default:
                 break;
@@ -64,21 +63,29 @@ public class Scene3_Boss : MonoBehaviour
 
     void ChangeToIdle()
     {
-        Debug.Log("ChangeToIdle");
         animator.SetInteger("State", 0);
     }
-    void ChangeActive(int idx)
+    void ChangeActive()
     {
-        objects[idx].gameObject.SetActive(true);
-    }
-
-    void ChangeActiveAll(int idx)
-    {
-        objects[idx].gameObject.SetActive(true);
-        for (int index = 0; index < 4; index++)
+        if (nextAnim == 1)
         {
-            objects[idx].transform.GetChild(index).gameObject.SetActive(true);
+            objects[nextAnim - 1].gameObject.SetActive(true);
+            sound.PlaySound(BossSounder3.BossSfx.Cleave);
+        }
+        else
+        {
+            objects[nextAnim - 1].gameObject.SetActive(true);
+            for (int index = 0; index < 4; index++)
+            {
+                objects[nextAnim - 1].transform.GetChild(index).gameObject.SetActive(true);
+            }
+
+            if (nextAnim == 2)
+                sound.PlaySound(BossSounder3.BossSfx.Breath);
+            else
+                sound.PlaySound(BossSounder3.BossSfx.Smash);
         }
     }
+
 }
 
