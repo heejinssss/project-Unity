@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+//using UnityEngine.SceneManagement;
 public class TalkManager03 : MonoBehaviour
 {
     Dictionary<int, string[]> talkData;
@@ -57,7 +57,10 @@ public class TalkManager03 : MonoBehaviour
     public string GetTalk(int id, int talkIndex)
     {
         if (talkIndex == talkData[id].Length)
+        {
+            //SceneManager.LoadScene("Intro 04");
             return null;
+        }
         else
             return talkData[id][talkIndex];
     }
