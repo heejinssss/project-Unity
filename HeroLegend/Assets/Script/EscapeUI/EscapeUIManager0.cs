@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EscapeUIManager0 : MonoBehaviour
 {
@@ -52,5 +53,10 @@ public class EscapeUIManager0 : MonoBehaviour
         // 게임 종료
         // 에디터 창에서는 동작하지 않고, 실제 빌드 후에 동작합니다
         Application.Quit();
+    }
+
+    public void GoMap()
+    {
+        SceneManager.LoadScene("Map");
     }
 }
