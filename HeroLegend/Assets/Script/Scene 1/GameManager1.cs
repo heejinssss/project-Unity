@@ -22,12 +22,14 @@ public class GameManager1 : MonoBehaviour
     public PoolManager1 pool;
     public Player1 player;
     public Result1 uiResult;
+    // TimeManager timeManager;
     // public Transform uiJoy;
 
     void Awake()
     {
         instance = this;
         Stop();
+        // timeManager.setTime(0);
 
     }
     public void GameStart() 
@@ -38,6 +40,10 @@ public class GameManager1 : MonoBehaviour
         player.gameObject.SetActive(true);
         Resume();  
         AudioManager1.instance.PlayBgm(true);
+        DBManager.Instance.StartGame(1, NicknameManager.Nickname);
+        // timeManager = new TimeManager();
+        // timeManager.setTime(0);
+        
     }
     public void GameOver()
     {
@@ -68,6 +74,9 @@ public class GameManager1 : MonoBehaviour
 
         AudioManager1.instance.PlayBgm(false);
         AudioManager1.instance.PlaySfx(AudioManager1.Sfx.Win);
+        // Debug.Log(timeManager);
+        // int playerTime = timeManager.getTime();
+        DBManager.Instance.EndGame(1, NicknameManager.Nickname, 100, 60);
 
     }
     public void GameRetry()
@@ -100,6 +109,7 @@ public class GameManager1 : MonoBehaviour
 
     public void Stop() 
     {
+
         isLive = false;
         Time.timeScale = 0;
         // uiJoy.localScale = Vector3.zero;
