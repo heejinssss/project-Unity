@@ -17,11 +17,13 @@ public class GameManager1 : MonoBehaviour
     public float maxbosshealth = 1000;
     public float characterdamage;
 
+
     // public int level;
     [Header("# Game Object")]
     public PoolManager1 pool;
     public Player1 player;
     public Result1 uiResult;
+    public GameObject EscapeUI;
     // TimeManager timeManager;
     // public Transform uiJoy;
 
