@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove20 : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerMove20 : MonoBehaviour
     bool isHorizonMove;
     bool isOpen;
     bool explanationClose;
+    bool foundExplanation;
     Vector3 dirVec;
     Rigidbody2D rigid;
     Animator anim;
@@ -79,11 +81,14 @@ public class PlayerMove20 : MonoBehaviour
         }
 
         // Scan Object
-        if (Input.GetButtonDown("Jump") && scanObject != null)
+        if (Input.GetButtonDown("Jump") && scanObject != null && explanationClose) // 게임 설명이 열려있으면 통과
         {
+            // SFX
             AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Scan);
-            if (scanObject.CompareTag("Item"))
+
+            if (scanObject.CompareTag("Item")) // 설명서 스캔 
             {
+                foundExplanation = true;
                 if (isOpen)
                 {
                     isOpen = false;
@@ -100,9 +105,14 @@ public class PlayerMove20 : MonoBehaviour
         {
             if (!explanationClose)
             {
+                // 게임 설명 닫기 
                 explanationClose = true;
-                gameManager.CloseExplanation();
+            } else
+            {
+                // 게임 설명 켜기
+                explanationClose = false;
             }
+            gameManager.CloseExplanation(explanationClose);
         }
 
         
@@ -135,7 +145,16 @@ public class PlayerMove20 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Door"))
         {
-            gameManager.SetActiveButton(true);
+            if (foundExplanation)
+            {
+                gameManager.SetActiveButton(true);
+            } else
+            {
+                // 설명서를 아직 못찾았으면 설명서 찾으라는 UI 활성화
+                gameManager.ChangeExplanation();
+                explanationClose = false;
+                gameManager.CloseExplanation(explanationClose);
+            }
         }
     }
 }
