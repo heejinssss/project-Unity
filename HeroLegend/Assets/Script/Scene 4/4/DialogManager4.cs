@@ -153,6 +153,6 @@ public class DialogManager4 : MonoBehaviour
 
     void GoToMap()
     {
-        gameManager.SceneMove4("Map");
+        gameManager.SceneMove4("Scenes/Village");
     }
 }
