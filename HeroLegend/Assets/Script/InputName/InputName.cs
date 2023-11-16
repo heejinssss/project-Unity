@@ -34,7 +34,7 @@ public class InputName : MonoBehaviour
             if (clearinfo.Contains(true))
             {
                 // 하나라도 클리어한 기록이 있다면 Map으로 보내고
-                SceneManager.LoadScene("Map");
+                SceneManager.LoadScene("Village");
             }
             else
             {
@@ -51,9 +51,20 @@ public class InputName : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            NameButtonClick();
+    }
+
     /* 취소 버튼 클릭 이벤트 */
     public void CancelButtonClick()
     {
         InputField_Name.text = "";
+    }
+
+    public void RankButtonClick()
+    {
+        SceneManager.LoadScene("Ranking");
     }
 }

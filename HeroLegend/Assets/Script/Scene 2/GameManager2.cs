@@ -21,6 +21,7 @@ public class GameManager2 : MonoBehaviour
     public GameObject bossHealthBar;
     public GameObject ClearText;
     public GameObject ClearButton;
+    public GameObject TutorialQuit;
     TimeManager timeManager;
 
     private void Awake()
@@ -53,8 +54,8 @@ public class GameManager2 : MonoBehaviour
             
             if (enemyNum <= 0)
             {
-                enemyNum = 6;
-                NextButton.SetActive(true);
+                enemyNum = 7;
+                NextButton.SetActive(true);                
             }
         }
     }
@@ -158,8 +159,6 @@ public class GameManager2 : MonoBehaviour
     // 처음부터 재시작
     public void Restart()
     {
-        Time.timeScale = 1;
-        timeManager.setTime(0);
         SceneManager.LoadScene("Scene 2");
     }
 
@@ -172,5 +171,10 @@ public class GameManager2 : MonoBehaviour
     public void GoMap()
     {
         SceneManager.LoadScene("Map");
+    }
+
+    public void GoVillage()
+    {
+        SceneManager.LoadScene("Village");
     }
 }
