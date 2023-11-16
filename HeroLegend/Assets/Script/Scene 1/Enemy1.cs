@@ -104,8 +104,7 @@ public class Enemy1 : MonoBehaviour
             if (!OgreSound && (GameManager1.instance.bosshealth <= 60)) {
             AudioManager1.instance.PlaySfx(AudioManager1.Sfx.OgreHurt);
             OgreSound = true; 
-        }
-
+            }
         }
         else {
             Dead();
