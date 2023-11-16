@@ -29,6 +29,7 @@ TagManager:
   - Item
   - Land
   - BossAttack
+  - Entry
   layers:
   - Default
   - TransparentFX

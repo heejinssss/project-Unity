@@ -18,41 +18,51 @@ public class GameManager5_0 : MonoBehaviour
     public Text defaultText;
     public int talkIdx;
     public bool isAction;
+    public Camera MainCamera;
+
+    public CameraManager5_0 cameraManager;
+    CameraShake5_0 cameraShake;
 
     private int[] TopDownStages = { 1 };
+    private bool TopDownScriptEnd = false;
 
     BGMSounder5_0 sounder;
 
-    void Awake()
+    void Start()
     {
         sounder = GetComponent<BGMSounder5_0>();
-
+        cameraShake = MainCamera.GetComponent<CameraShake5_0>();
         Talk(stageIndex);
     }
 
     public void NextStage()
     {
-        if (stageIndex == stages.Length) // Ending
+        if (stageIndex == stages.Length - 1) // Ending
         {
-            SceneManager.LoadScene("Map");
+            SceneManager.LoadScene("Scene 5");
         }
         // Change Stages
-        if (stageIndex < stages.Length)
+        if (stageIndex < stages.Length - 1)
         {
             stages[stageIndex].SetActive(false);
             stageIndex++;
             stages[stageIndex].SetActive(true);
+            cameraManager.ChangeCamera(stageIndex - 1, stageIndex);
+            Talk(stageIndex);
         }
 
         if (TopDownStages.Contains(stageIndex)) // Top-Down Scene
         {
-            // Need To Add Logic
+            TopDownScriptEnd = false;
         }
         // Talk(stageIndex);
     }
 
     void Talk(int stage)
     {
+        if (TopDownScriptEnd)
+            return;
+
         string talkData = talkManager.GetTalk(stage, talkIdx);
 
         if (talkData == null)
@@ -61,7 +71,10 @@ public class GameManager5_0 : MonoBehaviour
             talkIdx = 0;
             talkPanel.SetActive(false);
             defaultPanel.SetActive(false);
-            NextStage();
+            if (!TopDownStages.Contains(stageIndex))
+                NextStage();
+            else
+                TopDownScriptEnd = true;
             return;
         }
 
@@ -74,7 +87,13 @@ public class GameManager5_0 : MonoBehaviour
         {
             switch (talkData.Split(":")[0])
             {
-                case "ruleStart":
+                case "shakeStart":
+                    defaultPanel.SetActive(true);
+                    defaultText.text = "(잠시 생각하면서 다리를 떤다)";
+                    cameraShake.shakeDuration = 1.0f;
+                    break;
+                case "shakeEnd":
+                    cameraShake.shakeDuration = 0f;
                     break;
                 default:
                     break;
