@@ -18,6 +18,11 @@ public class GameManager2_0 : MonoBehaviour
     public bool isAction;
     public int talkIndex;
 
+    private void Awake()
+    {
+        AudioManager2.instance.PlayBgm(true);
+    }
+
     public void Action(GameObject scanObj)
     {
         scanObject = scanObj;

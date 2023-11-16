@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class GameManager2 : MonoBehaviour
 {
-    TimeManager timeManager;
-
     public int stageIndex;
     public int health;
     public int bossHealth;
@@ -23,12 +21,14 @@ public class GameManager2 : MonoBehaviour
     public GameObject bossHealthBar;
     public GameObject ClearText;
     public GameObject ClearButton;
+    TimeManager timeManager;
 
     private void Awake()
     {
-        timeManager = new TimeManager();
+        timeManager = FindObjectOfType<TimeManager>();
         timeManager.setTime(0);
         DBManager.Instance.StartGame(2, NicknameManager.nickname);
+        AudioManager2.instance.PlayBgm(true);
     }
 
     public void BossHealthDown()
@@ -68,6 +68,9 @@ public class GameManager2 : MonoBehaviour
             Stages[stageIndex].SetActive(false);
             stageIndex++;
 
+            // SFX
+            AudioManager2.instance.ChangeBgm(stageIndex);
+
             if (stageIndex == Stages.Length - 1)
             {
                 bossHealthBar.SetActive(true);
@@ -78,12 +81,25 @@ public class GameManager2 : MonoBehaviour
         else
         {
             // 게임클리어
-            int clearTime = timeManager.getTime();
+
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Clear);
+
+            // BGM 변경 
+            AudioManager2.instance.ChangeBgm(3);
+
+            // 클리어 시간 측정 및 점수 측정
+            int clearTime = (int) timeManager.getTime();
             Time.timeScale = 0;
             int score = (clearTime < 480) ? 100 : (480/clearTime) * 100;
+
+            // 점수 저장 
             DBManager.Instance.EndGame(2, NicknameManager.nickname, score, clearTime);
+
+            // 버튼 활성화
             ClearButton.SetActive(true);
             ClearText.SetActive(true);
+
             gameClear = true;
         }
     }
@@ -111,10 +127,13 @@ public class GameManager2 : MonoBehaviour
         if (health <= 0)
         {
             UIhealth[health].color = new Color(1, 1, 1, 0.2f);
+
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Die);
+
             // 플레이어 사망 
             player.OnDie();
-            // R
-            Debug.Log("죽었습니다.");
+            
             // 재시작 버튼 활성화
             RestartButton.SetActive(true);
         }
