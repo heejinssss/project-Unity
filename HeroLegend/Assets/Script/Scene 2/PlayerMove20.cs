@@ -7,6 +7,8 @@ public class PlayerMove20 : MonoBehaviour
     float h;
     float v;
     bool isHorizonMove;
+    bool isOpen;
+    bool explanationClose;
     Vector3 dirVec;
     Rigidbody2D rigid;
     Animator anim;
@@ -68,7 +70,7 @@ public class PlayerMove20 : MonoBehaviour
         } else if (vDown && v == -1)
         {
             dirVec = Vector3.down;
-        } else if (hDown && v == -1)
+        } else if (hDown && h == -1)
         {
             dirVec = Vector3.left;
         } else if (hDown && h == 1)
@@ -80,14 +82,30 @@ public class PlayerMove20 : MonoBehaviour
         if (Input.GetButtonDown("Jump") && scanObject != null)
         {
             AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Scan);
-            if (scanObject.CompareTag("Door"))
+            if (scanObject.CompareTag("Item"))
             {
-                gameManager.SetActiveButton(true);
+                if (isOpen)
+                {
+                    isOpen = false;
+                } else
+                {
+                    isOpen = true;   
+                }
+                gameManager.OpenBook(isOpen);
             } else
             {
                 gameManager.Action(scanObject);
             }
+        } else if (Input.GetButtonDown("Jump"))
+        {
+            if (!explanationClose)
+            {
+                explanationClose = true;
+                gameManager.CloseExplanation();
+            }
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -102,7 +120,7 @@ public class PlayerMove20 : MonoBehaviour
 
         // Ray
         Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0,1,0));
-        RaycastHit2D rayhit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+        RaycastHit2D rayhit = Physics2D.Raycast(rigid.position, dirVec, 1.2f, LayerMask.GetMask("Object"));
 
         if(rayhit.collider != null)
         {
@@ -110,6 +128,14 @@ public class PlayerMove20 : MonoBehaviour
         } else
         {
             scanObject = null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            gameManager.SetActiveButton(true);
         }
     }
 }
