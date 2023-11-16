@@ -85,7 +85,7 @@ public class GameManager1 : MonoBehaviour
     }
     public void NextGameStage()
     {
-        Time.timeScale = 1.0f
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Scenes/Map");
     }
 
