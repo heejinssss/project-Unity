@@ -33,6 +33,9 @@ public class BossMove2 : MonoBehaviour
 
     void Start()
     {
+        // SFX
+        AudioManager2.instance.PlaySfx(AudioManager2.Sfx.EnemyAppear);
+
         CreateAura(aura, 0.7f);
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -194,6 +197,9 @@ public class BossMove2 : MonoBehaviour
                 
             }
             rb.AddForce(direction * launchSpeed, ForceMode2D.Impulse);
+
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.BossAttack);
         }
     }
 
@@ -219,6 +225,9 @@ public class BossMove2 : MonoBehaviour
     // 드래곤 순간이동 
     void Teleport()
     {
+        // SFX
+        AudioManager2.instance.PlaySfx(AudioManager2.Sfx.BossTeleport);
+
         transform.position = new Vector3(-transform.position.x, -transform.position.y, 0);
         turn();
     }
@@ -287,6 +296,9 @@ public class BossMove2 : MonoBehaviour
     // 미니 드래곤 소환 
     void Summons()
     {
+        // SFX
+        AudioManager2.instance.PlaySfx(AudioManager2.Sfx.EnemyAppear);
+
         CreateAura(aura, 0.7f);
         CreateAura(aura2, 1.3f);
         foreach (float[] location in locationList)

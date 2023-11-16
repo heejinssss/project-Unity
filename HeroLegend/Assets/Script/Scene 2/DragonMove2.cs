@@ -181,6 +181,9 @@ public class DragonMove2 : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("PlayerSkillFire"))
             {
+                // SFX
+                AudioManager2.instance.PlaySfx(AudioManager2.Sfx.EnemyHit);
+
                 fired++;
                 OnDamaged(new Color(255, 0, 0, 255));
             }
@@ -193,6 +196,9 @@ public class DragonMove2 : MonoBehaviour
             skillRemove.Active();
         } else if (LayerMask.LayerToName(collision.gameObject.layer) == "PlayerAttack" && collision.gameObject.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
         {
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.BossHit);
+
             OnDie();
             collision.gameObject.GetComponent<SkillRemove2>().Active();
         }
@@ -201,7 +207,10 @@ public class DragonMove2 : MonoBehaviour
 
     IEnumerator ShootFireBall()
     {
-        yield return new WaitForSeconds(1); 
+        yield return new WaitForSeconds(1);
+        // SFX
+        AudioManager2.instance.PlaySfx(AudioManager2.Sfx.EnemyAttack);
+
         anim.SetTrigger("isAttacking");
         Invoke("CreateProjectile", 0.8f);
         yield return new WaitForSeconds(1);         
