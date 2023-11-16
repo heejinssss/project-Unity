@@ -84,6 +84,19 @@ public class DialogManager4 : MonoBehaviour
                 pastBackground4.DeactivateMapUI();
             }
         }
+        else if (id == 1020)
+        {
+            if (talkIndex == 1)
+            {
+                RuleUIManager ruleUIManager = FindObjectOfType<RuleUIManager>();
+                ruleUIManager.ActivateRuleUI();
+            }
+            else if (talkIndex == 2)
+            {
+                RuleUIManager ruleUIManager = FindObjectOfType<RuleUIManager>();
+                ruleUIManager.DeactivateRuleUI();
+            }
+        }
 
         if (talkData == null)
         {
