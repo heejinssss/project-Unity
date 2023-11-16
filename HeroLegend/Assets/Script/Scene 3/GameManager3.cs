@@ -83,7 +83,7 @@ public class GameManager3 : MonoBehaviour
         if (stageIndex == 6) // Ending
         {
             EndGame(playerName);
-            SceneManager.LoadScene("Map");
+            SceneManager.LoadScene("Scenes/Village");
         }
         // Change Stages
         if (stageIndex < stages.Length - 1)
