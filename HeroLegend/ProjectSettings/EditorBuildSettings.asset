@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending Credit.unity
     guid: a430a22a4df77a84380e3fc57bc5b362
+  - enabled: 1
+    path: Assets/Scenes/Ranking.unity
+    guid: acad221fd1cd1884a8cc74971aef1084
   - enabled: 0
     path: Assets/Scenes/Scene1-1.unity
     guid: 3da7a5fda979c5a44910291016d48c92
