@@ -4,16 +4,14 @@ public class PlayerAction03 : MonoBehaviour
 {
     public GameManager03 manager;
 
-    public float Speed;
-
-    public float moveSpeed = 5.0f;
+    public float moveSpeed;
     private int spacebarCount = 0;
 
     private bool spacebarActivated = false;
-    private float rightMoveDuration = 3.0f; // 이동 시간 (right)
+    private float rightMoveDuration = 2.9f; // 이동 시간 (right)
     private float rightMoveTimer = 0.0f;
 
-    private float downMoveDuration = 0.5f; // 이동 시간 (down)
+    private float downMoveDuration = 1.0f; // 이동 시간 (down)
     private float downMoveTimer = 0.0f;
 
     Rigidbody2D rigid;
