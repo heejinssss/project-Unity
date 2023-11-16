@@ -52,7 +52,7 @@ public class Scene3_Boss : MonoBehaviour
                 break;
         }
 
-        int turn = Random.Range(3, 6);
+        int turn = Random.Range(2, 4);
         Invoke("Think", turn);
     }
 
