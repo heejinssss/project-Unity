@@ -51,6 +51,12 @@ public class InputName : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            NameButtonClick();
+    }
+
     /* 취소 버튼 클릭 이벤트 */
     public void CancelButtonClick()
     {
