@@ -29,10 +29,16 @@ public class PlayerSkill2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z) && !isCooldown)
         {
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.PlayerSkill);
+
             CreateProjectile(fire);
             StartCoroutine(Cooldown()); // 연타 딜레이 시작
             
         } else if(Input.GetKeyDown(KeyCode.X) && !isCooldown) {
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.PlayerSkill);
+
             CreateProjectile(water);
             StartCoroutine(Cooldown()); // 연타 딜레이 시작
         }
@@ -42,6 +48,9 @@ public class PlayerSkill2 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.PlayerAttack);
+
             Quaternion rotation = Quaternion.Euler(0, 0, 90);
             GameObject effect1 = Instantiate(effect, collision.gameObject.transform.position, rotation);
             StartCoroutine(DeleteEffect(effect1));
@@ -49,6 +58,9 @@ public class PlayerSkill2 : MonoBehaviour
             objectRb.AddForce(-transform.right * launchSpeed, ForceMode2D.Impulse);
         } else if (collision.gameObject.CompareTag("Item"))
         {
+            // SFX
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.PlayerEat);
+
             collision.gameObject.SetActive(false);
             Destroy(collision.gameObject);
             gameManager.HealthUp();

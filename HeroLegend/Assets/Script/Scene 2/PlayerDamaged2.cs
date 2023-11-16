@@ -36,6 +36,9 @@ public class PlayerDamaged2 : MonoBehaviour
     }
     public void OnDamaged(Vector2 targetPos)
     {
+        // 피격 SFX
+        AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Hit);
+
         // 체력 감소
         gameManager.HealthDown();
 
