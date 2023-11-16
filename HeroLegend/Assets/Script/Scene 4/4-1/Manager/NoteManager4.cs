@@ -7,6 +7,8 @@ public class NoteManager4 : MonoBehaviour
     // 분당 비트 수(분당 노트 수)
     public int bpm = 0;
 
+    public GameObject gameStartText;
+
     // 리듬 게임에서는 오차가 적어야 하므로 float 대신 double
     double currentTime = 0d;
 
@@ -30,12 +32,24 @@ public class NoteManager4 : MonoBehaviour
         startCountdownAudio = GetComponent<AudioSource>();
         startCountdownAudio.Play();
 
+        Invoke("ActivateGameStartText", 2.7f);
         Invoke("activateNote", 4f);
     }
 
     void activateNote()
     {
         noteActive = true;
+    }
+
+    void ActivateGameStartText()
+    {
+        gameStartText.SetActive(true);
+        Invoke("DeactivateGameStartText", 1f);
+    }
+
+    void DeactivateGameStartText()
+    {
+        gameStartText.SetActive(false);
     }
 
     // Update is called once per frame
