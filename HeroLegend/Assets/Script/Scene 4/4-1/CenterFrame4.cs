@@ -45,6 +45,21 @@ public class CenterFrame4 : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (musicStart && Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (myAudio.isPlaying)
+            {
+                myAudio.Pause();
+            }
+            else
+            {
+                myAudio.UnPause();
+            }
+        }
+    }
+
     private void InvokeShowResult()
     {
         theResult.ShowResult();

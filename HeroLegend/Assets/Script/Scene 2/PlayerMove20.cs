@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove20 : MonoBehaviour
 {
     float h;
     float v;
     bool isHorizonMove;
+    bool isOpen;
+    bool explanationClose;
+    bool foundExplanation;
     Vector3 dirVec;
     Rigidbody2D rigid;
     Animator anim;
@@ -68,7 +72,7 @@ public class PlayerMove20 : MonoBehaviour
         } else if (vDown && v == -1)
         {
             dirVec = Vector3.down;
-        } else if (hDown && v == -1)
+        } else if (hDown && h == -1)
         {
             dirVec = Vector3.left;
         } else if (hDown && h == 1)
@@ -77,17 +81,41 @@ public class PlayerMove20 : MonoBehaviour
         }
 
         // Scan Object
-        if (Input.GetButtonDown("Jump") && scanObject != null)
+        if (Input.GetButtonDown("Jump") && scanObject != null && explanationClose) // 게임 설명이 열려있으면 통과
         {
+            // SFX
             AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Scan);
-            if (scanObject.CompareTag("Door"))
+
+            if (scanObject.CompareTag("Item")) // 설명서 스캔 
             {
-                gameManager.SetActiveButton(true);
+                foundExplanation = true;
+                if (isOpen)
+                {
+                    isOpen = false;
+                } else
+                {
+                    isOpen = true;   
+                }
+                gameManager.OpenBook(isOpen);
             } else
             {
                 gameManager.Action(scanObject);
             }
+        } else if (Input.GetButtonDown("Jump"))
+        {
+            if (!explanationClose)
+            {
+                // 게임 설명 닫기 
+                explanationClose = true;
+            } else
+            {
+                // 게임 설명 켜기
+                explanationClose = false;
+            }
+            gameManager.CloseExplanation(explanationClose);
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -102,7 +130,7 @@ public class PlayerMove20 : MonoBehaviour
 
         // Ray
         Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0,1,0));
-        RaycastHit2D rayhit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+        RaycastHit2D rayhit = Physics2D.Raycast(rigid.position, dirVec, 1.2f, LayerMask.GetMask("Object"));
 
         if(rayhit.collider != null)
         {
@@ -110,6 +138,23 @@ public class PlayerMove20 : MonoBehaviour
         } else
         {
             scanObject = null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            if (foundExplanation)
+            {
+                gameManager.SetActiveButton(true);
+            } else
+            {
+                // 설명서를 아직 못찾았으면 설명서 찾으라는 UI 활성화
+                gameManager.ChangeExplanation();
+                explanationClose = false;
+                gameManager.CloseExplanation(explanationClose);
+            }
         }
     }
 }

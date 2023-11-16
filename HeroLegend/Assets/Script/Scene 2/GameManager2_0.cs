@@ -9,8 +9,11 @@ public class GameManager2_0 : MonoBehaviour
     public TalkManager2 talkManager;
     public GameObject talkPanel;
     public Text talkText;
+    public Text explanationText;
     public Image portraitImg;
 
+    public GameObject book;
+    public GameObject explanation;
     public GameObject scanObject;
     public GameObject portalButton;
     public GameObject cancelButton;
@@ -74,5 +77,20 @@ public class GameManager2_0 : MonoBehaviour
     {
         cancelButton.SetActive(flag);
         portalButton.SetActive(flag);
+    }
+
+    public void OpenBook(bool flag)
+    {
+        book.SetActive(flag);
+    }
+
+    public void CloseExplanation(bool flag)
+    {
+        explanation.SetActive(!flag);
+    }
+
+    public void ChangeExplanation()
+    {
+        explanationText.text = "아직 설명서를 찾지 않았습니다.";
     }
 }

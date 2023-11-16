@@ -57,6 +57,8 @@ public class EscapeUIManager0 : MonoBehaviour
 
     public void GoMap()
     {
+        clickAudioSource.Play();
+
         SceneManager.LoadScene("Map");
     }
 }

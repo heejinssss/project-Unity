@@ -14,6 +14,7 @@ public class GameManager3 : MonoBehaviour
     private int preHealth;
     public Player3 player;
     public PlayerBoss3 playerBoss;
+    public Scene3_Boss scene3_Boss;
     public GameObject[] stages;
     public GameObject playerObj;
 
@@ -66,7 +67,8 @@ public class GameManager3 : MonoBehaviour
         playerName = NicknameManager.Nickname;
         DBManager.Instance.InputNickname(playerName);
         StartGame(playerName);
-        Talk(stageIndex); 
+        Talk(stageIndex);
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -83,7 +85,7 @@ public class GameManager3 : MonoBehaviour
         if (stageIndex == 6) // Ending
         {
             EndGame(playerName);
-            SceneManager.LoadScene("Map");
+            SceneManager.LoadScene("Scenes/Village");
         }
         // Change Stages
         if (stageIndex < stages.Length - 1)
@@ -119,7 +121,7 @@ public class GameManager3 : MonoBehaviour
                 uiStatus.SetActive(true);
                 uiTime.SetActive(true);
             }
-            Invoke("GameStartUIEnd", 2);
+            Invoke("GameStartUIEnd", 1);
         }
     }
 
@@ -261,13 +263,15 @@ public class GameManager3 : MonoBehaviour
     {
         health = preHealth;
         uiOver.SetActive(false) ;
+        Time.timeScale = 1;
+        isRestart = true;
+        isLive = true;
         if (stageIndex == 5)
         {
             playerBoss.ChangeAnim(0);
             playerBoss.transform.GetChild(1).gameObject.SetActive(true);
             playerBoss.gameObject.layer = 8;
-            Scene3_Boss scene3_Boss = new Scene3_Boss();
-            scene3_Boss.Think();
+            scene3_Boss.GetComponent<Scene3_Boss>().Think();
         }
         else
         {
@@ -275,10 +279,6 @@ public class GameManager3 : MonoBehaviour
             player.transform.GetChild(1).gameObject.SetActive(true);
             player.gameObject.layer = 8;
         }
-
-        Time.timeScale = 1;
-        isRestart = true;
-        isLive = true;
     }
 
     public void StartGame(string nickname)

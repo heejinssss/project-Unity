@@ -119,6 +119,14 @@ public class DBManager
         score += player.getScore();
         playTime += player.getPlayTime();
 
+        /* 최종 보스 클리어 시 전체 초기화 */
+        if (roundNum == 5)
+        {
+            if (UpdatePlayerClearInfo(playerName, score, playTime, roundNum) && DeletePlayingInfo(roundNum, playerName)) return true;
+            return false;
+        }
+
+        /* 최종 보스 외 게임 클리어 시 클리어 기록 업데이트 */
         if (UpdatePlayerInfo(playerName, score, playTime, roundNum) && DeletePlayingInfo(roundNum, playerName)) return true;
         return false;
     }
@@ -227,6 +235,16 @@ public class DBManager
     private bool UpdatePlayerInfo(string nickname, int score, int playTime, int roundNum)
     {
         string query = "update " + playerTable + " set score=" + score + ", playTime=" + playTime + ", clear"+(roundNum)+"=1 where nickname=\"" + nickname + "\"";
+        Debug.Log("플레이어 기록 업데이트 쿼리 :: " + query);
+
+        if (InsertOrUpdateRequest(query)) return true;
+        return false;
+    }
+
+    /* 플레이어 클리어 기록 업데이트 메소드 */
+    private bool UpdatePlayerClearInfo(string nickname, int score, int playTime, int roundNum)
+    {
+        string query = "update " + playerTable + " set score=" + score + ", playTime=" + playTime + ", clear1=0,clear2=0,clear3=0,clear4=0,clear5=0 where nickname=\"" + nickname + "\"";
         Debug.Log("플레이어 기록 업데이트 쿼리 :: " + query);
 
         if (InsertOrUpdateRequest(query)) return true;
