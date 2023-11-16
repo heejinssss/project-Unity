@@ -11,6 +11,8 @@ public class GameManager2_0 : MonoBehaviour
     public Text talkText;
     public Image portraitImg;
 
+    public GameObject book;
+    public GameObject explanation;
     public GameObject scanObject;
     public GameObject portalButton;
     public GameObject cancelButton;
@@ -74,5 +76,15 @@ public class GameManager2_0 : MonoBehaviour
     {
         cancelButton.SetActive(flag);
         portalButton.SetActive(flag);
+    }
+
+    public void OpenBook(bool flag)
+    {
+        book.SetActive(flag);
+    }
+
+    public void CloseExplanation()
+    {
+        explanation.SetActive(false);
     }
 }
