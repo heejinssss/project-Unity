@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 28954449}
   - component: {fileID: 28954448}
   m_Layer: 5
-  m_Name: MapButton
+  m_Name: VillageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1941857027}
         m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: GoMap
+        m_MethodName: GoVillage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10702,6 +10702,7 @@ MonoBehaviour:
   bossHealthBar: {fileID: 1562175666}
   ClearText: {fileID: 494115408}
   ClearButton: {fileID: 28954446}
+  TutorialQuit: {fileID: 0}
 --- !u!1 &1958934351
 GameObject:
   m_ObjectHideFlags: 0
