@@ -34,7 +34,7 @@ public class InputName : MonoBehaviour
             if (clearinfo.Contains(true))
             {
                 // 하나라도 클리어한 기록이 있다면 Map으로 보내고
-                SceneManager.LoadScene("Map");
+                SceneManager.LoadScene("Village");
             }
             else
             {
