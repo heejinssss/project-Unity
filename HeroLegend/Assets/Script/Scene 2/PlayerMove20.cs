@@ -11,19 +11,15 @@ public class PlayerMove20 : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     GameObject scanObject;
-    AudioSource audioSource;
 
     public float Speed;
     public GameManager2_0 gameManager;
-    public AudioClip audioWalk;
-    public AudioClip audioScan;
 
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -83,29 +79,15 @@ public class PlayerMove20 : MonoBehaviour
         // Scan Object
         if (Input.GetButtonDown("Jump") && scanObject != null)
         {
+            AudioManager2.instance.PlaySfx(AudioManager2.Sfx.Scan);
             if (scanObject.CompareTag("Door"))
             {
                 gameManager.SetActiveButton(true);
             } else
             {
-                PlaySound("Scan");
                 gameManager.Action(scanObject);
             }
         }
-    }
-
-    void PlaySound(string action)
-    {
-        switch (action)
-        {
-            case "Walk":
-                audioSource.clip = audioWalk;
-                break;
-            case "Scan":
-                audioSource.clip = audioScan;
-                break;
-        }
-        audioSource.Play();
     }
 
     private void FixedUpdate()
@@ -115,7 +97,7 @@ public class PlayerMove20 : MonoBehaviour
         rigid.velocity  = moveVec * Speed;
         if (rigid.velocity != Vector2.zero)
         {
-            PlaySound("Walk");
+            AudioManager2.instance.PlayWalk();
         }
 
         // Ray
