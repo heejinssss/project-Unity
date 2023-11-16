@@ -172,4 +172,9 @@ public class GameManager2 : MonoBehaviour
     {
         SceneManager.LoadScene("Map");
     }
+
+    public void GoVillage()
+    {
+        SceneManager.LoadScene("Village");
+    }
 }
