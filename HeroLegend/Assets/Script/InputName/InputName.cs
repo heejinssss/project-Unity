@@ -56,4 +56,9 @@ public class InputName : MonoBehaviour
     {
         InputField_Name.text = "";
     }
+
+    public void RankButtonClick()
+    {
+        SceneManager.LoadScene("Ranking");
+    }
 }
