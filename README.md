@@ -222,7 +222,7 @@ void Think()
 
 ### 스토리
 
-![Scene3-2]](https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true)
+![Scene3-2](https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true)
 
 인트로
 
@@ -230,11 +230,11 @@ void Think()
 
 인트로 설명서
 
-![Scene3-4]](https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true)
+![Scene3-4](https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true)
 
 보스 엔딩
 
-![Scene3-5]](https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true)
+![Scene3-5](https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true)
 
 엔딩
 
