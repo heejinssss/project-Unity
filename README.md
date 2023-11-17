@@ -15,7 +15,7 @@
 > 그런 세상에 떨어진 `**다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공**`.
 > 
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%201.png)
+![Map](https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true)
 
 > 마왕과 그의 부하들을 쓰러뜨려 세상을 자유롭게 만들어야 하는 운명의 소용돌이 속으로..!!
 > 
@@ -24,7 +24,7 @@
 
 ## 🔌 닉네임 입력으로 게임 접속
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%202.png)
+![InputName](https://github.com/heejinssss/project-knight/blob/master/3InputName.png?raw=true)
 
 > 개성 있는 닉네임으로 게임을 시작해요
 > 
@@ -33,7 +33,7 @@
 
 ## 🏹 첫 번째 게임 `이브르다다라`
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%203.png)
+![Scene1](https://github.com/heejinssss/project-knight/blob/master/4Scene1.png?raw=true)
 
 > 조용히 음식을 먹어야 하는 `랭KING` 이 점령한 이브다다라 성!
 > 
@@ -53,14 +53,14 @@
 
 ## 🕊️ 두 번째 게임 `지거국`
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%204.png)
+![Scene2-1](https://github.com/heejinssss/project-knight/blob/master/5Scene2.png?raw=true)
 
 > 탕수육은 무조건 부어 먹는 `부머기라스` 가 점령한 지거국!
 > 
 
 ### 설명서
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%205.png)
+![Scene2-2](https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true)
 
 ### Player
 
@@ -222,19 +222,19 @@ void Think()
 
 ### 스토리
 
-![인트로](README%20baf029c80548463d8960cd35f942b5eb/Untitled%206.png)
+![Scene3-2]](https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true)
 
 인트로
 
-![인트로 설명서](README%20baf029c80548463d8960cd35f942b5eb/Untitled%207.png)
+![Scene3-3](https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true)
 
 인트로 설명서
 
-![보스 엔딩](README%20baf029c80548463d8960cd35f942b5eb/Untitled%208.png)
+![Scene3-4]](https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true)
 
 보스 엔딩
 
-![엔딩](README%20baf029c80548463d8960cd35f942b5eb/Untitled%209.png)
+![Scene3-5]](https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true)
 
 엔딩
 
@@ -303,19 +303,19 @@ void Think()
 
 ### 스테이지 1, 2
 
-![스테이지 1 인트로](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2010.png)
+![Scene3-6](https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true)
 
 스테이지 1 인트로
 
-![스테이지 1 게임 장면](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2011.png)
+![Scene3-7](https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true)
 
 스테이지 1 게임 장면
 
-![스테이지 2 인트로](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2012.png)
+![Scene3-8](https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true)
 
 스테이지 2 인트로
 
-![스테이지 2 게임 장면](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2013.png)
+![Scene3-9](https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true)
 
 스테이지 2 게임 장면
 
@@ -421,9 +421,9 @@ void Think()
 
 ### 보스전
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2014.png)
+![Scene3-10](https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true)
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2015.png)
+![Scene3-11](https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true)
 
 1. 공격 패턴
     
@@ -462,14 +462,14 @@ void Think()
 
 ## 🥁 네 번째 게임 `다리떨리아`
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2016.png)
+![Scene4-1](https://github.com/heejinssss/project-knight/blob/master/18Scene4.png?raw=true)
 
 > 다리 떠는 것을 혐오하는 `고만터러킹` 이 점령한 다리떨리아 성!
 > 
 
 ### 설명서
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2017.png)
+![Scene4-2](https://github.com/heejinssss/project-knight/blob/master/19Scene4.png?raw=true)
 
 ### 오브젝트 풀링 기법 활용
 
@@ -556,7 +556,7 @@ void Update()
 
 ## 🍽️ 마지막 게임 `보스전`
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2018.png)
+![Scene5](https://github.com/heejinssss/project-knight/blob/master/20Scene5.png?raw=true)
 
 > 가장 강력하고 결벽적인 `파르펙토(perfect)` 대마왕!
 그런 대마왕에게 단 한 가지 결점이 있었다?
@@ -676,11 +676,11 @@ void Update()
 
 ## 🥇 랭킹 확인
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2019.png)
+![Rank](https://github.com/heejinssss/project-knight/blob/master/21Ranking.png?raw=true)
 
 # 기술 스택
 
-![Untitled](README%20baf029c80548463d8960cd35f942b5eb/Untitled%2020.png)
+![Skill](https://github.com/heejinssss/project-knight/blob/master/22Skill.png?raw=true)
 
 # 팀원 소개
 
