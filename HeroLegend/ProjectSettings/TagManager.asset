@@ -3,26 +3,52 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Note
+  - Door
+  - Rock
+  - Enemy
+  - Ground
+  - Area
+  - Dust
+  - Bullet
+  - ItemBox
+  - Start
+  - Noise
+  - Boss
+  - Item
+  - PlayerAttack
+  - EnemySkill
+  - PlayerSkill
+  - PlayerSkillOil
+  - PlayerSkillFire
+  - bulleteat
+  - hearteat
+  - speakereat
+  - boomeat
+  - Item
+  - Land
+  - BossAttack
+  - Entry
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlatForm
   - Water
   - UI
+  - Object
   - 
+  - Player
+  - PlayerDamaged
+  - Ground
+  - Enemy
+  - PlayerSkill
+  - PlayerAttack
+  - Item
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ItemEat
+  - BossAttack
   - 
   - 
   - 
