@@ -641,7 +641,7 @@ void Update()
     }
 ```
 
-1. 타일 교환 로직
+2. 타일 교환 로직
 
 ```csharp
     public async Task Swap(Tile5 tile1, Tile5 tile2)
