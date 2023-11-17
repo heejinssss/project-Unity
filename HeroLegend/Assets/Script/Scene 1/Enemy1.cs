@@ -130,14 +130,8 @@ public class Enemy1 : MonoBehaviour
     void Dead()
     {
         Debug.Log("dead");
-        animator.SetBool("hit_2", true);
-        animator.SetBool("death", true);
-        StartCoroutine(BeforeDead());
         gameObject.SetActive(false);
 
     }
-    IEnumerator BeforeDead()
-    {
-        yield return new WaitForSeconds(1f);
-    }
+
 }
