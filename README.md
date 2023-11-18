@@ -91,9 +91,12 @@
 ### 회복 아이템
 
 - Z(불)과 X(기름)을 한번씩 맞추면 Enemy가 죽으면 해당 위치에 치킨 Prefab 생성
-- 해당 치킨 Object와 플레이어가 닿으면 체력 1회복
+- 해당 치킨 Object와 플레이어가 닿으면 체력 1 회복
 
 ### Enemy
+
+- Z(불)과 X(기름)을 한번씩 맞추면 Enemy가 죽으면 해당 위치에 치킨 Prefab 생성
+- 해당 치킨 Object와 플레이어가 닿으면 체력 1 회복
 
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
