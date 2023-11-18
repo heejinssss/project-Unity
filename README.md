@@ -1,6 +1,6 @@
 # 불편(不便)용사
 
-# 🦸🏻🦹🏻‍♀️ A704 프로젝트 컨셉
+# 🦸🦹🏻 A704 프로젝트 컨셉
 
 <img src="https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true" width="500" height="300">
 
