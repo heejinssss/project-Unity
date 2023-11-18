@@ -8,7 +8,9 @@
 이 세계에서는 프로 불편 용사라고?”**
 > 
 > 완벽 마왕들이 완벽하지 않은 사람들을 모두 잡아내고 쓰러뜨려 세상을 지배했다.
+>
 > 잡혀가지 않고 남은 사람들은 행동 하나하나를 조심해야 살아남을 수 있게 됐다.
+>
 > 그런 세상에 떨어진 **`다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공`**.
 
 <img src="https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true" width="500" height="300">
