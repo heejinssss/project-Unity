@@ -1,19 +1,15 @@
-# README
+# 불편(不便)용사
 
 # 🦸🏻🦹🏻‍♀️ A704 프로젝트 컨셉
 
 <img src="https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true" width="500" height="300">
 
-> “**세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(**嚬蹙)**만 샀던 내가 
+> **“세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(嚬蹙)만 샀던 내가 
 이 세계에서는 프로 불편 용사라고?”**
 > 
-> 
 > 완벽 마왕들이 완벽하지 않은 사람들을 모두 잡아내고 쓰러뜨려 세상을 지배했다.
-> 
 > 잡혀가지 않고 남은 사람들은 행동 하나하나를 조심해야 살아남을 수 있게 됐다.
-> 
-> 그런 세상에 떨어진 `**다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공**`.
-> 
+> 그런 세상에 떨어진 **`다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공`**.
 
 <img src="https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true" width="500" height="300">
 
@@ -444,9 +440,16 @@ void Think()
 
 ### 보스전
 
-<img src="https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true" width="500" height="300">
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true" width="500" height="300">
+<table>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+</table>
 
 1. 공격 패턴
     
