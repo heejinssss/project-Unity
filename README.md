@@ -60,6 +60,7 @@
 ### 불 & 기름 공격
 
 - Z(불) or X(물)를 누르면 플레이어 위치에서 바라보는 방향으로 X축에 평행하게 Projectile 발사
+
   ```csharp
   void CreateProjectile(GameObject projectilePrefab)
   {
@@ -93,6 +94,7 @@
 
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
+
   ```csharp
   void Think()
   {
@@ -123,6 +125,7 @@
 ### Boss
 
 - 용의 남은 체력에 따라 이동속도, 공격속도, 색상 변경
+
   ```csharp
   // 공격, 이동, 대기 속도 설정
   if (gameManager.bossHealth > 9)
@@ -147,7 +150,9 @@
       forceLevel = 6000;
   }
   ```
+
 - 이동 패턴들을 Queue에 넣고 차례로 사용
+
   ```csharp
   if (!anim.GetBool("isFlying") && anim.GetBool("isLifted"))
   {
@@ -204,8 +209,8 @@
 
 <table>
     <tr align="center">
-        <td><B>인트로</B></td>
-        <td><B>인트로 설명서</B></td>
+        <td>인트로</td>
+        <td>인트로 설명서</td>
     </tr>
     <tr align="center">
         <td>
@@ -216,8 +221,8 @@
         </td>
     </tr>
     <tr align="center">
-        <td><B>보스 엔딩</B></td>
-        <td><B>엔딩</B></td>
+        <td>보스 엔딩</td>
+        <td>엔딩</td>
     </tr>
     <tr align="center">
         <td>
@@ -297,8 +302,8 @@
 
 <table>
     <tr align="center">
-        <td><B>스테이지 1 인트로</B></td>
-        <td><B>스테이지 1 게임 장면</B></td>
+        <td>스테이지 1 인트로</td>
+        <td>스테이지 1 게임 장면</td>
     </tr>
     <tr align="center">
         <td>
@@ -309,8 +314,8 @@
         </td>
     </tr>
     <tr align="center">
-        <td><B>스테이지 2 인트로</B></td>
-        <td><B>스테이지 2 게임 장면</B></td>
+        <td>스테이지 2 인트로</td>
+        <td>스테이지 2 게임 장면</td>
     </tr>
     <tr align="center">
         <td>
