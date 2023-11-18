@@ -98,7 +98,7 @@
 
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
-
+    
     ```csharp
     void Think()
     {
@@ -124,7 +124,7 @@
         float nextThinkTime = Random.Range(2f, 5f);
         Invoke("Think", nextThinkTime);
     }
-    ```	
+    ```
 
 ### Boss
 
@@ -187,8 +187,7 @@
 
 ## 👟 세 번째 게임 `후르프후릎`
 
-<img src="https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true" width="500" height="300">
-![Scene3_Playing.gif](README%20baf029c80548463d8960cd35f942b5eb/Scene3_Playing.gif)
+<img src="https://file.notion.so/f/f/91c77290-6cef-4804-89c8-0171a02bb6be/218f958b-3880-407d-b678-801072181bc8/Scene3_Playing.gif?id=b4afe213-d40a-4f45-acfa-6b4b3fc330b0&table=block&spaceId=91c77290-6cef-4804-89c8-0171a02bb6be&expirationTimestamp=1700416800000&signature=6xund_TTGh4Q6DL2JCkd2c0Z95ObDNj9mBCMEF6DfAk&downloadName=Scene3_Playing.gif" width="500" height="300">
 
 > **면치기**를 가장 더러워하는 `후르브킹` 이 점령한 후르프후릎 성!
 > 
