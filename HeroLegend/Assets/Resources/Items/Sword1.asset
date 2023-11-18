@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b59e8a97daf06164e992cb37ea72526e, type: 3}
-  m_Name: Cider
+  m_Name: Sword1
   m_EditorClassIdentifier: 
-  value: 0
-  sprite: {fileID: 21300000, guid: ebdf1608b72eaaf4684bfce73f75e72a, type: 3}
+  value: 5
+  sprite: {fileID: 21300000, guid: df96032537d4c482e9b20c674c73dc45, type: 3}

@@ -1,3 +1,4 @@
+using I18N.Common;
 using System.Collections;
 using UnityEngine;
 
@@ -5,9 +6,10 @@ public class PlayerAction5 : MonoBehaviour
 {
     // 싱글톤 인스턴스 추가
     public static PlayerAction5 Instance { get; private set; }
+    public GameManager5 manager;
 
     Animator anim;
-    
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -19,18 +21,11 @@ public class PlayerAction5 : MonoBehaviour
         Instance = this;
     }
 
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        AttackonTitan();
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.A))
-    //    {
-    //        ThreeMatchProcess();
-    //    }
-    //}
+    void Update()
+    {
+        if (Input.GetButtonDown("Jump") && !manager.isDialogueEnded) // 대화가 끝나지 않았을 때만 Action 실행
+            manager.Action();
+    }
 
     // 10초간 특별 능력 활성화
     public void EnableSpecialAbilityFor10Seconds()

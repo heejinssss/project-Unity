@@ -1,21 +1,19 @@
-# README
+# 불편(不便)용사
 
-# 🦸🏻🦹🏻‍♀️ A704 프로젝트 컨셉
+# 🦸🦹 A704 프로젝트 컨셉
 
-![Intro](https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true" width="500" height="300">
 
-> “**세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(**嚬蹙)**만 샀던 내가 
+> **“세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(嚬蹙)만 샀던 내가 
 이 세계에서는 프로 불편 용사라고?”**
 > 
-> 
 > 완벽 마왕들이 완벽하지 않은 사람들을 모두 잡아내고 쓰러뜨려 세상을 지배했다.
-> 
+>
 > 잡혀가지 않고 남은 사람들은 행동 하나하나를 조심해야 살아남을 수 있게 됐다.
-> 
-> 그런 세상에 떨어진 `**다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공**`.
-> 
+>
+> 그런 세상에 떨어진 **`다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공`**.
 
-![Map](https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true" width="500" height="300">
 
 > 마왕과 그의 부하들을 쓰러뜨려 세상을 자유롭게 만들어야 하는 운명의 소용돌이 속으로..!!
 > 
@@ -24,7 +22,7 @@
 
 ## 🔌 닉네임 입력으로 게임 접속
 
-![InputName](https://github.com/heejinssss/project-knight/blob/master/3InputName.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/3InputName.png?raw=true" width="500" height="300">
 
 > 개성 있는 닉네임으로 게임을 시작해요
 > 
@@ -33,34 +31,32 @@
 
 ## 🏹 첫 번째 게임 `이브르다다라`
 
-![Scene1](https://github.com/heejinssss/project-knight/blob/master/4Scene1.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/4Scene1.png?raw=true" width="500" height="300">
 
 > 조용히 음식을 먹어야 하는 `랭KING` 이 점령한 이브다다라 성!
 > 
 
+### 설명서
 ```
-# 설명서
 뛰어난 미식가 겸 요리사인 랭KING의 공격을 피하며 보스를 처치해야하는 보스전 게임입니다.
 아이템 상자에서 나오는 아이템(스피커, 음식, 총알, 하트 등)을 이용하여 용사의 공격력을 올리고 아이템을 장착하여 보다 쉽게 랭KING을 처치할 수 있을거에요
 
 점프(SPACE)와 방향키(위 방향키, 오른쪽 방향키)을 통해 보스의 공격을 피해보세요
 쩝쩝 공격(LeftCtrl)을 통해 쩝쩝 소리를 내며 공격을 해보세요
-	공격은 보스와 아이템 상자 중 가까운 곳으로 발사가 되니 랭KING과의 거리를 잘 생각하시면서 게임을 플레이하셔야합니다.
+공격은 보스와 아이템 상자 중 가까운 곳으로 발사가 되니 랭KING과의 거리를 잘 생각하시면서 게임을 플레이하셔야합니다.
 방어(아래쪽 방향키)를 통해 무자비하게 공격해오는 보스의 공격을 막아보세요
 ```
 
----
-
 ## 🕊️ 두 번째 게임 `지거국`
 
-![Scene2-1](https://github.com/heejinssss/project-knight/blob/master/5Scene2.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/5Scene2.png?raw=true" width="500" height="300">
 
 > 탕수육은 무조건 부어 먹는 `부머기라스` 가 점령한 지거국!
 > 
 
 ### 설명서
 
-![Scene2-2](https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true" width="500" height="300">
 
 ### Player
 
@@ -98,39 +94,39 @@
 - Z(불)과 X(기름)을 한번씩 맞추면 Enemy가 죽으면 해당 위치에 치킨 Prefab 생성
 - 해당 치킨 Object와 플레이어가 닿으면 체력 1회복
 
-## Enemy
-
-```csharp
-void Think()
-{
-    nextMove = Random.Range(-1, 2);
-    // 애니메이션
-    if (nextMove == 0)
-    {
-        anim.SetBool("isFlying", false);
-				// 불 공격
-        StartCoroutine(ShootFireBall());
-    } else
-    {
-        anim.SetBool("isFlying", true);
-    }
-    
-    // 방향에 따라 뒤집기
-    if (nextMove != 0)
-    {
-        spriteRenderer.flipX = nextMove < 0;
-    }
-
-    // 재귀
-    float nextThinkTime = Random.Range(2f, 5f);
-    Invoke("Think", nextThinkTime);
-}
-```
+### Enemy
 
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
 
-## Boss
+    ```csharp
+    void Think()
+    {
+        nextMove = Random.Range(-1, 2);
+        // 애니메이션
+        if (nextMove == 0)
+        {
+            anim.SetBool("isFlying", false);
+    				// 불 공격
+            StartCoroutine(ShootFireBall());
+        } else
+        {
+            anim.SetBool("isFlying", true);
+        }
+        
+        // 방향에 따라 뒤집기
+        if (nextMove != 0)
+        {
+            spriteRenderer.flipX = nextMove < 0;
+        }
+    
+        // 재귀
+        float nextThinkTime = Random.Range(2f, 5f);
+        Invoke("Think", nextThinkTime);
+    }
+    ```	
+
+### Boss
 
 - 용의 남은 체력에 따라 이동속도, 공격속도, 색상 변경
     
@@ -188,12 +184,10 @@ void Think()
         queue.Enqueue("Stay");
     }
     ```
-    
-
----
 
 ## 👟 세 번째 게임 `후르프후릎`
 
+<img src="https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true" width="500" height="300">
 ![Scene3_Playing.gif](README%20baf029c80548463d8960cd35f942b5eb/Scene3_Playing.gif)
 
 > **면치기**를 가장 더러워하는 `후르브킹` 이 점령한 후르프후릎 성!
@@ -207,8 +201,6 @@ void Think()
 ### 설명서
 
 ```
-**# 설명서**
-
 1. 라면을 먹으면서 면발을 끊지 않고 달려갑니다.
 2. 길 중간에 등장하는 가위는 점프를 통해 피합니다.
 3. 면을 달고, 온 방안을 휘저어 다니면 끝납니다!
@@ -222,21 +214,32 @@ void Think()
 
 ### 스토리
 
-![Scene3-2](https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true)
-
-인트로
-
-![Scene3-3](https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true)
-
-인트로 설명서
-
-![Scene3-4](https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true)
-
-보스 엔딩
-
-![Scene3-5](https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true)
-
-엔딩
+<table>
+    <tr align="center">
+        <td><B>인트로</B></td>
+        <td><B>인트로 설명서</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+            <img src="https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+    <tr align="center">
+        <td><B>보스 엔딩</B></td>
+        <td><B>엔딩</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+</table>
 
 1. `ScriptPlayer`
     
@@ -255,6 +258,7 @@ void Think()
     
     - 유저의 `Input` 값 관리
     - 스토리 씬과 플레이 씬의 조작키를 구별하기 위한 스크립트
+
 2. `TalkManager`, `GameManager`
     
     ```csharp
@@ -303,21 +307,32 @@ void Think()
 
 ### 스테이지 1, 2
 
-![Scene3-6](https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true)
-
-스테이지 1 인트로
-
-![Scene3-7](https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true)
-
-스테이지 1 게임 장면
-
-![Scene3-8](https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true)
-
-스테이지 2 인트로
-
-![Scene3-9](https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true)
-
-스테이지 2 게임 장면
+<table>
+    <tr align="center">
+        <td><B>스테이지 1 인트로</B></td>
+        <td><B>스테이지 1 게임 장면</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+    <tr align="center">
+        <td><B>스테이지 2 인트로</B></td>
+        <td><B>스테이지 2 게임 장면</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+</table>
 
 1. 무한 스크롤
     
@@ -352,6 +367,7 @@ void Think()
     
     - 벽, 땅, 적, 아이템에 `scroller` 를 적용해 계속 왼쪽으로 이동함
     - 벽, 땅의 경우 맨 왼쪽에 도달했을 때 맨 오른쪽으로 이동하도록 `Reposition` 적용
+
 2. 랜덤 사물 전환
     
     ```csharp
@@ -372,6 +388,7 @@ void Think()
     ```
     
     - 랜덤 값을 받아 Object Group에서 해당 Index의 Object를 활성화
+
 3. 재시작
     
     ```csharp
@@ -421,9 +438,16 @@ void Think()
 
 ### 보스전
 
-![Scene3-10](https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true)
-
-![Scene3-11](https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true)
+<table>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+</table>
 
 1. 공격 패턴
     
@@ -458,18 +482,16 @@ void Think()
     - `Cleave`, `Breath`, `Smash` 총 3개의 공격을 랜덤한 타이밍에 랜덤한 순서로 실행
     - 재시작 시 `GameManager` 에서 해당 메소드를 참조해 다시 실행
 
----
-
 ## 🥁 네 번째 게임 `다리떨리아`
 
-![Scene4-1](https://github.com/heejinssss/project-knight/blob/master/18Scene4.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/18Scene4.png?raw=true" width="500" height="300">
 
 > 다리 떠는 것을 혐오하는 `고만터러킹` 이 점령한 다리떨리아 성!
 > 
 
 ### 설명서
 
-![Scene4-2](https://github.com/heejinssss/project-knight/blob/master/19Scene4.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/19Scene4.png?raw=true" width="500" height="300">
 
 ### 오브젝트 풀링 기법 활용
 
@@ -556,15 +578,16 @@ void Update()
 
 ## 🍽️ 마지막 게임 `보스전`
 
-![Scene5](https://github.com/heejinssss/project-knight/blob/master/20Scene5.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/20Scene5.png?raw=true" width="500" height="300">
 
 > 가장 강력하고 결벽적인 `파르펙토(perfect)` 대마왕!
 그런 대마왕에게 단 한 가지 결점이 있었다?
 비대칭 `괴식 콘텐츠`로 마왕의 홧병을 유도하여 이세계를 구해줘!
 > 
 
+### 설명서
+
 ```
-# 설명서
 마왕의 심기를 건드려서 파르펙토 마왕이 열받도록 도와주세요!
 
 1. 마왕이 제시하는 사진의 빈칸에 들어갈 콘텐츠를 3 Match Puzzle에서 부숴주세요.
@@ -676,11 +699,11 @@ void Update()
 
 ## 🥇 랭킹 확인
 
-![Rank](https://github.com/heejinssss/project-knight/blob/master/21Ranking.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/21Ranking.png?raw=true" width="500" height="300">
 
 # 기술 스택
 
-![Skill](https://github.com/heejinssss/project-knight/blob/master/22Skill.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/22Skill.png?raw=true" width="500">
 
 # 팀원 소개
 
