@@ -98,7 +98,7 @@ public class GameManager1 : MonoBehaviour
             return;
 
         gameTime += Time.deltaTime;
-        if (bosshealth < 0)
+        if (bosshealth <= 0)
         {
             GameVictory();
         }
