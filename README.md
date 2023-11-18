@@ -81,7 +81,6 @@
         rb.AddForce(-transform.right * launchSpeed, ForceMode2D.Impulse);
     }
     ```
-    
 
 ### 탕수육 공격
 
