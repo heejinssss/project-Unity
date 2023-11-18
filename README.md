@@ -92,35 +92,35 @@
 
 ### Enemy
 
+```csharp
+void Think()
+{
+    nextMove = Random.Range(-1, 2);
+    // 애니메이션
+    if (nextMove == 0)
+    {
+        anim.SetBool("isFlying", false);
+            // 불 공격
+        StartCoroutine(ShootFireBall());
+    } else
+    {
+        anim.SetBool("isFlying", true);
+    }
+
+    // 방향에 따라 뒤집기
+    if (nextMove != 0)
+    {
+        spriteRenderer.flipX = nextMove < 0;
+    }
+
+    // 재귀
+    float nextThinkTime = Random.Range(2f, 5f);
+    Invoke("Think", nextThinkTime);
+}
+```
+
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
-
-  ```csharp
-  void Think()
-  {
-      nextMove = Random.Range(-1, 2);
-      // 애니메이션
-      if (nextMove == 0)
-      {
-          anim.SetBool("isFlying", false);
-  				// 불 공격
-          StartCoroutine(ShootFireBall());
-      } else
-      {
-          anim.SetBool("isFlying", true);
-      }
-
-      // 방향에 따라 뒤집기
-      if (nextMove != 0)
-      {
-          spriteRenderer.flipX = nextMove < 0;
-      }
-
-      // 재귀
-      float nextThinkTime = Random.Range(2f, 5f);
-      Invoke("Think", nextThinkTime);
-  }
-  ```
 
 ### Boss
 
