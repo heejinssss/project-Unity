@@ -15,7 +15,7 @@
 > 그런 세상에 떨어진 `**다리 떨고 쩝쩝 대고 맞춤법 틀리고 면 치기 하는 주인공**`.
 > 
 
-![Map](https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true" width="500" height="300">
 
 > 마왕과 그의 부하들을 쓰러뜨려 세상을 자유롭게 만들어야 하는 운명의 소용돌이 속으로..!!
 > 
