@@ -223,21 +223,32 @@ void Think()
 
 ### 스토리
 
-<img src="https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true" width="500" height="300">
-
-인트로
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true" width="500" height="300">
-
-인트로 설명서
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true" width="500" height="300">
-
-보스 엔딩
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true" width="500" height="300">
-
-엔딩
+<table>
+    <tr align="center">
+        <td><B>인트로</B></td>
+        <td><B>인트로 설명서</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+            <img src="https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+    <tr align="center">
+        <td><B>보스 엔딩</B></td>
+        <td><B>엔딩</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+</table>
 
 1. `ScriptPlayer`
     
