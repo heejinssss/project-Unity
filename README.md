@@ -315,21 +315,32 @@ void Think()
 
 ### 스테이지 1, 2
 
-<img src="https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true" width="500" height="300">
-
-스테이지 1 인트로
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true" width="500" height="300">
-
-스테이지 1 게임 장면
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true" width="500" height="300">
-
-스테이지 2 인트로
-
-<img src="https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true" width="500" height="300">
-
-스테이지 2 게임 장면
+<table>
+    <tr align="center">
+        <td><B>스테이지 1 인트로</B></td>
+        <td><B>스테이지 1 게임 장면</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+    <tr align="center">
+        <td><B>스테이지 2 인트로</B></td>
+        <td><B>스테이지 2 게임 장면</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true" width="500" height="300">
+        </td>
+        <td>
+	<img src="https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true" width="500" height="300">
+        </td>
+    </tr>
+</table>
 
 1. 무한 스크롤
     
