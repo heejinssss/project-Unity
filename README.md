@@ -2,7 +2,7 @@
 
 # 🦸🏻🦹🏻‍♀️ A704 프로젝트 컨셉
 
-![Intro](https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true" width="500" height="300">
 
 > “**세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(**嚬蹙)**만 샀던 내가 
 이 세계에서는 프로 불편 용사라고?”**
@@ -24,7 +24,7 @@
 
 ## 🔌 닉네임 입력으로 게임 접속
 
-![InputName](https://github.com/heejinssss/project-knight/blob/master/3InputName.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/3InputName.png?raw=true" width="500" height="300">
 
 > 개성 있는 닉네임으로 게임을 시작해요
 > 
@@ -33,7 +33,7 @@
 
 ## 🏹 첫 번째 게임 `이브르다다라`
 
-![Scene1](https://github.com/heejinssss/project-knight/blob/master/4Scene1.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/4Scene1.png?raw=true" width="500" height="300">
 
 > 조용히 음식을 먹어야 하는 `랭KING` 이 점령한 이브다다라 성!
 > 
@@ -53,14 +53,14 @@
 
 ## 🕊️ 두 번째 게임 `지거국`
 
-![Scene2-1](https://github.com/heejinssss/project-knight/blob/master/5Scene2.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/5Scene2.png?raw=true" width="500" height="300">
 
 > 탕수육은 무조건 부어 먹는 `부머기라스` 가 점령한 지거국!
 > 
 
 ### 설명서
 
-![Scene2-2](https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true" width="500" height="300">
 
 ### Player
 
@@ -194,6 +194,7 @@ void Think()
 
 ## 👟 세 번째 게임 `후르프후릎`
 
+<img src="https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true" width="500" height="300">
 ![Scene3_Playing.gif](README%20baf029c80548463d8960cd35f942b5eb/Scene3_Playing.gif)
 
 > **면치기**를 가장 더러워하는 `후르브킹` 이 점령한 후르프후릎 성!
@@ -222,19 +223,19 @@ void Think()
 
 ### 스토리
 
-![Scene3-2](https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/8Scene3.png?raw=true" width="500" height="300">
 
 인트로
 
-![Scene3-3](https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/9Scene3.png?raw=true" width="500" height="300">
 
 인트로 설명서
 
-![Scene3-4](https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/10Scene3.png?raw=true" width="500" height="300">
 
 보스 엔딩
 
-![Scene3-5](https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/11Scene3.png?raw=true" width="500" height="300">
 
 엔딩
 
@@ -303,19 +304,19 @@ void Think()
 
 ### 스테이지 1, 2
 
-![Scene3-6](https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/12Scene3.png?raw=true" width="500" height="300">
 
 스테이지 1 인트로
 
-![Scene3-7](https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/13Scene3.png?raw=true" width="500" height="300">
 
 스테이지 1 게임 장면
 
-![Scene3-8](https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/14Scene3.png?raw=true" width="500" height="300">
 
 스테이지 2 인트로
 
-![Scene3-9](https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/15Scene3.png?raw=true" width="500" height="300">
 
 스테이지 2 게임 장면
 
@@ -421,9 +422,9 @@ void Think()
 
 ### 보스전
 
-![Scene3-10](https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/16Scene3.png?raw=true" width="500" height="300">
 
-![Scene3-11](https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/17Scene3.png?raw=true" width="500" height="300">
 
 1. 공격 패턴
     
@@ -462,14 +463,14 @@ void Think()
 
 ## 🥁 네 번째 게임 `다리떨리아`
 
-![Scene4-1](https://github.com/heejinssss/project-knight/blob/master/18Scene4.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/18Scene4.png?raw=true" width="500" height="300">
 
 > 다리 떠는 것을 혐오하는 `고만터러킹` 이 점령한 다리떨리아 성!
 > 
 
 ### 설명서
 
-![Scene4-2](https://github.com/heejinssss/project-knight/blob/master/19Scene4.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/19Scene4.png?raw=true" width="500" height="300">
 
 ### 오브젝트 풀링 기법 활용
 
@@ -556,7 +557,7 @@ void Update()
 
 ## 🍽️ 마지막 게임 `보스전`
 
-![Scene5](https://github.com/heejinssss/project-knight/blob/master/20Scene5.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/20Scene5.png?raw=true" width="500" height="300">
 
 > 가장 강력하고 결벽적인 `파르펙토(perfect)` 대마왕!
 그런 대마왕에게 단 한 가지 결점이 있었다?
@@ -676,11 +677,11 @@ void Update()
 
 ## 🥇 랭킹 확인
 
-![Rank](https://github.com/heejinssss/project-knight/blob/master/21Ranking.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/21Ranking.png?raw=true" width="500" height="300">
 
 # 기술 스택
 
-![Skill](https://github.com/heejinssss/project-knight/blob/master/22Skill.png?raw=true)
+<img src="https://github.com/heejinssss/project-knight/blob/master/22Skill.png?raw=true" width="500">
 
 # 팀원 소개
 
