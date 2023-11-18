@@ -62,7 +62,7 @@
 
 ### 불 & 기름 공격
 
-- **Z(불)** or **X(물)**를 누르면 플레이어 위치에서 바라보는 방향으로 X축에 평행하게 Projectile  발사
+- Z(불) or X(물)를 누르면 플레이어 위치에서 바라보는 방향으로 X축에 평행하게 Projectile  발사
     
     ```csharp
     void CreateProjectile(GameObject projectilePrefab)
