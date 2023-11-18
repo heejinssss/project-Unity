@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +8,13 @@ public class FadeScript0 : MonoBehaviour
     float time = 0f;
     float F_time = 1f;
 
-    void Start() {
+    void Start()
+    {
         StartCoroutine(FadeFlow());
     }
 
-    IEnumerator FadeFlow() {
+    IEnumerator FadeFlow()
+    {
         Color alpha = Panel.color;
         Panel.gameObject.SetActive(true);
         time = 0f;
