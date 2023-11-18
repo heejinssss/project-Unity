@@ -36,18 +36,16 @@
 > 조용히 음식을 먹어야 하는 `랭KING` 이 점령한 이브다다라 성!
 > 
 
+### 설명서
 ```
-# 설명서
 뛰어난 미식가 겸 요리사인 랭KING의 공격을 피하며 보스를 처치해야하는 보스전 게임입니다.
 아이템 상자에서 나오는 아이템(스피커, 음식, 총알, 하트 등)을 이용하여 용사의 공격력을 올리고 아이템을 장착하여 보다 쉽게 랭KING을 처치할 수 있을거에요
 
 점프(SPACE)와 방향키(위 방향키, 오른쪽 방향키)을 통해 보스의 공격을 피해보세요
 쩝쩝 공격(LeftCtrl)을 통해 쩝쩝 소리를 내며 공격을 해보세요
-	공격은 보스와 아이템 상자 중 가까운 곳으로 발사가 되니 랭KING과의 거리를 잘 생각하시면서 게임을 플레이하셔야합니다.
+공격은 보스와 아이템 상자 중 가까운 곳으로 발사가 되니 랭KING과의 거리를 잘 생각하시면서 게임을 플레이하셔야합니다.
 방어(아래쪽 방향키)를 통해 무자비하게 공격해오는 보스의 공격을 막아보세요
 ```
-
----
 
 ## 🕊️ 두 번째 게임 `지거국`
 
@@ -96,39 +94,39 @@
 - Z(불)과 X(기름)을 한번씩 맞추면 Enemy가 죽으면 해당 위치에 치킨 Prefab 생성
 - 해당 치킨 Object와 플레이어가 닿으면 체력 1회복
 
-## Enemy
-
-```csharp
-void Think()
-{
-    nextMove = Random.Range(-1, 2);
-    // 애니메이션
-    if (nextMove == 0)
-    {
-        anim.SetBool("isFlying", false);
-				// 불 공격
-        StartCoroutine(ShootFireBall());
-    } else
-    {
-        anim.SetBool("isFlying", true);
-    }
-    
-    // 방향에 따라 뒤집기
-    if (nextMove != 0)
-    {
-        spriteRenderer.flipX = nextMove < 0;
-    }
-
-    // 재귀
-    float nextThinkTime = Random.Range(2f, 5f);
-    Invoke("Think", nextThinkTime);
-}
-```
+### Enemy
 
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
 
-## Boss
+    ```csharp
+    void Think()
+    {
+        nextMove = Random.Range(-1, 2);
+        // 애니메이션
+        if (nextMove == 0)
+        {
+            anim.SetBool("isFlying", false);
+    				// 불 공격
+            StartCoroutine(ShootFireBall());
+        } else
+        {
+            anim.SetBool("isFlying", true);
+        }
+        
+        // 방향에 따라 뒤집기
+        if (nextMove != 0)
+        {
+            spriteRenderer.flipX = nextMove < 0;
+        }
+    
+        // 재귀
+        float nextThinkTime = Random.Range(2f, 5f);
+        Invoke("Think", nextThinkTime);
+    }
+    ```	
+
+### Boss
 
 - 용의 남은 체력에 따라 이동속도, 공격속도, 색상 변경
     
@@ -186,9 +184,6 @@ void Think()
         queue.Enqueue("Stay");
     }
     ```
-    
-
----
 
 ## 👟 세 번째 게임 `후르프후릎`
 
@@ -206,8 +201,6 @@ void Think()
 ### 설명서
 
 ```
-**# 설명서**
-
 1. 라면을 먹으면서 면발을 끊지 않고 달려갑니다.
 2. 길 중간에 등장하는 가위는 점프를 통해 피합니다.
 3. 면을 달고, 온 방안을 휘저어 다니면 끝납니다!
@@ -265,6 +258,7 @@ void Think()
     
     - 유저의 `Input` 값 관리
     - 스토리 씬과 플레이 씬의 조작키를 구별하기 위한 스크립트
+
 2. `TalkManager`, `GameManager`
     
     ```csharp
@@ -373,6 +367,7 @@ void Think()
     
     - 벽, 땅, 적, 아이템에 `scroller` 를 적용해 계속 왼쪽으로 이동함
     - 벽, 땅의 경우 맨 왼쪽에 도달했을 때 맨 오른쪽으로 이동하도록 `Reposition` 적용
+
 2. 랜덤 사물 전환
     
     ```csharp
@@ -393,6 +388,7 @@ void Think()
     ```
     
     - 랜덤 값을 받아 Object Group에서 해당 Index의 Object를 활성화
+
 3. 재시작
     
     ```csharp
@@ -485,8 +481,6 @@ void Think()
     
     - `Cleave`, `Breath`, `Smash` 총 3개의 공격을 랜덤한 타이밍에 랜덤한 순서로 실행
     - 재시작 시 `GameManager` 에서 해당 메소드를 참조해 다시 실행
-
----
 
 ## 🥁 네 번째 게임 `다리떨리아`
 
@@ -591,8 +585,9 @@ void Update()
 비대칭 `괴식 콘텐츠`로 마왕의 홧병을 유도하여 이세계를 구해줘!
 > 
 
+### 설명서
+
 ```
-# 설명서
 마왕의 심기를 건드려서 파르펙토 마왕이 열받도록 도와주세요!
 
 1. 마왕이 제시하는 사진의 빈칸에 들어갈 콘텐츠를 3 Match Puzzle에서 부숴주세요.
