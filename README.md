@@ -4,9 +4,9 @@
 
 <img src="https://github.com/heejinssss/project-knight/blob/master/1Intro.png?raw=true" width="500" height="300">
 
-> **“세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(嚬蹙)만 샀던 내가 
-이 세계에서는 프로 불편 용사라고?”**
-> 
+> **“세상 사람들이 불편해 하는 행동은 다 해서 주변의 빈축(嚬蹙)만 샀던 내가
+> 이 세계에서는 프로 불편 용사라고?”**
+>
 > 완벽 마왕들이 완벽하지 않은 사람들을 모두 잡아내고 쓰러뜨려 세상을 지배했다.
 >
 > 잡혀가지 않고 남은 사람들은 행동 하나하나를 조심해야 살아남을 수 있게 됐다.
@@ -16,7 +16,6 @@
 <img src="https://github.com/heejinssss/project-knight/blob/master/2Map.png?raw=true" width="500" height="300">
 
 > 마왕과 그의 부하들을 쓰러뜨려 세상을 자유롭게 만들어야 하는 운명의 소용돌이 속으로..!!
-> 
 
 # 시나리오
 
@@ -25,7 +24,6 @@
 <img src="https://github.com/heejinssss/project-knight/blob/master/3InputName.png?raw=true" width="500" height="300">
 
 > 개성 있는 닉네임으로 게임을 시작해요
-> 
 
 ---
 
@@ -34,9 +32,9 @@
 <img src="https://github.com/heejinssss/project-knight/blob/master/4Scene1.png?raw=true" width="500" height="300">
 
 > 조용히 음식을 먹어야 하는 `랭KING` 이 점령한 이브다다라 성!
-> 
 
 ### 설명서
+
 ```
 뛰어난 미식가 겸 요리사인 랭KING의 공격을 피하며 보스를 처치해야하는 보스전 게임입니다.
 아이템 상자에서 나오는 아이템(스피커, 음식, 총알, 하트 등)을 이용하여 용사의 공격력을 올리고 아이템을 장착하여 보다 쉽게 랭KING을 처치할 수 있을거에요
@@ -52,7 +50,6 @@
 <img src="https://github.com/heejinssss/project-knight/blob/master/5Scene2.png?raw=true" width="500" height="300">
 
 > 탕수육은 무조건 부어 먹는 `부머기라스` 가 점령한 지거국!
-> 
 
 ### 설명서
 
@@ -62,26 +59,25 @@
 
 ### 불 & 기름 공격
 
-- **Z(불)** or **X(물)**를 누르면 플레이어 위치에서 바라보는 방향으로 X축에 평행하게 Projectile  발사
-    
-    ```csharp
-    void CreateProjectile(GameObject projectilePrefab)
-    {
-        anim.SetTrigger("Skill");
-        // 프로젝타일의 시작 위치를 플레이어 앞으로 조금 옮김
-        Vector3 startPosition = transform.position - transform.right * 0.7f + transform.up * 0.5f;
-    
-        // 프리페브로부터 새로운 프로젝타일 오브젝트 생성
-        GameObject projectile = Instantiate(projectilePrefab, startPosition, transform.rotation);
-    
-        // 프로젝타일로부터 리지드바디 2D 컴포넌트 가져옴
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-    
-        // 프로젝타일 발사
-        rb.AddForce(-transform.right * launchSpeed, ForceMode2D.Impulse);
-    }
-    ```
-    
+- Z(불) or X(물)를 누르면 플레이어 위치에서 바라보는 방향으로 X축에 평행하게 Projectile 발사
+
+  ```csharp
+  void CreateProjectile(GameObject projectilePrefab)
+  {
+      anim.SetTrigger("Skill");
+      // 프로젝타일의 시작 위치를 플레이어 앞으로 조금 옮김
+      Vector3 startPosition = transform.position - transform.right * 0.7f + transform.up * 0.5f;
+
+      // 프리페브로부터 새로운 프로젝타일 오브젝트 생성
+      GameObject projectile = Instantiate(projectilePrefab, startPosition, transform.rotation);
+
+      // 프로젝타일로부터 리지드바디 2D 컴포넌트 가져옴
+      Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+
+      // 프로젝타일 발사
+      rb.AddForce(-transform.right * launchSpeed, ForceMode2D.Impulse);
+  }
+  ```
 
 ### 탕수육 공격
 
@@ -92,111 +88,108 @@
 ### 회복 아이템
 
 - Z(불)과 X(기름)을 한번씩 맞추면 Enemy가 죽으면 해당 위치에 치킨 Prefab 생성
-- 해당 치킨 Object와 플레이어가 닿으면 체력 1회복
+- 해당 치킨 Object와 플레이어가 닿으면 체력 1 회복
 
 ### Enemy
+
+```csharp
+void Think()
+{
+    nextMove = Random.Range(-1, 2);
+    // 애니메이션
+    if (nextMove == 0)
+    {
+        anim.SetBool("isFlying", false);
+            // 불 공격
+        StartCoroutine(ShootFireBall());
+    } else
+    {
+        anim.SetBool("isFlying", true);
+    }
+
+    // 방향에 따라 뒤집기
+    if (nextMove != 0)
+    {
+        spriteRenderer.flipX = nextMove < 0;
+    }
+
+    // 재귀
+    float nextThinkTime = Random.Range(2f, 5f);
+    Invoke("Think", nextThinkTime);
+}
+```
 
 - nextThinkTime 마다 Enemy의 이동 방향 랜덤으로 변경
 - Enemy의 속도가 0일 때 공격 Prefab 발사
 
-    ```csharp
-    void Think()
-    {
-        nextMove = Random.Range(-1, 2);
-        // 애니메이션
-        if (nextMove == 0)
-        {
-            anim.SetBool("isFlying", false);
-    				// 불 공격
-            StartCoroutine(ShootFireBall());
-        } else
-        {
-            anim.SetBool("isFlying", true);
-        }
-        
-        // 방향에 따라 뒤집기
-        if (nextMove != 0)
-        {
-            spriteRenderer.flipX = nextMove < 0;
-        }
-    
-        // 재귀
-        float nextThinkTime = Random.Range(2f, 5f);
-        Invoke("Think", nextThinkTime);
-    }
-    ```	
-
 ### Boss
 
 - 용의 남은 체력에 따라 이동속도, 공격속도, 색상 변경
-    
-    ```csharp
-    // 공격, 이동, 대기 속도 설정 
-    if (gameManager.bossHealth > 9)
-    {
-        range = 5;
-        waitTime = 1.5f;
-        launchSpeed = 2.0f;
-        forceLevel = 2000;
-    } else if (gameManager.bossHealth > 6)
-    {
-        range = 7;
-        sr.color = new Color(255, 100, 0, 255);
-        waitTime = 1;
-        launchSpeed = 5.0f;
-        forceLevel = 4000;
-    } else
-    {
-        range = 9;
-        sr.color = new Color(255, 0, 0, 255);
-        waitTime = 0.5f;
-        launchSpeed = 7.0f;
-        forceLevel = 6000;
-    }
-    ```
-    
+
+  ```csharp
+  // 공격, 이동, 대기 속도 설정
+  if (gameManager.bossHealth > 9)
+  {
+      range = 5;
+      waitTime = 1.5f;
+      launchSpeed = 2.0f;
+      forceLevel = 2000;
+  } else if (gameManager.bossHealth > 6)
+  {
+      range = 7;
+      sr.color = new Color(255, 100, 0, 255);
+      waitTime = 1;
+      launchSpeed = 5.0f;
+      forceLevel = 4000;
+  } else
+  {
+      range = 9;
+      sr.color = new Color(255, 0, 0, 255);
+      waitTime = 0.5f;
+      launchSpeed = 7.0f;
+      forceLevel = 6000;
+  }
+  ```
+
 - 이동 패턴들을 Queue에 넣고 차례로 사용
-    
-    ```csharp
-    if (!anim.GetBool("isFlying") && anim.GetBool("isLifted"))
-    {
-        // 큐에서 다음 패턴 꺼내 사용 
-        string pattern = queue.Dequeue();
-        if (pattern.Equals("Fly"))
-        {
-            Fly();
-            
-        } else if (pattern.Equals("Teleport"))
-        {
-            anim.SetTrigger("Teleport");
-            Invoke("Teleport", 0.5f);
-        } else if (pattern.Equals("Stay"))
-        {
-            StartCoroutine(Stay());
-        } else if (pattern.Equals("Spit"))
-        {
-            Spit();
-        } else if (pattern.Equals("Summons"))
-        {
-            Summons();
-        }
-        if (!pattern.Equals("Stay")) queue.Enqueue(pattern); // 다시 큐에 넣음 
-        queue.Enqueue("Stay");
-    }
-    ```
+
+  ```csharp
+  if (!anim.GetBool("isFlying") && anim.GetBool("isLifted"))
+  {
+      // 큐에서 다음 패턴 꺼내 사용
+      string pattern = queue.Dequeue();
+      if (pattern.Equals("Fly"))
+      {
+          Fly();
+
+      } else if (pattern.Equals("Teleport"))
+      {
+          anim.SetTrigger("Teleport");
+          Invoke("Teleport", 0.5f);
+      } else if (pattern.Equals("Stay"))
+      {
+          StartCoroutine(Stay());
+      } else if (pattern.Equals("Spit"))
+      {
+          Spit();
+      } else if (pattern.Equals("Summons"))
+      {
+          Summons();
+      }
+      if (!pattern.Equals("Stay")) queue.Enqueue(pattern); // 다시 큐에 넣음
+      queue.Enqueue("Stay");
+  }
+  ```
 
 ## 👟 세 번째 게임 `후르프후릎`
 
-<img src="https://github.com/heejinssss/project-knight/blob/master/6Scene2.png?raw=true" width="500" height="300">
-![Scene3_Playing.gif](README%20baf029c80548463d8960cd35f942b5eb/Scene3_Playing.gif)
+<img src="https://file.notion.so/f/f/91c77290-6cef-4804-89c8-0171a02bb6be/218f958b-3880-407d-b678-801072181bc8/Scene3_Playing.gif?id=b4afe213-d40a-4f45-acfa-6b4b3fc330b0&table=block&spaceId=91c77290-6cef-4804-89c8-0171a02bb6be&expirationTimestamp=1700416800000&signature=6xund_TTGh4Q6DL2JCkd2c0Z95ObDNj9mBCMEF6DfAk&downloadName=Scene3_Playing.gif" width="500" height="300">
 
 > **면치기**를 가장 더러워하는 `후르브킹` 이 점령한 후르프후릎 성!
-> 
-> 
+>
 > `후르브킹`을 이기기 위해서는 면치기를 하며 온 방안을 돌아다녀야 한다!
-> 
+>
 > 그렇게 튄 라면 국물로 모든 방이 더러워지면 `후르브킹`과 대면할 수 있게 되는데…
-> 
 
 ### 설명서
 
@@ -216,8 +209,8 @@
 
 <table>
     <tr align="center">
-        <td><B>인트로</B></td>
-        <td><B>인트로 설명서</B></td>
+        <td>인트로</td>
+        <td>인트로 설명서</td>
     </tr>
     <tr align="center">
         <td>
@@ -228,8 +221,8 @@
         </td>
     </tr>
     <tr align="center">
-        <td><B>보스 엔딩</B></td>
-        <td><B>엔딩</B></td>
+        <td>보스 엔딩</td>
+        <td>엔딩</td>
     </tr>
     <tr align="center">
         <td>
@@ -242,75 +235,75 @@
 </table>
 
 1. `ScriptPlayer`
-    
-    ```csharp
-    public class ScriptPlayer : MonoBehaviour
-    {
-        public GameManager3 gameManager;
-    
-        void Update()
-        {
-            if (Input.GetButtonDown("Jump"))
-                gameManager.Action();
-        }
-    }
-    ```
-    
-    - 유저의 `Input` 값 관리
-    - 스토리 씬과 플레이 씬의 조작키를 구별하기 위한 스크립트
+
+   ```csharp
+   public class ScriptPlayer : MonoBehaviour
+   {
+       public GameManager3 gameManager;
+
+       void Update()
+       {
+           if (Input.GetButtonDown("Jump"))
+               gameManager.Action();
+       }
+   }
+   ```
+
+   - 유저의 `Input` 값 관리
+   - 스토리 씬과 플레이 씬의 조작키를 구별하기 위한 스크립트
 
 2. `TalkManager`, `GameManager`
-    
-    ```csharp
-    // TalkManager.talkData
-    
-    [ {0, ["ruleStart:desc", "용사님!:9", "덤벼라!:default", ...] }, ... ]
-    ```
-    
-    ```csharp
-    // GameManager.Talk()
-    
-    if (talkData.Split(":")[1] == "default")
-    {
-    		// 초상화 X 대화창
-        defaultPanel.SetActive(true);
-        defaultText.text = talkData.Split(":")[0];
-    }
-    else if (talkData.Split(":")[1] == "desc")
-    {
-    		// UI 변경
-        switch (talkData.Split(":")[0])
-        {
-            case "ruleStart":
-                rulePanel.SetActive(true);
-                break;
-    				...
-    		}
-    }
-    else
-        {
-    				// 초상화 O 대화창
-            talkPanel.SetActive(true);
-            talkText.text = talkData.Split(":")[0];
-            portrait.sprite = talkManager.GetPortrait(int.Parse(talkData.Split(":")[1]));
-        }
-    
-        isAction = true;
-        talkIdx++;
-    }
-    ```
-    
-    - 딕셔너리 자료구조인 `TalkManager.talkData` 에 데이터 저장 후 `GameManager.Talk()` 에서 split 하여 사용
-        - 초상화가 없는 UI를 사용할 때는 `대사:default` 저장
-        - 초상화가 있는 UI를 사용할 때는 `대사:초상화Index` 저장
-        - 장면 전환이 필요할 때는 `장면 정환 방식:desc` 저장
+
+   ```csharp
+   // TalkManager.talkData
+
+   [ {0, ["ruleStart:desc", "용사님!:9", "덤벼라!:default", ...] }, ... ]
+   ```
+
+   ```csharp
+   // GameManager.Talk()
+
+   if (talkData.Split(":")[1] == "default")
+   {
+   		// 초상화 X 대화창
+       defaultPanel.SetActive(true);
+       defaultText.text = talkData.Split(":")[0];
+   }
+   else if (talkData.Split(":")[1] == "desc")
+   {
+   		// UI 변경
+       switch (talkData.Split(":")[0])
+       {
+           case "ruleStart":
+               rulePanel.SetActive(true);
+               break;
+   				...
+   		}
+   }
+   else
+       {
+   				// 초상화 O 대화창
+           talkPanel.SetActive(true);
+           talkText.text = talkData.Split(":")[0];
+           portrait.sprite = talkManager.GetPortrait(int.Parse(talkData.Split(":")[1]));
+       }
+
+       isAction = true;
+       talkIdx++;
+   }
+   ```
+
+   - 딕셔너리 자료구조인 `TalkManager.talkData` 에 데이터 저장 후 `GameManager.Talk()` 에서 split 하여 사용
+     - 초상화가 없는 UI를 사용할 때는 `대사:default` 저장
+     - 초상화가 있는 UI를 사용할 때는 `대사:초상화Index` 저장
+     - 장면 전환이 필요할 때는 `장면 정환 방식:desc` 저장
 
 ### 스테이지 1, 2
 
 <table>
     <tr align="center">
-        <td><B>스테이지 1 인트로</B></td>
-        <td><B>스테이지 1 게임 장면</B></td>
+        <td>스테이지 1 인트로</td>
+        <td>스테이지 1 게임 장면</td>
     </tr>
     <tr align="center">
         <td>
@@ -321,8 +314,8 @@
         </td>
     </tr>
     <tr align="center">
-        <td><B>스테이지 2 인트로</B></td>
-        <td><B>스테이지 2 게임 장면</B></td>
+        <td>스테이지 2 인트로</td>
+        <td>스테이지 2 게임 장면</td>
     </tr>
     <tr align="center">
         <td>
@@ -335,106 +328,105 @@
 </table>
 
 1. 무한 스크롤
-    
-    ```csharp
-    public class Scroller : MonoBehaviour
-    {
-        public float speedRate;
-    
-        void Update()
-        {
-            ...
-    				// 왼쪽으로 이동
-            float totalSpeed = GameManager3.globalSpeed * speedRate * Time.deltaTime * -1f;
-            transform.Translate(totalSpeed, 0, 0);
-        }
-    }
-    ```
-    
-    ```csharp
-    public class Reposition : MonoBehaviour
-    {
-        void LateUpdate()
-        {
-            if (transform.position.x > -25.5) // 맨 왼쪽 끝에 닿지 X
-                return;
-    
-            // 되돌아가기
-            transform.Translate(49.5f, 0, 0, Space.Self);
-        }
-    }
-    ```
-    
-    - 벽, 땅, 적, 아이템에 `scroller` 를 적용해 계속 왼쪽으로 이동함
-    - 벽, 땅의 경우 맨 왼쪽에 도달했을 때 맨 오른쪽으로 이동하도록 `Reposition` 적용
+
+   ```csharp
+   public class Scroller : MonoBehaviour
+   {
+       public float speedRate;
+
+       void Update()
+       {
+           ...
+   				// 왼쪽으로 이동
+           float totalSpeed = GameManager3.globalSpeed * speedRate * Time.deltaTime * -1f;
+           transform.Translate(totalSpeed, 0, 0);
+       }
+   }
+   ```
+
+   ```csharp
+   public class Reposition : MonoBehaviour
+   {
+       void LateUpdate()
+       {
+           if (transform.position.x > -25.5) // 맨 왼쪽 끝에 닿지 X
+               return;
+
+           // 되돌아가기
+           transform.Translate(49.5f, 0, 0, Space.Self);
+       }
+   }
+   ```
+
+   - 벽, 땅, 적, 아이템에 `scroller` 를 적용해 계속 왼쪽으로 이동함
+   - 벽, 땅의 경우 맨 왼쪽에 도달했을 때 맨 오른쪽으로 이동하도록 `Reposition` 적용
 
 2. 랜덤 사물 전환
-    
-    ```csharp
-    public class ChangeObject : MonoBehaviour
-    {
-        public GameObject[] objects;
-    
-        public void Change()
-        {
-            int ran = Random.Range(0, objects.Length);
-    
-            for (int index = 0; index < objects.Length; index++)
-            {
-                transform.GetChild(index).gameObject.SetActive(ran == index);
-            }
-        }
-    }
-    ```
-    
-    - 랜덤 값을 받아 Object Group에서 해당 Index의 Object를 활성화
+
+   ```csharp
+   public class ChangeObject : MonoBehaviour
+   {
+       public GameObject[] objects;
+
+       public void Change()
+       {
+           int ran = Random.Range(0, objects.Length);
+
+           for (int index = 0; index < objects.Length; index++)
+           {
+               transform.GetChild(index).gameObject.SetActive(ran == index);
+           }
+       }
+   }
+   ```
+
+   - 랜덤 값을 받아 Object Group에서 해당 Index의 Object를 활성화
 
 3. 재시작
-    
-    ```csharp
-    public class ReStart : MonoBehaviour
-    {
-        public Vector3 initialPosition;
-    
-        void Awake()
-        {
-            initialPosition = transform.position;
-    				// 해당 스크립트가 적용된 모든 Object 갯수 세기
-            GameManager3.restartObj++;
-            GameManager3.tempRestartObj++;
-        }
-        void FixedUpdate()
-        {
-            if (GameManager3.isRestart)
-            {
-                if (GameManager3.tempRestartObj != 0)
-                {
-    								// 재시작 시 위치 변경 후 갯수 감소
-                    transform.position = initialPosition;
-                    GameManager3.tempRestartObj--;
-                    if (transform.name == "Health Group") // 아이템일 경우
-                    {
-                        for (int i = 0; i < transform.childCount; i++)
-                        {
-    												// SetActive 전부 true로 전환
-                            transform.GetChild(i).gameObject.SetActive(true);
-                        }
-                    }
-                }
-                else
-                {
-    								// 전부 위치를 바꾸었을 때 재시작 로직 끝
-                    GameManager3.isRestart = false;
-                    GameManager3.tempRestartObj = GameManager3.restartObj;
-                }
-            }
-        }
-    }
-    ```
-    
-    - 무한 스크롤이 아닌 `Enemy` 같은 경우, 재시작 했을 때 초기 위치로 이동해야 함
-    - 따라서 초기 위치를 입력받고, 재시작 시 다시 그 위치로 이동
-    
+
+   ```csharp
+   public class ReStart : MonoBehaviour
+   {
+       public Vector3 initialPosition;
+
+       void Awake()
+       {
+           initialPosition = transform.position;
+   				// 해당 스크립트가 적용된 모든 Object 갯수 세기
+           GameManager3.restartObj++;
+           GameManager3.tempRestartObj++;
+       }
+       void FixedUpdate()
+       {
+           if (GameManager3.isRestart)
+           {
+               if (GameManager3.tempRestartObj != 0)
+               {
+   								// 재시작 시 위치 변경 후 갯수 감소
+                   transform.position = initialPosition;
+                   GameManager3.tempRestartObj--;
+                   if (transform.name == "Health Group") // 아이템일 경우
+                   {
+                       for (int i = 0; i < transform.childCount; i++)
+                       {
+   												// SetActive 전부 true로 전환
+                           transform.GetChild(i).gameObject.SetActive(true);
+                       }
+                   }
+               }
+               else
+               {
+   								// 전부 위치를 바꾸었을 때 재시작 로직 끝
+                   GameManager3.isRestart = false;
+                   GameManager3.tempRestartObj = GameManager3.restartObj;
+               }
+           }
+       }
+   }
+   ```
+
+   - 무한 스크롤이 아닌 `Enemy` 같은 경우, 재시작 했을 때 초기 위치로 이동해야 함
+   - 따라서 초기 위치를 입력받고, 재시작 시 다시 그 위치로 이동
 
 ### 보스전
 
@@ -450,44 +442,43 @@
 </table>
 
 1. 공격 패턴
-    
-    ```csharp
-    public void Think()
-    {
-        ...
-    
-        nextAnim = Random.Range(1, 4);
-        ChangeAnim(nextAnim);
-    
-        switch (nextAnim)
-        {
-            case 1:
-                // 1. Cleave
-                break;
-            case 2:
-                // 2. Breath
-                break;
-            case 3:
-                // 3. Smash
-                break;
-            default:
-                break;
-        }
-    
-        int turn = Random.Range(2, 4);
-        Invoke("Think", turn);
-    }
-    ```
-    
-    - `Cleave`, `Breath`, `Smash` 총 3개의 공격을 랜덤한 타이밍에 랜덤한 순서로 실행
-    - 재시작 시 `GameManager` 에서 해당 메소드를 참조해 다시 실행
+
+   ```csharp
+   public void Think()
+   {
+       ...
+
+       nextAnim = Random.Range(1, 4);
+       ChangeAnim(nextAnim);
+
+       switch (nextAnim)
+       {
+           case 1:
+               // 1. Cleave
+               break;
+           case 2:
+               // 2. Breath
+               break;
+           case 3:
+               // 3. Smash
+               break;
+           default:
+               break;
+       }
+
+       int turn = Random.Range(2, 4);
+       Invoke("Think", turn);
+   }
+   ```
+
+   - `Cleave`, `Breath`, `Smash` 총 3개의 공격을 랜덤한 타이밍에 랜덤한 순서로 실행
+   - 재시작 시 `GameManager` 에서 해당 메소드를 참조해 다시 실행
 
 ## 🥁 네 번째 게임 `다리떨리아`
 
 <img src="https://github.com/heejinssss/project-knight/blob/master/18Scene4.png?raw=true" width="500" height="300">
 
 > 다리 떠는 것을 혐오하는 `고만터러킹` 이 점령한 다리떨리아 성!
-> 
 
 ### 설명서
 
@@ -528,7 +519,7 @@ Queue<GameObject> InsertQueue(ObjectInfo4 p_objectInfo)
 ### 노트 출현 로직
 
 - 일정 시간마다 40% 확률로 노트 출현(위에서 미리 생성해둔 노트를 출발시키는 방식)
-    - 큐에서 Dequeue
+  - 큐에서 Dequeue
 - 노트가 목적지에 도달하면, 재활용을 위해 큐에 Enqueue
 - 노트 타이밍에 맞게 space바를 누르면 우리 눈에 보이지 않도록, 단 노트 객체가 이때 풀에 Enqueue된 것이 아니라, 최종 목적지까지는 이동하도록
 
@@ -559,7 +550,7 @@ void Update()
             currentTime -= 30d / bpm;
         }
     }
-    
+
 }
 ```
 
@@ -581,9 +572,8 @@ void Update()
 <img src="https://github.com/heejinssss/project-knight/blob/master/20Scene5.png?raw=true" width="500" height="300">
 
 > 가장 강력하고 결벽적인 `파르펙토(perfect)` 대마왕!
-그런 대마왕에게 단 한 가지 결점이 있었다?
-비대칭 `괴식 콘텐츠`로 마왕의 홧병을 유도하여 이세계를 구해줘!
-> 
+> 그런 대마왕에게 단 한 가지 결점이 있었다?
+> 비대칭 `괴식 콘텐츠`로 마왕의 홧병을 유도하여 이세계를 구해줘!
 
 ### 설명서
 
@@ -599,9 +589,10 @@ void Update()
 ### 3-Match Puzzle 로직
 
 1. 유사 애니팡 구현을 위한 로직
+
 - 타일 선택 로직 조건
-    - 반드시 두 개의 타일 선택
-    - 첫번째 타일과 두번째 타일의 인접 여부 확인 (상하좌우)
+  - 반드시 두 개의 타일 선택
+  - 첫번째 타일과 두번째 타일의 인접 여부 확인 (상하좌우)
 
 ```csharp
     public async void Select(Tile5 tile)
