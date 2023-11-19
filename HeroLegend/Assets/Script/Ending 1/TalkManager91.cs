@@ -9,6 +9,7 @@ public class TalkManager91 : MonoBehaviour
 
     public Sprite[] portraitArr;
     public CameraShake9 cameraShake;
+    public AudioSource DialogueSound;
 
     void Awake()
     {
@@ -65,7 +66,10 @@ public class TalkManager91 : MonoBehaviour
             return null;
         }
         else
+        {
+            DialogueSound.Play();
             return talkData[id][talkIndex];
+        }
     }
 
     public Sprite GetPortrait(int id, int portraitIndex)
