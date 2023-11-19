@@ -10,28 +10,21 @@ public class GameManager01 : MonoBehaviour
     public GameObject scanObject;
     public bool isAction;
     public int talkIndex;
+    public AudioSource backgroundMusic;
 
     public void Action(GameObject scanObj)
     {
-        //if (isAction) { // Exit Action
-        //    isAction = false;
-        //}
-        //else { // Enter Action
-        //    isAction = true;
-        //    scanObject = scanObj;
-        //    ObjData objData = scanObject.GetComponent<ObjData>();
-        //    Talk(objData.id, objData.isNpc);
-        //}
-        //talkPanel.SetActive(isAction);
-
-        //scanObject = scanObj;
-        //ObjData objData = scanObject.GetComponent<ObjData>();
-        //Talk(objData.id, objData.isNpc);
-
         Talk(1000, true);
 
         talkPanel.SetActive(isAction);
     }
+
+    void Start()
+    {
+        backgroundMusic.loop = true;  // 음악이 끝나면 다시 처음부터 재생
+        backgroundMusic.Play();  // 배경음악 재생 시작
+    }
+
 
     void Talk(int id, bool isNpc)
     {

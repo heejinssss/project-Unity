@@ -6,7 +6,7 @@ public class FadeScript5 : MonoBehaviour
 {
     public Image Panel;
     float time = 0f;
-    float F_time = 1f;
+    float F_time = 0.5f;
 
     private int spaceCount = 0; // 스페이스바 카운트 변수 추가
 

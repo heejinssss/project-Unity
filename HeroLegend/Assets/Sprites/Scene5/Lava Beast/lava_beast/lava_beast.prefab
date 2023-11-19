@@ -1306,7 +1306,6 @@ GameObject:
   - component: {fileID: 4917023274807314}
   - component: {fileID: 95076524964236980}
   - component: {fileID: 210433912231312220}
-  - component: {fileID: 114998613432424406}
   m_Layer: 0
   m_Name: lava_beast
   m_TagString: Untagged
@@ -1340,7 +1339,7 @@ Animator:
   m_GameObject: {fileID: 1505038201867834}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9953bc006d6a0d14090bd4af46edd2de, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5c7c784735244fe42a813a5596bc1705, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1363,19 +1362,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_SortAtRoot: 0
---- !u!114 &114998613432424406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505038201867834}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 721308ef9c2ef490fb1940d70811441e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyOgre: {fileID: 0}
 --- !u!1 &1509817077556068
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public sealed class ScoreCounter5 : MonoBehaviour
 {
     public static ScoreCounter5 Instance { get; private set; }
+    public GameObject Board;
+    public AudioSource monsterSound;
 
     private int _score;
 
@@ -20,18 +21,29 @@ public sealed class ScoreCounter5 : MonoBehaviour
 
             scoreText.SetText($"{_score}");
 
-            /* 새로운 3 match Item [S] */
-            //if (_score >= 100)
-            //{
-            //    itemNumber++;
-            //    ItemDatabase5.LoadItems($"Items {itemNumber+1}/");
-            //    _score = 0;
-            //    Board5.Instance.UpdateAllTiles();
+            if (_score > 0 && (_score / 100) % 2 == 1)
+            {
+                Board.SetActive(true);
+            }
 
-            //    // PlayerAction5의 메서드 호출
-            //    PlayerAction5.Instance.EnableSpecialAbilityFor10Seconds();
-            //}
-            /* 새로운 3 match Item [E] */
+            else if (_score > 0 && (_score / 50) % 2 == 0)
+            {
+                Board.SetActive(false);
+            }
+
+            if ((_score - 50) % 100 == 0)
+            {
+                EnemyAction51.Instance.AttackonTitan();
+                EnemyAction52.Instance.AttackonTitan();
+            }
+
+            if (_score >= 400)
+            {
+                EnemyAction51.Instance.TriggerSkilling();
+                EnemyAction52.Instance.TriggerSkilling();
+                monsterSound.Play();
+                GameObject.FindObjectOfType<PlayerMove5>().CharacterKilled();
+            }
         }
     }
 

@@ -7,6 +7,7 @@ public class TalkManager03 : MonoBehaviour
     Dictionary<int, Sprite> portraitData;
 
     public Sprite[] portraitArr;
+    public AudioSource DialogueSound;
 
     void Awake()
     {
@@ -62,7 +63,10 @@ public class TalkManager03 : MonoBehaviour
             return null;
         }
         else
+        {
+            DialogueSound.Play();
             return talkData[id][talkIndex];
+        }
     }
 
     public Sprite GetPortrait(int id, int portraitIndex)
