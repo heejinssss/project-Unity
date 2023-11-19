@@ -9,6 +9,7 @@ public class TalkManager5_0 : MonoBehaviour
     Dictionary<int, Sprite> portraitData;
     public Sprite[] portraitArr;
     public Image GameRule;
+    public AudioSource DialogueSound;
 
     void Awake()
     {
@@ -92,7 +93,10 @@ public class TalkManager5_0 : MonoBehaviour
         if (talkIdx == talkData[idx].Length)
             return null;
         else
+        {
+            DialogueSound.Play();
             return talkData[idx][talkIdx];
+        }
     }
 
     public Sprite GetPortrait(int portraitIndex)
