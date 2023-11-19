@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TalkManager5_0 : MonoBehaviour
 {
     Dictionary<int, string[]> talkData;
     Dictionary<int, Sprite> portraitData;
     public Sprite[] portraitArr;
+    public Image GameRule;
 
     void Awake()
     {
@@ -29,8 +31,8 @@ public class TalkManager5_0 : MonoBehaviour
                 "아무래도 세계관 최강이다 보니 쉽지 않겠네요.:6",
                 "대신에, 그동안의 제보를 통해 들은 사실이 하나 있어요.:8",
                 "그게 뭐죠?:6",
-                "!!!파르펙토 게임 룰 추가 필요!!!:9",
-                "그렇군요.:1",
+                "ESC를 눌러서 두루마리를 확인해보세요, 용사님.:9",
+                "그렇군요. 대칭 강박이라...:1",
                 "shakeStart:desc",
                 "shakeEnd:desc",
                 "단, 주의할 점이 있어요.:14",
@@ -66,6 +68,22 @@ public class TalkManager5_0 : MonoBehaviour
         portraitData.Add(13, portraitArr[13]);
         portraitData.Add(14, portraitArr[14]);
         portraitData.Add(15, portraitArr[15]);
+
+    }
+
+    void Update()
+    {
+        // ESC 키가 눌러져 있는지 확인
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            // ESC 키가 눌러져 있으면 이미지 활성화
+            GameRule.gameObject.SetActive(true);
+        }
+        else
+        {
+            // ESC 키가 눌러져 있지 않으면 이미지 비활성화
+            GameRule.gameObject.SetActive(false);
+        }
 
     }
 

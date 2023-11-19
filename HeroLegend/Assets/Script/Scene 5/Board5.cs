@@ -16,6 +16,10 @@ public sealed class Board5 : MonoBehaviour
     public int Width => Tiles.GetLength(0);
     public int Height => Tiles.GetLength(1);
 
+    public AudioSource selectSound;
+    public AudioSource swapSound;
+    public AudioSource popSound;
+
     private Tile5 _selectedTile1;
     private Tile5 _selectedTile2;
 
@@ -93,6 +97,7 @@ public sealed class Board5 : MonoBehaviour
         if (_selection.Count > 0 && _selection[0] != tile)
         {
             _selection[0].icon.transform.localScale = Vector3.one;
+            selectSound.Play();
         }
 
         if (!_selection.Contains(tile))
@@ -170,6 +175,8 @@ public sealed class Board5 : MonoBehaviour
 
         tile1.Item = tile2.Item;
         tile2.Item = tile1Item;
+
+        swapSound.Play();
     }
 
     private bool CanPop()
@@ -214,6 +221,19 @@ public sealed class Board5 : MonoBehaviour
 
                 x = 0;
                 y = 0;
+            }
+        }
+        popSound.Play();
+    }
+
+    public void ResetTiles()
+    {
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                var tile = Tiles[x, y];
+                tile.Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
             }
         }
     }
