@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControllerVillage : MonoBehaviour   
 {
     public Vector2 inputVec;
-    public float speed = 4f;
+    public float speed = 8f;
     public Rigidbody2D rigid;
     // public GameManager4 gameManager;
     // public DialogManager4 dialogManager;
