@@ -37,7 +37,7 @@ public sealed class ScoreCounter5 : MonoBehaviour
                 EnemyAction52.Instance.AttackonTitan();
             }
 
-            if (_score >= 400)
+            if (_score >= 200)
             {
                 EnemyAction51.Instance.TriggerSkilling();
                 EnemyAction52.Instance.TriggerSkilling();
