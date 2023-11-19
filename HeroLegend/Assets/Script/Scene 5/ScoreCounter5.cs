@@ -8,8 +8,6 @@ public sealed class ScoreCounter5 : MonoBehaviour
 
     private int _score;
 
-    private int itemNumber;
-
     public int Score
     {
         get => _score;
