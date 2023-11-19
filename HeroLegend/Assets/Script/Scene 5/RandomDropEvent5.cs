@@ -40,7 +40,7 @@ public class RandomDropEvent5 : MonoBehaviour
     {
         // 랜덤한 위치에 객체 생성
         float spawnPointX = Random.Range(-7f, 7f); // 좌우 범위
-        Vector2 spawnPos = new Vector2(spawnPointX, 10); // 객체 생성 높이
+        Vector2 spawnPos = new Vector2(spawnPointX, 7); // 객체 생성 높이
 
         // 랜덤한 객체 선택.
         int rand = Random.Range(0, 4);

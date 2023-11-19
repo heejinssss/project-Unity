@@ -8,7 +8,8 @@ public class TalkManager5 : MonoBehaviour
     Dictionary<int, Sprite> portraitData;
 
     public Sprite[] portraitArr;
-    public GameObject Board;
+    //public GameObject Board;
+    public GameObject Score_Text;
     public GameManager5 gameManager;
 
     void Awake()
@@ -51,7 +52,7 @@ public class TalkManager5 : MonoBehaviour
         if (talkIndex == talkData[id].Length)
         {
             // 짭니팡 보임
-            Board.SetActive(true);
+            Score_Text.SetActive(true);
             gameManager.isDialogueEnded = true;
             return null;
         }
