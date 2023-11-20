@@ -132,7 +132,7 @@ public class DialogManager4 : MonoBehaviour
             }
             else if (id == 4100)
             {
-                GoToMap();
+                gameManager.SceneMove4("Scene 4");
             }
 
             return;
