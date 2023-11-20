@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerAction04 : MonoBehaviour
 {
     public float moveSpeed;
+    public AudioSource AccidentSound;
     private int spacebarCount = 0;
 
     private bool spacebarActivated = false;
@@ -29,6 +30,7 @@ public class PlayerAction04 : MonoBehaviour
             /********************* 우향 이동 [S] *********************/
             if (rightMoveTimer < rightMoveDuration)
             {
+                AccidentSound.Play();
                 // 스페이스바 효과 진행 중
                 if (anim.GetInteger("hAxisRaw") != 1)
                 {

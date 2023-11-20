@@ -15664,7 +15664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputVec: {x: 0, y: 0}
-  speed: 4
+  speed: 8
   rigid: {fileID: 0}
 --- !u!212 &921967909
 SpriteRenderer:

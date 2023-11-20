@@ -30,6 +30,8 @@ TagManager:
   - Land
   - BossAttack
   - Entry
+  - Border
+  - PerfectFood
   layers:
   - Default
   - TransparentFX
@@ -62,7 +64,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Symmetry
   m_SortingLayers:
   - name: Default
     uniqueID: 0

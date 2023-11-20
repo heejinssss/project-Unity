@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class TalkManager01 : MonoBehaviour
 {
     Dictionary<int, string[]> talkData;
@@ -9,6 +8,7 @@ public class TalkManager01 : MonoBehaviour
 
     public Sprite[] portraitArr;
     public CameraShake0 cameraShake;
+    public AudioSource DialogueSound;
 
     void Awake()
     {
@@ -69,7 +69,10 @@ public class TalkManager01 : MonoBehaviour
             return null;
         }
         else
+        {
+            DialogueSound.Play();
             return talkData[id][talkIndex];
+        }
     }
 
     public Sprite GetPortrait(int id, int portraitIndex)

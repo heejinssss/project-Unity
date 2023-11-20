@@ -16,6 +16,10 @@ public sealed class Board5 : MonoBehaviour
     public int Width => Tiles.GetLength(0);
     public int Height => Tiles.GetLength(1);
 
+    public AudioSource selectSound;
+    public AudioSource swapSound;
+    public AudioSource popSound;
+
     private Tile5 _selectedTile1;
     private Tile5 _selectedTile2;
 
@@ -93,6 +97,7 @@ public sealed class Board5 : MonoBehaviour
         if (_selection.Count > 0 && _selection[0] != tile)
         {
             _selection[0].icon.transform.localScale = Vector3.one;
+            selectSound.Play();
         }
 
         if (!_selection.Contains(tile))
@@ -119,6 +124,10 @@ public sealed class Board5 : MonoBehaviour
         isSwapping = true;
 
         await Swap(_selection[0], _selection[1]);
+
+        // 타일 교환 후 원래 크기로 복귀
+        _selection[0].icon.transform.localScale = Vector3.one;
+        _selection[1].icon.transform.localScale = Vector3.one;
 
         if (CanPop())
         {
@@ -166,6 +175,8 @@ public sealed class Board5 : MonoBehaviour
 
         tile1.Item = tile2.Item;
         tile2.Item = tile1Item;
+
+        swapSound.Play();
     }
 
     private bool CanPop()
@@ -212,18 +223,31 @@ public sealed class Board5 : MonoBehaviour
                 y = 0;
             }
         }
+        popSound.Play();
     }
 
-    /* 새로운 3 match Item [S] */
-    public void UpdateAllTiles()
+    public void ResetTiles()
     {
-        for (int x = 0; x < Width; x++)
+        for (var y = 0; y < Height; y++)
         {
-            for (int y = 0; y < Height; y++)
+            for (var x = 0; x < Width; x++)
             {
-                Tiles[x, y].Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
+                var tile = Tiles[x, y];
+                tile.Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
             }
         }
     }
+
+    /* 새로운 3 match Item [S] */
+    //public void UpdateAllTiles()
+    //{
+    //    for (int x = 0; x < Width; x++)
+    //    {
+    //        for (int y = 0; y < Height; y++)
+    //        {
+    //            Tiles[x, y].Item = ItemDatabase5.Items[Random.Range(0, ItemDatabase5.Items.Length)];
+    //        }
+    //    }
+    //}
     /* 새로운 3 match Item [E] */
 }
