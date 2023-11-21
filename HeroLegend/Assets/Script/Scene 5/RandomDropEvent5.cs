@@ -14,11 +14,7 @@ public class RandomDropEvent5 : MonoBehaviour
     public GameManager5 gameManager; // GameManager5 인스턴스
 
     private float timer = 0; // 타이머
-
-    //void Start()
-    //{
-    //    InvokeRepeating("Spawn", 0, spawnRate);
-    //}
+    private TimeManager timeManager;
 
     void Update()
     {
