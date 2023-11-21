@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMove5 : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMove5 : MonoBehaviour
     public Sprite Donut1_1, Donut1_2, Donut2_1, Donut2_2, Donut3_1, Donut3_2, Pizza1, Pizza2, Watermelon1, Watermelon2;
     public GameManager5 manager;
     public bool isDead = false;
+    private int userScore;
     public AudioSource scoreUpSound;
 
     Rigidbody2D rigid;
@@ -136,7 +138,7 @@ public class PlayerMove5 : MonoBehaviour
     {
         anim.SetTrigger("isDead");
         GameObject.FindObjectOfType<PlayerMove5>().isDead = true;  // 캐릭터 사망 상태 설정
-        StartCoroutine(LoadSceneAfterDelay("Ending 1", 5f));
+        StartCoroutine(LoadSceneAfterDelay("Ending 1", 5f)); // 씬 전환
     }
 
     private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
