@@ -81,6 +81,7 @@ public class MapRegion0 : MonoBehaviour
     public void MoveScene(string sceneName)
     {
         // 필요하다면 스크립트 추가 예정
+        Time.timeScale = 1; // Map --> Scene 이동 시 화면 멈춤 방지
         regionClickAudioSource.Play();
         SceneManager.LoadScene(sceneName);
     }
