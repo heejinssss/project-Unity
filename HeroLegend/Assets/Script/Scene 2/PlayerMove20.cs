@@ -28,56 +28,65 @@ public class PlayerMove20 : MonoBehaviour
 
     void Update()
     {
-        // 이동 값
-        h = gameManager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
-        v = gameManager.isAction ? 0 : Input.GetAxisRaw("Vertical");
+        // 대화랑 설명 닫혀있으면
+        if (!isOpen && explanationClose)
+        {
+            // 이동 값
+            h = gameManager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
+            v = gameManager.isAction ? 0 : Input.GetAxisRaw("Vertical");
 
-        // 버튼 클릭 체크 
-        bool hDown = gameManager.isAction ? false : Input.GetButtonDown("Horizontal");
-        bool vDown = gameManager.isAction ? false : Input.GetButtonDown("Vertical");
-        bool hUp = gameManager.isAction ? false : Input.GetButtonUp("Horizontal");
-        bool vUp = gameManager.isAction ? false : Input.GetButtonUp("Vertical");
+            bool hDown = gameManager.isAction ? false : Input.GetButtonDown("Horizontal");
+            bool vDown = gameManager.isAction ? false : Input.GetButtonDown("Vertical");
+            bool hUp = gameManager.isAction ? false : Input.GetButtonUp("Horizontal");
+            bool vUp = gameManager.isAction ? false : Input.GetButtonUp("Vertical");
 
-        /// 수평이동 체크 
-        if (hDown)
-        {
-            isHorizonMove = true;
-        } else if (vDown) 
-        {
-            isHorizonMove = false;
-        } else if (hUp || vUp)
-        {
-            isHorizonMove = h != 0;
-        }
+            /// 수평이동 체크 
+            if (hDown)
+            {
+                isHorizonMove = true;
+            }
+            else if (vDown)
+            {
+                isHorizonMove = false;
+            }
+            else if (hUp || vUp)
+            {
+                isHorizonMove = h != 0;
+            }
 
-        // 애니메이션 컨트롤 
-        if (anim.GetInteger("hAxisRaw") != (int) h)
-        {
-            anim.SetBool("isChanged", true);
-            anim.SetInteger("hAxisRaw", (int)h);
-        } else if (anim.GetInteger("vAxisRaw") != (int) v)
-        {
-            anim.SetBool("isChanged", true);
-            anim.SetInteger("vAxisRaw", (int)v);
-        }
-        else
-        {
-            anim.SetBool("isChanged", false);
-        }
+            // 애니메이션 컨트롤 
+            if (anim.GetInteger("hAxisRaw") != (int)h)
+            {
+                anim.SetBool("isChanged", true);
+                anim.SetInteger("hAxisRaw", (int)h);
+            }
+            else if (anim.GetInteger("vAxisRaw") != (int)v)
+            {
+                anim.SetBool("isChanged", true);
+                anim.SetInteger("vAxisRaw", (int)v);
+            }
+            else
+            {
+                anim.SetBool("isChanged", false);
+            }
 
-        // 방향 
-        if (vDown && v == 1) // 상 
-        {
-            dirVec = Vector3.up;
-        } else if (vDown && v == -1)
-        {
-            dirVec = Vector3.down;
-        } else if (hDown && h == -1)
-        {
-            dirVec = Vector3.left;
-        } else if (hDown && h == 1)
-        {
-            dirVec = Vector3.right;
+            // 방향 
+            if (vDown && v == 1) // 상 
+            {
+                dirVec = Vector3.up;
+            }
+            else if (vDown && v == -1)
+            {
+                dirVec = Vector3.down;
+            }
+            else if (hDown && h == -1)
+            {
+                dirVec = Vector3.left;
+            }
+            else if (hDown && h == 1)
+            {
+                dirVec = Vector3.right;
+            }
         }
 
         // Scan Object
