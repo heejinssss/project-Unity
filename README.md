@@ -183,7 +183,7 @@ void Think()
 
 ## 👟 세 번째 게임 `후르프후릎`
 
-<img src="https://drive.google.com/file/d/1Mo2lmUkY8n-dlVwAXjmpUgvlMoDBJ7BC/view" width="500" height="300">
+<img src="https://github.com/heejinssss/project-knight/blob/master/7Scene3.gif?raw=true" width="500" height="300">
 
 > **면치기**를 가장 더러워하는 `후르브킹` 이 점령한 후르프후릎 성!
 >
