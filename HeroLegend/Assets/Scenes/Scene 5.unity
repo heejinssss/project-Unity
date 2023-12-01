@@ -6877,7 +6877,7 @@ MonoBehaviour:
   donut2Pooler: {fileID: 1956080907}
   donut3Pooler: {fileID: 299630467}
   watermelonPooler: {fileID: 1960057822}
-  spawnRate: 0.5
+  spawnRate: 0.3
   fallingObject: {fileID: 0}
   gameManager: {fileID: 1679736493}
 --- !u!4 &1778478183
