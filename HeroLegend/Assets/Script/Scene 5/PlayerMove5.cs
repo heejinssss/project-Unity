@@ -137,6 +137,8 @@ public class PlayerMove5 : MonoBehaviour
     public void CharacterKilled()
     {
         anim.SetTrigger("isDead");
+        anim.SetBool("isSkilled", false);
+        anim.SetBool("isRunning", false);
         GameObject.FindObjectOfType<PlayerMove5>().isDead = true;  // 캐릭터 사망 상태 설정
         StartCoroutine(LoadSceneAfterDelay("Ending 1", 5f)); // 씬 전환
     }
@@ -171,7 +173,7 @@ public class PlayerMove5 : MonoBehaviour
             {
                 Debug.Log("비대칭 커팅 완료");
                 scoreUpSound.Play();
-                ScoreCounter5.Instance.Score += 5;
+                ScoreCounter5.Instance.Score += 10;
 
                 string objectName = other.gameObject.name;
 

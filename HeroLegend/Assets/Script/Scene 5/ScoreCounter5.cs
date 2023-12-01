@@ -26,7 +26,8 @@ public sealed class ScoreCounter5 : MonoBehaviour
                 Board.SetActive(true);
             }
 
-            else if (_score > 0 && (_score / 50) % 2 == 0)
+            else if (_score >= 50)
+            //else if (_score > 0 && (_score / 50) % 2 == 0)
             {
                 Board.SetActive(false);
             }
@@ -37,7 +38,7 @@ public sealed class ScoreCounter5 : MonoBehaviour
                 EnemyAction52.Instance.AttackonTitan();
             }
 
-            if (_score >= 200)
+            if (_score >= 150)
             {
                 EnemyAction51.Instance.TriggerSkilling();
                 EnemyAction52.Instance.TriggerSkilling();
